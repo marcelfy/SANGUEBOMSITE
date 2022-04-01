@@ -1,13 +1,13 @@
 
 import { BrowserRouter as Router, Switch, Route, Routes, Link } from 'react-router-dom'
-import Home from './src/public/pages/Home/Home';
-import Login from './src/public/pages/Login/Login'
-import Cadastro from './src/public/pages/Cadastro/Cadastro'
+import Home from './public/pages/Home/Home';
+import Login from './public/pages/Login/Login'
+import Cadastro from './public/pages/Cadastro/Cadastro'
  
-import Header from  './src/public/components/Header/Header'
-import Footer from './src/public/components/Footer/Footer'
-import Hemocentros from './src/public/pages/Hemocentros/Hemocentros'
-import Campanha from './src/public/pages/Campanha/Campanha'
+import Header from  './public/components/Header/Header'
+import Footer from './public/components/Footer/Footer'
+import Hemocentros from './public/pages/Hemocentros/Hemocentros'
+import Campanha from './public/pages/Campanha/Campanha'
 
 function App() {
   return (
