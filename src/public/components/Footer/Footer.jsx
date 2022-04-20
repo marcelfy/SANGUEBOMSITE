@@ -4,6 +4,9 @@ import style from './Footer.module.css'
 function Footer() {
     return (
         <footer className={style.footer}>
+            <p className={style.copyright}>
+                <span>sanguebom@gmail.com</span>
+            </p>
             <ul className={style.social_list}>
                 <li>
                     <FaFacebook />
@@ -16,9 +19,6 @@ function Footer() {
                 </li>
 
             </ul>
-            <p className={style.copyright}>
-                <span>Sangue Bom</span> &copy; 2022
-            </p>
         </footer>
     )
 }

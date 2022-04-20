@@ -1,7 +1,7 @@
 .navbar{
     display: flex;
     justify-content: space-between;
-    background-color: rgb(164, 156, 156);
+    background:  rgba(255, 255, 255, 0.973958) 0.01%;
     padding: 2em;
     flex-direction: row-reverse;
     
@@ -11,10 +11,11 @@
     display: flex;
     list-style: none;
     align-items: center;
+    
 }
 
 .item{
-    margin-right: 1em;
+    margin-right: 2em;
 }
 
 .item a{
@@ -27,7 +28,3 @@
     color:#ffffff;
 }
 
-.img{
-    width: 40%;
-    height: 100%;
-}
