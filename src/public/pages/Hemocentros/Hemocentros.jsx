@@ -1,6 +1,6 @@
 import Style from './Hemocentros.module.css'
 
-function Hemocentros(){
+const Hemocentros = () => {
     return(
         <h1>Hemocentros</h1>
     )

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import logo from '../../../img/logo.png'
 
 
-function NavBar() {
+const NavBar = () => {
     return (
         <nav className={style.navbar}>
 

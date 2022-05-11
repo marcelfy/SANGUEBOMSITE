@@ -1,7 +1,7 @@
 import { FaFacebook, FaInstagram, FaGooglePlay } from 'react-icons/fa'
 import style from './Footer.module.css'
 
-function Footer() {
+const Footer = () => {
     return (
         <footer className={style.footer}>
             <p className={style.copyright}>
@@ -19,6 +19,7 @@ function Footer() {
                 </li>
 
             </ul>
+            
         </footer>
     )
 }

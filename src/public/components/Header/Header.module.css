@@ -10,8 +10,7 @@
 .list{
     display: flex;
     list-style: none;
-    align-items: center;
-    
+    align-items: center; 
 }
 
 .item{
@@ -19,12 +18,16 @@
 }
 
 .item a{
-    color: rgb(7, 77, 228);
+    color: white;
+    background-color: #AF0107;
     text-decoration: none;
     transition: 0.5s;
+    border-radius: 10px;
+    padding: 10px 15px;
 }
 
 .item a:hover{
-    color:#ffffff;
+    color:#eba7a7;
+    cursor: pointer;
 }
 

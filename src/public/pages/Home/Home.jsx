@@ -3,7 +3,7 @@ import img from '../../../img/logo.png'
 import {FaExclamation} from 'react-icons/fa'
 
 
-function Home(){
+const Home = () => {
     return(
         <section className={style.home_container}>
             <img src={img} className={style.img}></img>
