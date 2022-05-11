@@ -1,9 +1,14 @@
 .footer{
-    background-color: rgb(164, 156, 156);
+    background-color: #47A0C6;
     color:white;
-    padding: 3em;
+    padding: 2em;
     text-align: center;
-    /* margin-top: 30%; */
+    position:relative;
+	bottom:0;
+	width:100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
 }
 
 .social_list{
@@ -26,9 +31,7 @@
     cursor: pointer;
 }
 
-.copyright{
-    margin-top: 2em;
-}
+
 
 .copyright span{
     font-weight: bold;

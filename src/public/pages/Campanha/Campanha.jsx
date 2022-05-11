@@ -1,6 +1,6 @@
 import Style from './Campanha.module.css'
 
-function Campanha(){
+const Campanha = () => {
     return(
         <h1>Campanha</h1>
     )
