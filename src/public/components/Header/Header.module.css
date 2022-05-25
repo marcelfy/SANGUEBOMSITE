@@ -5,7 +5,7 @@
     /* background-color: #47A0C6; */
     padding: 2em;
     flex-direction: row-reverse;
-    
+    position: relative;
 }
 
 .list{
