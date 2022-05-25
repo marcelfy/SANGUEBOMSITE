@@ -2,7 +2,9 @@ import Style from './Campanha.module.css'
 
 const Campanha = () => {
     return(
-        <h1>Campanha</h1>
+        <div>
+            <h1>Campanha</h1>
+        </div>
     )
 }
 

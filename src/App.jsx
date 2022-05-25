@@ -19,7 +19,7 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/cadastro" element={<Cadastro />}></Route>
           <Route path="/hemocentros" element={<Hemocentros />}></Route>
-          <Route path="/campanha" element={<Campanha />}></Route>
+          <Route path="/campanha" element={<Campanha/>}></Route>
         </Routes>
        
       <Footer/>
