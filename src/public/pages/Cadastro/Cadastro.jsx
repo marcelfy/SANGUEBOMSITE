@@ -60,7 +60,7 @@ const Cadastro = () => {
     return (
         <>
             <div className={Style.logo}>
-                <img src={Logo} width={390} height={190}></img>
+                <img src={Logo} width={500} height={190}></img>
             </div>
             <div className={Style.title}>Cadastro de Doador</div>
             <Form
@@ -80,7 +80,7 @@ const Cadastro = () => {
                             wrapperCol={{ span: 24 }}
                             style={{ width: '50%' }}
                         >
-                            <Input className={Style.input} placeholder="Digite seu nome" />
+                            <Input className={Style.input} placeholder="Digite seu nome" style={{border:'1px solid #B60707', borderRadius:'10px'}}/>
                         </Form.Item>
                         <Form.Item
                             label="Telefone"
@@ -90,7 +90,7 @@ const Cadastro = () => {
                             wrapperCol={{ span: 24 }}
                             style={{ width: '50%' }}
                         >
-                            <MaskedInput mask='(99) 99999 9999' className={Style.input} placeholder="Informe o telefone" />
+                            <MaskedInput mask='(99) 99999 9999' className={Style.input} placeholder="Informe o telefone" style={{border:'1px solid #B60707', borderRadius:'10px'}}/>
                         </Form.Item>
 
                     </div>
@@ -104,7 +104,7 @@ const Cadastro = () => {
                             wrapperCol={{ span: 24 }}
                             style={{ width: '50%' }}
                         >
-                            <MaskedInput mask="99/99/9999" className={Style.input} placeholder="Informe a data de nascimento" />
+                            <MaskedInput mask="99/99/9999" className={Style.input} placeholder="Informe a data de nascimento" style={{ borderRadius:'10px'}}/>
                         </Form.Item>
 
                         <Form.Item
@@ -115,7 +115,7 @@ const Cadastro = () => {
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
                         >
-                            <MaskedInput mask="999.999.999-99" className={Style.input} placeholder="Informe o CPF" />
+                            <MaskedInput mask="999.999.999-99" className={Style.input} placeholder="Informe o CPF" style={{ borderRadius:'10px'}}/>
                         </Form.Item>
                     </div>
                     <div className={Style.groupItem}>
@@ -127,7 +127,7 @@ const Cadastro = () => {
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
                         >
-                            <Input placeholder='Digite seu email' className={Style.input} />
+                            <Input placeholder='Digite seu email' className={Style.input} style={{border:'1px solid #B60707', borderRadius:'10px'}}/>
                         </Form.Item>
                         <Form.Item
                             label="Senha"
@@ -137,7 +137,7 @@ const Cadastro = () => {
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
                         >
-                            <Input.Password className={Style.input} placeholder="Digite a senha" />
+                            <Input.Password className={Style.input} placeholder="Digite a senha" style={{border:'1px solid #B60707', borderRadius:'10px'}}/>
                         </Form.Item>
                     </div>
                     <div className={Style.groupItem}>
@@ -150,7 +150,7 @@ const Cadastro = () => {
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
                         >
-                            <Input placeholder='Digite uma cidade' className={Style.input} />
+                            <Input placeholder='Digite uma cidade' className={Style.input} style={{border:'1px solid #B60707',borderRadius:'10px'}}/>
                         </FormItem>
 
                         <div className={Style.groupItem}>
@@ -162,10 +162,11 @@ const Cadastro = () => {
                                 labelCol={{ span: 24 }}
                                 wrapperCol={{ span: 24 }}
                                 style={{ width: '169px' }}
+                                 
                             >
 
 
-                                <Select defaultValue="Selecione" style={{ width: '200px' }} >
+                                <Select defaultValue="Selecione" style={{ width: '200px' ,border:'1px solid #B60707',borderRadius:'10px' }} bordered={false}>
                                     {estados.map((estado) => (
                                         <Option key={estado.id} value={estado.nome}><p style={{ fontSize: '13px' }}>{estado.nome}</p></Option>
                                     ))}
@@ -179,7 +180,7 @@ const Cadastro = () => {
                                 style={{ width: '169px' }}
                                 wrapperCol={{ span: 24 }}
                             >
-                                <Select defaultValue="Selecione" style={{ width: '169px' }} >
+                                <Select defaultValue="Selecione" style={{ width: '169px' , border:'1px solid #B60707',borderRadius:'10px'}} bordered={false}>
                                     {tipoSanguineo.map((tipo)=>(
                                         <Option key={tipo.key} value={tipo.tipo}>{tipo.tipo}</Option>
                                     ))}
