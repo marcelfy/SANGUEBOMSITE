@@ -1,54 +1,194 @@
 import Style from './Cadastro.module.css'
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Select } from 'antd';
 import 'antd/dist/antd.css'
-
+import MaskedInput from 'react-input-mask';
+import FormItem from 'antd/lib/form/FormItem';
+import Logo from '../../../img/logo.png'
 
 const Cadastro = () => {
     const onFinish = (values) => {
-        console.log('Success:', values);
-      };
-    
-      const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-      };
-    
-      return (
-        <fieldset className={Style.form}>
+        console.log(values);
+    };
+
+    const onFinishFailed = (errorInfo) => {
+        console.log(errorInfo);
+    };
+
+    const { Option } = Select;
+
+    var estados = [
+        { uf: 'AC', nome: 'Acre', id: 1 },
+        { uf: 'AL', nome: 'Alagoas', id: 2 },
+        { uf: 'AP', nome: 'Amapá', id: 3 },
+        { uf: 'AM', nome: 'Amazonas', id: 4 },
+        { uf: 'BA', nome: 'Bahia', id: 5 },
+        { uf: 'CE', nome: 'Ceará', id: 6 },
+        { uf: 'DF', nome: 'Distrito Federal', id: 7 },
+        { uf: 'ES', nome: 'Espirito Santo', id: 8 },
+        { uf: 'GO', nome: 'Goiás', id: 9 },
+        { uf: 'MA', nome: 'Maranhão', id: 10 },
+        { uf: 'MS', nome: 'Mato Grosso do Sul', id: 11 },
+        { uf: 'MT', nome: 'Mato Grosso', id: 12 },
+        { uf: 'MG', nome: 'Minas Gerais', id: 13 },
+        { uf: 'PA', nome: 'Pará', id: 14 },
+        { uf: 'PB', nome: 'Paraíba', id: 15 },
+        { uf: 'PR', nome: 'Paraná', id: 16 },
+        { uf: 'PE', nome: 'Pernambuco', id: 17 },
+        { uf: 'PI', nome: 'Piauí', id: 18 },
+        { uf: 'RJ', nome: 'Rio de Janeiro', id: 19 },
+        { uf: 'RN', nome: 'Rio Grande do Norte', id: 20 },
+        { uf: 'RS', nome: 'Rio Grande do Sul', id: 21 },
+        { uf: 'RO', nome: 'Rondônia', id: 22 },
+        { uf: 'RR', nome: 'Roraima', id: 23 },
+        { uf: 'SC', nome: 'Santa Catarina', id: 24 },
+        { uf: 'SP', nome: 'São Paulo', id: 25 },
+        { uf: 'SE', nome: 'Sergipe', id: 26 },
+        { uf: 'TO', nome: 'Tocantins', id: 27 }
+    ]
+
+    return (
+        <>
+            <div className={Style.logo}>
+                <img src={Logo} width={390} height={190}></img>
+            </div>
+            <div className={Style.title}>Cadastro de Doador</div>
             <Form
-            name="basic"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 16 }}
-            initialValues={{ remember: true }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
-            autoComplete="off"
+                style={{padding:'15px', marginBottom:'4em'}}
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+                autoComplete="off"
+                className={Style.form}
             >
-            <Form.Item
-                label="Nome"
-                name="nome"
-                rules={[{ required: true, message: 'Campo nome é obrigatório' }]}
-            >
-                <Input className={Style.input}/>
-            </Form.Item>
-        
-            <Form.Item
-                label="Senha"
-                name="senha"
-                rules={[{ required: true, message: 'O campo senha é obrigatório' }]}
-            >
-                <Input.Password className={Style.input}/>
-            </Form.Item>
-        
-            
-        
-            <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                <Button type="primary" htmlType="submit" className={Style.input}>
-                Cadastrar
-                </Button>
-            </Form.Item>
+                <fieldset >
+                    <div className={Style.groupItem}>
+                        <Form.Item
+                            label="Nome"
+                            name="nome"
+                            rules={[{ required: true, message: 'Campo nome é obrigatório' }]}
+                            labelCol={{ span: 24 }}
+                            wrapperCol={{ span: 24 }}
+                        >
+                            <Input className={Style.input} placeholder="Digite seu nome" />
+                        </Form.Item>
+                        <Form.Item
+                            label="Telefone"
+                            name="telefone"
+                            rules={[{ required: true, message: 'Campo telefone é obrigatório' }]}
+                            labelCol={{ span: 24 }}
+                            wrapperCol={{ span: 24 }}
+                        >
+                            <MaskedInput mask='(99) 99999 9999' className={Style.input} placeholder="Informe o telefone"/>
+                        </Form.Item>
+
+                    </div>
+
+                    <div className={Style.groupItem}>
+                        <Form.Item
+                            label="Data de Nascimento"
+                            name="dataNascimento"
+                            rules={[{ required: true, message: 'Campo Data de Nascimento é obrigatório' }]}
+                            labelCol={{ span: 24 }}
+                            wrapperCol={{ span: 24 }}
+                        >
+                            <MaskedInput mask="99/99/9999" className={Style.input}  placeholder="Informe a data de nascimento"/>
+                        </Form.Item>
+
+                        <Form.Item
+                            label="CPF"
+                            name="cpf"
+                            rules={[{ required: true, message: 'O campo cpf é obrigatório' }]}
+                            labelCol={{ span: 24 }}
+                            wrapperCol={{ span: 24 }}
+                        >
+                            <MaskedInput mask="999.999.999-99" className={Style.input} placeholder="Informe o CPF" />
+                        </Form.Item>
+                    </div>
+                    <div className={Style.groupItem}>
+                        <Form.Item
+                            label="Email"
+                            name="email"
+                            rules={[{ required: true, message: 'O campo email é obrigatório' }]}
+                            labelCol={{ span: 24 }}
+                            wrapperCol={{ span: 24 }}
+                        >
+                            <Input placeholder='Digite seu email' className={Style.input} />
+                        </Form.Item>
+                        <Form.Item
+                            label="Senha"
+                            name="senha"
+                            rules={[{ required: true, message: 'O campo senha é obrigatório' }]}
+                            labelCol={{ span: 24 }}
+                            wrapperCol={{ span: 24 }}
+                        >
+                            <Input.Password className={Style.input} placeholder="Digite a senha" />
+                        </Form.Item>
+                    </div>
+                    <div className={Style.groupItem}>
+                           
+                            <FormItem
+                                label="Cidade"
+                                name="cidade"
+                                rules={[{ required: true, message: 'Selecione uma cidade' }]}
+                                labelCol={{ span: 24 }}
+                                wrapperCol={{ span: 24 }}
+                            >
+                                <Input placeholder='Digite uma cidade' className={Style.input} />
+                            </FormItem>
+                            <FormItem
+                                label="UF"
+                                name="uf"
+                                rules={[{ required: true, message: 'Selecione uma UF' }]}
+                                labelCol={{ span: 24 }}
+                                wrapperCol={{ span: 24 }}
+                                >
+
+
+                                <Select defaultValue="Selecione" style={{ width: '170px' }} >
+                                    {estados.map((estado) => (
+                                        <Option key={estado.id} value={estado.uf}><p style={{ fontSize: '13px' }}>{estado.nome}</p></Option>
+                                    ))}
+                                </Select>
+                            </FormItem>
+                        </div>
+                    <div className={Style.groupItem}>
+                        <FormItem
+                            label="Tipo Sanguíneo"
+                            name="tipoSanguineo"
+                            rules={[{ required: true, message: 'Selecione um tipo sanguíneo' }]}
+                            labelCol={{ span: 24 }}
+                            wrapperCol={{ span: 24 }}
+                        >
+                            <Select defaultValue="Selecione" style={{ width: '130px' }} >
+                                <Option key={1} value="a+">A+</Option>
+                                <Option key={2} value="a-">A-</Option>
+                                <Option key={3} value="b+">B+</Option>
+                                <Option key={4} value="b-">B-</Option>
+                                <Option key={5} value="ab+">AB+</Option>
+                                <Option key={6} value="ab-">AB-</Option>
+                                <Option key={7} value="o+">O+</Option>
+                                <Option key={8} value="o-">O-</Option>
+                            </Select>
+                        </FormItem>
+                        
+                        </div>
+                        
+                    <div className={Style.btnArea}>
+                        <Form.Item>
+                            <Button danger className={Style.btn}>
+                                Voltar
+                            </Button>
+                        </Form.Item>
+                        <Form.Item>
+                            <Button type="primary" htmlType="submit" className={Style.btn}>
+                                Cadastrar
+                            </Button>
+                        </Form.Item>
+                    </div>
+
+                </fieldset>
             </Form>
-        </fieldset>
-      )
+        </>
+    )
 }
 
 export default Cadastro
