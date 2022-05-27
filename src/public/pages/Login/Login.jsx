@@ -36,7 +36,7 @@ const Login = () => {
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
                     >
-                        <Input placeholder='Digite seu usuário' className={Style.input} style={{border:'1px solid #B60707', borderRadius:'10px'}}/>
+                        <Input placeholder='Digite seu usuário' className={Style.input} style={{ border: '1px solid #B60707', borderRadius: '10px' }} />
                     </Form.Item>
 
                     <Form.Item
@@ -46,11 +46,13 @@ const Login = () => {
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
                     >
-                        <Input.Password placeholder='Digite sua senha' className={Style.input}  style={{border:'1px solid #B60707', borderRadius:'10px'}}/>
+                        <Input.Password placeholder='Digite sua senha' className={Style.input} style={{ border: '1px solid #B60707', borderRadius: '10px' }} />
                     </Form.Item>
-                    <Button type="primary" htmlType="submit">
-                        Entrar
-                    </Button>
+                    <div className={Style.btn}>
+                        <Button type='primary' htmlType="submit">
+                            Entrar
+                        </Button>
+                    </div>
                 </fieldset>
             </Form>
         </>
