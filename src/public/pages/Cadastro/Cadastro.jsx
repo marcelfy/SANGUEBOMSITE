@@ -16,6 +16,17 @@ const Cadastro = () => {
 
     const { Option } = Select;
 
+    var tipoSanguineo = [
+        {tipo: 'A+', key:1},
+        {tipo: 'A-', key:2},
+        {tipo: 'B+', key:3},
+        {tipo: 'B-', key:4},
+        {tipo: 'AB+', key:5},
+        {tipo: 'AB-', key:6},
+        {tipo: 'O+', key:7},
+        {tipo: 'O-', key:8}
+
+    ]
     var estados = [
         { uf: 'AC', nome: 'Acre', id: 1 },
         { uf: 'AL', nome: 'Alagoas', id: 2 },
@@ -156,7 +167,7 @@ const Cadastro = () => {
 
                                 <Select defaultValue="Selecione" style={{ width: '200px' }} >
                                     {estados.map((estado) => (
-                                        <Option key={estado.id} value={estado.uf}><p style={{ fontSize: '13px' }}>{estado.nome}</p></Option>
+                                        <Option key={estado.id} value={estado.nome}><p style={{ fontSize: '13px' }}>{estado.nome}</p></Option>
                                     ))}
                                 </Select>
                             </FormItem>
@@ -169,14 +180,9 @@ const Cadastro = () => {
                                 wrapperCol={{ span: 24 }}
                             >
                                 <Select defaultValue="Selecione" style={{ width: '169px' }} >
-                                    <Option key={1} value="a+">A+</Option>
-                                    <Option key={2} value="a-">A-</Option>
-                                    <Option key={3} value="b+">B+</Option>
-                                    <Option key={4} value="b-">B-</Option>
-                                    <Option key={5} value="ab+">AB+</Option>
-                                    <Option key={6} value="ab-">AB-</Option>
-                                    <Option key={7} value="o+">O+</Option>
-                                    <Option key={8} value="o-">O-</Option>
+                                    {tipoSanguineo.map((tipo)=>(
+                                        <Option key={tipo.key} value={tipo.tipo}>{tipo.tipo}</Option>
+                                    ))}
                                 </Select>
                             </FormItem>
                         </div>
