@@ -1,6 +1,6 @@
 import Style from './Login.module.css'
 import { Form, Input, Button, Select } from 'antd';
-import Logo from '../../../img/logo.png'
+import Logo from '../../../public/Assets/img/logo.png'
 
 const Login = () => {
 

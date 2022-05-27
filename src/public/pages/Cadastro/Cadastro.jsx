@@ -3,7 +3,7 @@ import { Form, Input, Button, Select } from 'antd';
 import 'antd/dist/antd.css'
 import MaskedInput from 'react-input-mask';
 import FormItem from 'antd/lib/form/FormItem';
-import Logo from '../../../img/logo.png'
+import Logo from '../../../public/Assets/img/logo.png'
 
 const Cadastro = () => {
     const onFinish = (values) => {

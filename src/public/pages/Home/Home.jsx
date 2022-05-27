@@ -1,5 +1,5 @@
 import style from './Home.module.css'
-import img from '../../../img/logo.png'
+import Logo from '../../../public/Assets/img/logo.png'
 import {FaExclamation, } from 'react-icons/fa'
 import {MdBloodtype} from 'react-icons/md'
 import {GrEmptyCircle} from 'react-icons/gr'
@@ -7,7 +7,7 @@ import {GrEmptyCircle} from 'react-icons/gr'
 const Home = () => {
     return(
         <section className={style.home_container}>
-            <img src={img} className={style.img}></img>
+            <img src={Logo} className={style.img}></img>
             <p style={{fontSize:'30px'}}>DOAÇÕES REALIZADAS ATRAVÉS DO <spam>SANGUE BOM</spam></p>
             
                 <div className={style.numDoacoes}>
@@ -30,7 +30,7 @@ const Home = () => {
 Enviaremos um lembrete para os usuários cadastrados lembrando-os quando poderão doar novamente, por e-mail e via aplicativos de mensagens informando locais de coleta. O usuário terá acesso ao histórico de doações, gerando um certificado virtual com o tipo e número de doação referente. 
             </p>
 
-            <img src={img} className={style.img2}></img>
+            <img src={Logo} className={style.img2}></img>
         </section>
     )
 }
