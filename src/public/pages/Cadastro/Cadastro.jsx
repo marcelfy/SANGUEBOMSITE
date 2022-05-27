@@ -53,7 +53,7 @@ const Cadastro = () => {
             </div>
             <div className={Style.title}>Cadastro de Doador</div>
             <Form
-                style={{padding:'15px', marginBottom:'4em'}}
+                style={{ padding: '15px', marginBottom: '4em' }}
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
@@ -67,6 +67,7 @@ const Cadastro = () => {
                             rules={[{ required: true, message: 'Campo nome é obrigatório' }]}
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
+                            style={{ width: '50%' }}
                         >
                             <Input className={Style.input} placeholder="Digite seu nome" />
                         </Form.Item>
@@ -76,8 +77,9 @@ const Cadastro = () => {
                             rules={[{ required: true, message: 'Campo telefone é obrigatório' }]}
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
+                            style={{ width: '50%' }}
                         >
-                            <MaskedInput mask='(99) 99999 9999' className={Style.input} placeholder="Informe o telefone"/>
+                            <MaskedInput mask='(99) 99999 9999' className={Style.input} placeholder="Informe o telefone" />
                         </Form.Item>
 
                     </div>
@@ -89,13 +91,15 @@ const Cadastro = () => {
                             rules={[{ required: true, message: 'Campo Data de Nascimento é obrigatório' }]}
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
+                            style={{ width: '50%' }}
                         >
-                            <MaskedInput mask="99/99/9999" className={Style.input}  placeholder="Informe a data de nascimento"/>
+                            <MaskedInput mask="99/99/9999" className={Style.input} placeholder="Informe a data de nascimento" />
                         </Form.Item>
 
                         <Form.Item
                             label="CPF"
                             name="cpf"
+                            style={{ width: '50%' }}
                             rules={[{ required: true, message: 'O campo cpf é obrigatório' }]}
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
@@ -107,6 +111,7 @@ const Cadastro = () => {
                         <Form.Item
                             label="Email"
                             name="email"
+                            style={{ width: '50%' }}
                             rules={[{ required: true, message: 'O campo email é obrigatório' }]}
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
@@ -116,6 +121,7 @@ const Cadastro = () => {
                         <Form.Item
                             label="Senha"
                             name="senha"
+                            style={{ width: '50%' }}
                             rules={[{ required: true, message: 'O campo senha é obrigatório' }]}
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
@@ -124,54 +130,59 @@ const Cadastro = () => {
                         </Form.Item>
                     </div>
                     <div className={Style.groupItem}>
-                           
-                            <FormItem
-                                label="Cidade"
-                                name="cidade"
-                                rules={[{ required: true, message: 'Selecione uma cidade' }]}
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                            >
-                                <Input placeholder='Digite uma cidade' className={Style.input} />
-                            </FormItem>
+
+                        <FormItem
+                            label="Cidade"
+                            name="cidade"
+                            style={{ width: '50%' }}
+                            rules={[{ required: true, message: 'Selecione uma cidade' }]}
+                            labelCol={{ span: 24 }}
+                            wrapperCol={{ span: 24 }}
+                        >
+                            <Input placeholder='Digite uma cidade' className={Style.input} />
+                        </FormItem>
+
+                        <div className={Style.groupItem}>
+
                             <FormItem
                                 label="UF"
                                 name="uf"
                                 rules={[{ required: true, message: 'Selecione uma UF' }]}
                                 labelCol={{ span: 24 }}
                                 wrapperCol={{ span: 24 }}
-                                >
+                                style={{ width: '169px' }}
+                            >
 
 
-                                <Select defaultValue="Selecione" style={{ width: '170px' }} >
+                                <Select defaultValue="Selecione" style={{ width: '200px' }} >
                                     {estados.map((estado) => (
                                         <Option key={estado.id} value={estado.uf}><p style={{ fontSize: '13px' }}>{estado.nome}</p></Option>
                                     ))}
                                 </Select>
                             </FormItem>
+                            <FormItem
+                                label="Tipo Sanguíneo"
+                                name="tipoSanguineo"
+                                rules={[{ required: true, message: 'Selecione um tipo sanguíneo' }]}
+                                labelCol={{ span: 24 }}
+                                style={{ width: '169px' }}
+                                wrapperCol={{ span: 24 }}
+                            >
+                                <Select defaultValue="Selecione" style={{ width: '169px' }} >
+                                    <Option key={1} value="a+">A+</Option>
+                                    <Option key={2} value="a-">A-</Option>
+                                    <Option key={3} value="b+">B+</Option>
+                                    <Option key={4} value="b-">B-</Option>
+                                    <Option key={5} value="ab+">AB+</Option>
+                                    <Option key={6} value="ab-">AB-</Option>
+                                    <Option key={7} value="o+">O+</Option>
+                                    <Option key={8} value="o-">O-</Option>
+                                </Select>
+                            </FormItem>
                         </div>
-                    <div className={Style.groupItem}>
-                        <FormItem
-                            label="Tipo Sanguíneo"
-                            name="tipoSanguineo"
-                            rules={[{ required: true, message: 'Selecione um tipo sanguíneo' }]}
-                            labelCol={{ span: 24 }}
-                            wrapperCol={{ span: 24 }}
-                        >
-                            <Select defaultValue="Selecione" style={{ width: '130px' }} >
-                                <Option key={1} value="a+">A+</Option>
-                                <Option key={2} value="a-">A-</Option>
-                                <Option key={3} value="b+">B+</Option>
-                                <Option key={4} value="b-">B-</Option>
-                                <Option key={5} value="ab+">AB+</Option>
-                                <Option key={6} value="ab-">AB-</Option>
-                                <Option key={7} value="o+">O+</Option>
-                                <Option key={8} value="o-">O-</Option>
-                            </Select>
-                        </FormItem>
-                        
-                        </div>
-                        
+
+                    </div>
+
                     <div className={Style.btnArea}>
                         <Form.Item>
                             <Button danger className={Style.btn}>
