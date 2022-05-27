@@ -15,7 +15,7 @@ const Login = () => {
     return (
         <>
             <div className={Style.logo}>
-                <img src={Logo} width={500} height={200} />
+                <img src={Logo} width={500} height={150} />
             </div>
             <div className={Style.entrar}>Entrar</div>
             <Form

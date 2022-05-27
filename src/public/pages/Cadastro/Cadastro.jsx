@@ -17,14 +17,14 @@ const Cadastro = () => {
     const { Option } = Select;
 
     var tipoSanguineo = [
-        {tipo: 'A+', key:1},
-        {tipo: 'A-', key:2},
-        {tipo: 'B+', key:3},
-        {tipo: 'B-', key:4},
-        {tipo: 'AB+', key:5},
-        {tipo: 'AB-', key:6},
-        {tipo: 'O+', key:7},
-        {tipo: 'O-', key:8}
+        { tipo: 'A+', key: 1 },
+        { tipo: 'A-', key: 2 },
+        { tipo: 'B+', key: 3 },
+        { tipo: 'B-', key: 4 },
+        { tipo: 'AB+', key: 5 },
+        { tipo: 'AB-', key: 6 },
+        { tipo: 'O+', key: 7 },
+        { tipo: 'O-', key: 8 }
 
     ]
     var estados = [
@@ -80,7 +80,7 @@ const Cadastro = () => {
                             wrapperCol={{ span: 24 }}
                             style={{ width: '50%' }}
                         >
-                            <Input className={Style.input} placeholder="Digite seu nome" style={{border:'1px solid #B60707', borderRadius:'10px'}}/>
+                            <Input className={Style.input} placeholder="Digite seu nome" style={{ border: '1px solid #B60707', borderRadius: '10px' }} />
                         </Form.Item>
                         <Form.Item
                             label="Telefone"
@@ -90,7 +90,7 @@ const Cadastro = () => {
                             wrapperCol={{ span: 24 }}
                             style={{ width: '50%' }}
                         >
-                            <MaskedInput mask='(99) 99999 9999' className={Style.input} placeholder="Informe o telefone" style={{border:'1px solid #B60707', borderRadius:'10px'}}/>
+                            <MaskedInput mask='(99) 99999 9999' className={Style.input} placeholder="Informe o telefone" style={{ border: '1px solid #B60707', borderRadius: '10px' }} />
                         </Form.Item>
 
                     </div>
@@ -104,7 +104,7 @@ const Cadastro = () => {
                             wrapperCol={{ span: 24 }}
                             style={{ width: '50%' }}
                         >
-                            <MaskedInput mask="99/99/9999" className={Style.input} placeholder="Informe a data de nascimento" style={{ borderRadius:'10px'}}/>
+                            <MaskedInput mask="99/99/9999" className={Style.input} placeholder="Informe a data de nascimento" style={{ borderRadius: '10px' }} />
                         </Form.Item>
 
                         <Form.Item
@@ -115,7 +115,7 @@ const Cadastro = () => {
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
                         >
-                            <MaskedInput mask="999.999.999-99" className={Style.input} placeholder="Informe o CPF" style={{ borderRadius:'10px'}}/>
+                            <MaskedInput mask="999.999.999-99" className={Style.input} placeholder="Informe o CPF" style={{ borderRadius: '10px' }} />
                         </Form.Item>
                     </div>
                     <div className={Style.groupItem}>
@@ -127,7 +127,7 @@ const Cadastro = () => {
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
                         >
-                            <Input placeholder='Digite seu email' className={Style.input} style={{border:'1px solid #B60707', borderRadius:'10px'}}/>
+                            <Input placeholder='Digite seu email' className={Style.input} style={{ border: '1px solid #B60707', borderRadius: '10px' }} />
                         </Form.Item>
                         <Form.Item
                             label="Senha"
@@ -137,40 +137,40 @@ const Cadastro = () => {
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
                         >
-                            <Input.Password className={Style.input} placeholder="Digite a senha" style={{border:'1px solid #B60707', borderRadius:'10px'}}/>
+                            <Input.Password className={Style.input} placeholder="Digite a senha" style={{ border: '1px solid #B60707', borderRadius: '10px' }} />
                         </Form.Item>
                     </div>
                     <div className={Style.groupItem}>
-
                         <FormItem
-                            label="Cidade"
-                            name="cidade"
-                            style={{ width: '50%' }}
-                            rules={[{ required: true, message: 'Selecione uma cidade' }]}
+                            label="UF"
+                            name="uf"
+                            rules={[{ required: true, message: 'Selecione uma UF' }]}
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
+                            style={{ width: '187px' }}
+
                         >
-                            <Input placeholder='Digite uma cidade' className={Style.input} style={{border:'1px solid #B60707',borderRadius:'10px'}}/>
+
+
+                            <Select defaultValue="Selecione" style={{ width: '200px', border: '1px solid #B60707', borderRadius: '10px' }} bordered={false}>
+                                {estados.map((estado) => (
+                                    <Option key={estado.id} value={estado.nome}><p style={{ fontSize: '13px' }}>{estado.nome}</p></Option>
+                                ))}
+                            </Select>
                         </FormItem>
+
 
                         <div className={Style.groupItem}>
 
                             <FormItem
-                                label="UF"
-                                name="uf"
-                                rules={[{ required: true, message: 'Selecione uma UF' }]}
+                                label="Cidade"
+                                name="cidade"
+                                style={{ width: '60%' }}
+                                rules={[{ required: true, message: 'Selecione uma cidade' }]}
                                 labelCol={{ span: 24 }}
                                 wrapperCol={{ span: 24 }}
-                                style={{ width: '169px' }}
-                                 
                             >
-
-
-                                <Select defaultValue="Selecione" style={{ width: '200px' ,border:'1px solid #B60707',borderRadius:'10px' }} bordered={false}>
-                                    {estados.map((estado) => (
-                                        <Option key={estado.id} value={estado.nome}><p style={{ fontSize: '13px' }}>{estado.nome}</p></Option>
-                                    ))}
-                                </Select>
+                                <Input placeholder='Digite uma cidade' className={Style.input} style={{ border: '1px solid #B60707', borderRadius: '10px' }} />
                             </FormItem>
                             <FormItem
                                 label="Tipo Sanguíneo"
@@ -180,8 +180,8 @@ const Cadastro = () => {
                                 style={{ width: '169px' }}
                                 wrapperCol={{ span: 24 }}
                             >
-                                <Select defaultValue="Selecione" style={{ width: '169px' , border:'1px solid #B60707',borderRadius:'10px'}} bordered={false}>
-                                    {tipoSanguineo.map((tipo)=>(
+                                <Select defaultValue="Selecione" style={{ width: '169px', border: '1px solid #B60707', borderRadius: '10px' }} bordered={false}>
+                                    {tipoSanguineo.map((tipo) => (
                                         <Option key={tipo.key} value={tipo.tipo}>{tipo.tipo}</Option>
                                     ))}
                                 </Select>
