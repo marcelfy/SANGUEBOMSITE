@@ -26,6 +26,7 @@
     transition: 0.5s;
     border-radius: 10px;
     padding: 8px 13px;
+    font-size: 15px;
 }
 
 .item a:hover {
