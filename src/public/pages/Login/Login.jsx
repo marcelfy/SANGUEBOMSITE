@@ -15,9 +15,8 @@ const Login = () => {
     return (
         <>
             <div className={Style.logo}>
-                <img src={Logo} width={500} height={150} />
+                <img src={Logo} width={500} height={190} />
             </div>
-            <div className={Style.entrar}>Entrar</div>
             <Form
                 name="basic"
                 labelCol={{ span: 24 }}
@@ -28,7 +27,8 @@ const Login = () => {
                 autoComplete="off"
                 className={Style.form}
             >
-                <fieldset>
+                <fieldset className={Style.containerForm}>
+                    <div className={Style.entrar}>Entrar</div>
                     <Form.Item
                         label="Usuário"
                         name="user"
@@ -49,7 +49,7 @@ const Login = () => {
                         <Input.Password placeholder='Digite sua senha' className={Style.input} style={{ border: '1px solid #B60707', borderRadius: '10px' }} />
                     </Form.Item>
                     <div className={Style.btn}>
-                        <Button type='primary' htmlType="submit">
+                        <Button type='primary' htmlType="submit" style={{backgroundColor:'#AF0107', borderRadius:'10px', borderColor:'#AF0107', width:'90px'}}>
                             Entrar
                         </Button>
                     </div>

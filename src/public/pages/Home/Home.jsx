@@ -20,7 +20,7 @@ const Home = () => {
 
             </div>
 
-            <spam>Quem somos?</spam>
+            <spam style={{fontSize:'17px'}}>Quem somos?</spam>
 
             <p> Somos uma plataforma Online, que disponibiliza ao público um sistema web inovador que permite agendar doações de sangue e medula óssea, voltado para auxiliar os Hemocentros. Além das doações, o programa terá em destaque os Hemocentros que mais precisam de doaçãos e conecta-los aos usuários, para que as necessidades dos mesmos sejam sanadas o mais rápido possível, assim alcançando um maior número de pessoas em menos tempo. Contamos com a ajuda de todos para essa corrente. </p>
            

@@ -9,6 +9,11 @@
     display: flex;
     align-items: center;
     flex-direction: row-reverse;
+    margin-top: 2em;
+}
+
+.footer ul{
+    margin-bottom: 0;
 }
 
 .social_list{
@@ -37,3 +42,4 @@
     font-weight: bold;
     color: rgb(7, 77, 228);
 }
+

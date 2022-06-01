@@ -4,14 +4,11 @@ import 'antd/dist/antd.css'
 import MaskedInput from 'react-input-mask';
 import FormItem from 'antd/lib/form/FormItem';
 import Logo from '../../../public/Assets/img/logo.png'
+import { validate } from 'uuid';
 
 const Cadastro = () => {
     const onFinish = (values) => {
         console.log(values);
-    };
-
-    const onFinishFailed = (errorInfo) => {
-        console.log(errorInfo);
     };
 
     const { Option } = Select;
@@ -66,11 +63,10 @@ const Cadastro = () => {
             <Form
                 style={{ padding: '15px', marginBottom: '4em' }}
                 onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
                 autoComplete="off"
                 className={Style.form}
             >
-                <fieldset >
+                <fieldset className={Style.containerForm}>
                     <div className={Style.groupItem}>
                         <Form.Item
                             label="Nome"
@@ -114,6 +110,7 @@ const Cadastro = () => {
                             rules={[{ required: true, message: 'O campo cpf é obrigatório' }]}
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
+                            
                         >
                             <MaskedInput mask="999.999.999-99" className={Style.input} placeholder="Informe o CPF" style={{ borderRadius: '10px' }} />
                         </Form.Item>
@@ -152,7 +149,7 @@ const Cadastro = () => {
                         >
 
 
-                            <Select defaultValue="Selecione" style={{ width: '200px', border: '1px solid #B60707', borderRadius: '10px' }} bordered={false}>
+                            <Select defaultValue="Selecione" style={{ width: '200px', border: '1px solid #B60707', borderRadius: '10px', backgroundColor:'#fff' }} bordered={false}>
                                 {estados.map((estado) => (
                                     <Option key={estado.id} value={estado.nome}><p style={{ fontSize: '13px' }}>{estado.nome}</p></Option>
                                 ))}
@@ -170,7 +167,7 @@ const Cadastro = () => {
                                 labelCol={{ span: 24 }}
                                 wrapperCol={{ span: 24 }}
                             >
-                                <Input placeholder='Digite uma cidade' className={Style.input} style={{ border: '1px solid #B60707', borderRadius: '10px' }} />
+                                <Input placeholder='Digite uma cidade' className={Style.input} style={{ border: '1px solid #B60707', borderRadius: '10px', marginLeft:'10px' }} />
                             </FormItem>
                             <FormItem
                                 label="Tipo Sanguíneo"
@@ -180,7 +177,7 @@ const Cadastro = () => {
                                 style={{ width: '169px' }}
                                 wrapperCol={{ span: 24 }}
                             >
-                                <Select defaultValue="Selecione" style={{ width: '169px', border: '1px solid #B60707', borderRadius: '10px' }} bordered={false}>
+                                <Select defaultValue="Selecione" style={{ width: '169px', border: '1px solid #B60707', borderRadius: '10px', backgroundColor:'#fff' }} bordered={false}>
                                     {tipoSanguineo.map((tipo) => (
                                         <Option key={tipo.key} value={tipo.tipo}>{tipo.tipo}</Option>
                                     ))}
@@ -192,12 +189,12 @@ const Cadastro = () => {
 
                     <div className={Style.btnArea}>
                         <Form.Item>
-                            <Button danger className={Style.btn}>
-                                Voltar
+                            <Button danger className={Style.btn} style={{backgroundColor:'#B60707', borderRadius:'10px', borderColor:'#B60707', width:'150px', color:'white'}}>
+                                <a href='/'>Voltar</a>
                             </Button>
                         </Form.Item>
                         <Form.Item>
-                            <Button type="primary" htmlType="submit" className={Style.btn}>
+                            <Button type="primary" htmlType="submit" className={Style.btn} style={{backgroundColor:'#12c512', borderRadius:'10px', borderColor:'#12c512', width:'150px'}}>
                                 Cadastrar
                             </Button>
                         </Form.Item>

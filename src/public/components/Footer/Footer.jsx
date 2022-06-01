@@ -4,7 +4,7 @@ import style from './Footer.module.css'
 const Footer = () => {
     return (
         <footer className={style.footer}>
-            <p className={style.copyright}>
+            <p className={style.copyright} style={{marginBottom:'0'}}>
                 <span>sanguebom@gmail.com</span>
             </p>
             <ul className={style.social_list}>
