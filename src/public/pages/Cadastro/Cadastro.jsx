@@ -8,11 +8,11 @@ import Logo from '../../../public/Assets/img/logo.png'
 
 const Cadastro = () => {
     const onFinish = (values) => {
-        console.log(values);
+        
         info()
     }
 
-    const onFinishFailed = (values) =>{
+    const onFinishFailed = () =>{
         info2()
     }
 
