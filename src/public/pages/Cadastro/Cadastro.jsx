@@ -4,18 +4,29 @@ import 'antd/dist/antd.css'
 import MaskedInput from 'react-input-mask';
 import FormItem from 'antd/lib/form/FormItem';
 import Logo from '../../../public/Assets/img/logo.png'
-
+import { useNavigate } from "react-router-dom";
+import Spinner from '../../components/Spinner/Spinner';
+import { useState } from 'react';
 
 const Cadastro = () => {
+    
+    const [loading, setLoading] = useState(false)
+    
     const onFinish = (values) => {
-        
+        setLoading(true)
         info()
+        setTimeout(() => {
+            navigate("/")
+        }, 1000)
     }
-
+    
     const onFinishFailed = () =>{
         info2()
+        
+        
     }
-
+    
+    const navigate = useNavigate()
 
     const info = () => {
         message.success({
@@ -75,6 +86,7 @@ const Cadastro = () => {
 
     return (
         <>
+            <Spinner loading={loading}/>
             <div className={Style.logo}>
                 <img src={Logo} width={500} height={190}></img>
             </div>
@@ -214,7 +226,7 @@ const Cadastro = () => {
                             </Button>
                         </Form.Item>
                         <Form.Item>
-                            <Button type="primary" htmlType="submit" className={Style.btn} style={{backgroundColor:'#12c512', borderRadius:'10px', borderColor:'#12c512', width:'150px'}}>
+                            <Button  type="primary" htmlType="submit" className={Style.btn} style={{backgroundColor:'#12c512', borderRadius:'10px', borderColor:'#12c512', width:'150px'}}>
                                 Cadastrar
                             </Button>
                         </Form.Item>
