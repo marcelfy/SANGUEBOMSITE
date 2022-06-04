@@ -1,15 +1,34 @@
 import Style from './Cadastro.module.css'
-import { Form, Input, Button, Select } from 'antd';
+import { Form, Input, Button, Select, message } from 'antd';
 import 'antd/dist/antd.css'
 import MaskedInput from 'react-input-mask';
 import FormItem from 'antd/lib/form/FormItem';
 import Logo from '../../../public/Assets/img/logo.png'
-import { validate } from 'uuid';
+
 
 const Cadastro = () => {
     const onFinish = (values) => {
         console.log(values);
-    };
+        info()
+    }
+
+    const onFinishFailed = (values) =>{
+        info2()
+    }
+
+
+    const info = () => {
+        message.success({
+            content: 'Usuário cadastrado com sucesso',
+            duration: 3});
+      }
+
+    const info2 = () =>{
+        message.error({
+            content:'Preencha o formulário corretamente',
+            duration:3,
+        })
+    }
 
     const { Option } = Select;
 
@@ -63,6 +82,7 @@ const Cadastro = () => {
             <Form
                 style={{ padding: '15px', marginBottom: '4em' }}
                 onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
                 autoComplete="off"
                 className={Style.form}
             >
