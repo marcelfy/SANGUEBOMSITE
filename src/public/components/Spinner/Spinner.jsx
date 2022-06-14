@@ -1,7 +1,4 @@
-import React, { useState } from 'react'
 import Styles from './Spinner.module.css'
-
-
 
 const Spinner = (props) => {  
   return (

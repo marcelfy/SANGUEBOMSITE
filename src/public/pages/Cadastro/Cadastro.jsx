@@ -18,12 +18,11 @@ const Cadastro = () => {
         setTimeout(() => {
             navigate("/")
         }, 1000)
+        console.log(values);
     }
     
     const onFinishFailed = () =>{
         info2()
-        
-        
     }
     
     const navigate = useNavigate()
