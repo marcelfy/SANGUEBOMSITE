@@ -14,18 +14,22 @@
     font-size: 14px;
     line-height: 1.5715;
     background-color: #fff;
-    border: 1px solid #B60707;
+    border: 1px solid black;
     border-radius: 2px;
     transition: all 0.3s;
+    
 }
 
+ 
+
 .containerForm{
-    background: #E3E3E3;
+    background: #007DB1;
     padding: 2em;
     border: 2px solid #999696;
     box-shadow: 8px 8px 3px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
     /* height: 350px; */
+    
 }
 
 
@@ -81,3 +85,4 @@
     color: #007DB1;
     /* margin-top: 25px; */
 }
+

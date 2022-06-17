@@ -91,7 +91,7 @@ const Cadastro = () => {
             </div>
             <div className={Style.title}>Cadastro de Doador</div>
             <Form
-                style={{ padding: '15px', marginBottom: '4em' }}
+                style={{ padding: '15px', marginBottom: '2em' }}
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
@@ -100,7 +100,7 @@ const Cadastro = () => {
                 <fieldset className={Style.containerForm}>
                     <div className={Style.groupItem}>
                         <Form.Item
-                            label="Nome"
+                            label={<p style={{color:'white', marginBottom:'0'}}>Nome</p>}
                             name="nome"
                             rules={[{ required: true, message: 'Campo nome é obrigatório' }]}
                             labelCol={{ span: 24 }}
@@ -110,7 +110,7 @@ const Cadastro = () => {
                             <Input className={Style.input} placeholder="Digite seu nome" style={{ border: '1px solid #B60707', borderRadius: '10px' }} />
                         </Form.Item>
                         <Form.Item
-                            label="Telefone"
+                            label={<p style={{color:'white', marginBottom:'0'}}>Telefone</p>}
                             name="telefone"
                             rules={[{ required: true, message: 'Campo telefone é obrigatório' }]}
                             labelCol={{ span: 24 }}
@@ -124,7 +124,7 @@ const Cadastro = () => {
 
                     <div className={Style.groupItem}>
                         <Form.Item
-                            label="Data de Nascimento"
+                            label={<p style={{color:'white', marginBottom:'0'}}>Data de Nascimento</p>}
                             name="dataNascimento"
                             rules={[{ required: true, message: 'Campo Data de Nascimento é obrigatório' }]}
                             labelCol={{ span: 24 }}
@@ -135,7 +135,7 @@ const Cadastro = () => {
                         </Form.Item>
 
                         <Form.Item
-                            label="CPF"
+                            label={<p style={{color:'white', marginBottom:'0'}}>CPF</p>}
                             name="cpf"
                             style={{ width: '50%' }}
                             rules={[{ required: true, message: 'O campo cpf é obrigatório' }]}
@@ -148,7 +148,7 @@ const Cadastro = () => {
                     </div>
                     <div className={Style.groupItem}>
                         <Form.Item
-                            label="Email"
+                            label={<p style={{color:'white', marginBottom:'0'}}>E-mail</p>}
                             name="email"
                             style={{ width: '50%' }}
                             rules={[{ required: true, message: 'O campo email é obrigatório' }]}
@@ -158,7 +158,7 @@ const Cadastro = () => {
                             <Input placeholder='Digite seu email' className={Style.input} style={{ border: '1px solid #B60707', borderRadius: '10px' }} />
                         </Form.Item>
                         <Form.Item
-                            label="Senha"
+                            label={<p style={{color:'white', marginBottom:'0'}}>Senha</p>}
                             name="senha"
                             style={{ width: '50%' }}
                             rules={[{ required: true, message: 'O campo senha é obrigatório' }]}
@@ -170,7 +170,7 @@ const Cadastro = () => {
                     </div>
                     <div className={Style.groupItem}>
                         <FormItem
-                            label="UF"
+                            label={<p style={{color:'white', marginBottom:'0'}}>UF</p>}
                             name="uf"
                             rules={[{ required: true, message: 'Selecione uma UF' }]}
                             labelCol={{ span: 24 }}
@@ -191,7 +191,7 @@ const Cadastro = () => {
                         <div className={Style.groupItem}>
 
                             <FormItem
-                                label="Cidade"
+                                label={<p style={{color:'white', marginBottom:'0'}}>Cidade</p>}
                                 name="cidade"
                                 style={{ width: '60%' }}
                                 rules={[{ required: true, message: 'Selecione uma cidade' }]}
@@ -201,7 +201,7 @@ const Cadastro = () => {
                                 <Input placeholder='Digite uma cidade' className={Style.input} style={{ border: '1px solid #B60707', borderRadius: '10px', marginLeft:'10px' }} />
                             </FormItem>
                             <FormItem
-                                label="Tipo Sanguíneo"
+                                label={<p style={{color:'white', marginBottom:'0'}}>Tipo Sanguineo</p>}
                                 name="tipoSanguineo"
                                 rules={[{ required: true, message: 'Selecione um tipo sanguíneo' }]}
                                 labelCol={{ span: 24 }}

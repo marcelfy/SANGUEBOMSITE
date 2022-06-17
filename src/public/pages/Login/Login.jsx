@@ -30,7 +30,7 @@ const Login = () => {
                 <fieldset className={Style.containerForm}>
                     <div className={Style.entrar}>Entrar</div>
                     <Form.Item
-                        label="Usuário"
+                        label={<p style={{ color: 'white', marginBottom: '0' }}>Usuário</p>}
                         name="user"
                         rules={[{ required: true, message: 'Campo nome obrigatório' }]}
                         labelCol={{ span: 24 }}
@@ -40,7 +40,7 @@ const Login = () => {
                     </Form.Item>
 
                     <Form.Item
-                        label="Senha"
+                        label={<p style={{ color: 'white', marginBottom: '0' }}>Senha</p>}
                         name="senha"
                         rules={[{ required: true, message: 'Campo senha obrigatório' }]}
                         labelCol={{ span: 24 }}
@@ -48,11 +48,13 @@ const Login = () => {
                     >
                         <Input.Password placeholder='Digite sua senha' className={Style.input} style={{ border: '1px solid #B60707', borderRadius: '10px' }} />
                     </Form.Item>
+
                     <div className={Style.btn}>
-                        <Button type='primary' htmlType="submit" style={{backgroundColor:'#AF0107', borderRadius:'10px', borderColor:'#AF0107', width:'90px'}}>
+                        <Button type='primary' htmlType="submit" style={{ backgroundColor: '#AF0107', borderRadius: '10px', borderColor: '#AF0107', width: '90px' }}>
                             Entrar
                         </Button>
                     </div>
+                        
                 </fieldset>
             </Form>
         </>
