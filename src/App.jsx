@@ -9,6 +9,8 @@ import Footer from './public/components/Footer/Footer'
 import Hemocentros from './secure/pages/Hemocentros/Hemocentros'
 import Campanha from './secure/pages/Campanha/Campanha'
 import Home from './secure/pages/Home/Home';
+import Agendamento from './secure/pages/Agendamento/Agendamento';
+import SaibaMais from './secure/pages/SaibaMais/SaibaMais';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route path='/home' element={<Home/>}></Route>
           <Route path="/hemocentros" element={<Hemocentros />}></Route>
           <Route path="/campanha" element={<Campanha/>}></Route>
+          <Route path="/agendamento" element={<Agendamento/>}></Route>
+          <Route path="/home/saiba-mais" element={<SaibaMais/>}></Route>
         </Routes>
        
       <Footer/>

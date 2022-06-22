@@ -49,12 +49,12 @@ const Login = () => {
                         <Input.Password placeholder='Digite sua senha' className={Style.input} style={{ border: '1px solid #B60707', borderRadius: '10px' }} />
                     </Form.Item>
 
+                        
                     <div className={Style.btn}>
                         <Button type='primary' htmlType="submit" style={{ backgroundColor: '#AF0107', borderRadius: '10px', borderColor: '#AF0107', width: '90px' }}>
                             Entrar
                         </Button>
                     </div>
-                        
                 </fieldset>
             </Form>
         </>

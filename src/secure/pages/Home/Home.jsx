@@ -23,7 +23,7 @@ const Home = () => {
             <div>
                 <spam>Doação de Sangue</spam>
                 <p>Conheça todos os detalhes que envolvam doação de sangue.</p>
-                <Button type='primary' className={Style.button} style={{ borderColor: '#AF0107' }} onClick={()=> navigate('/saibamais')}>Saiba mais</Button>
+                <Button type='primary' className={Style.button} style={{ borderColor: '#AF0107' }} onClick={()=> navigate('/home/saiba-mais')}>Saiba mais</Button>
             </div>
 
 
@@ -31,7 +31,7 @@ const Home = () => {
             <div>
                 <spam>Agende sua Doação</spam>
                 <p>Atendimento ágil e eficaz para os doadores de sangue, com hora marcada.</p>
-                <Button type='primary' className={Style.button} style={{ borderColor: '#AF0107' }}>Saiba mais</Button>
+                <Button type='primary' className={Style.button} style={{ borderColor: '#AF0107' }} onClick={()=> navigate('/agendamento')}>Saiba mais</Button>
             </div>
 
             <div className={Style.groupGotas}>
@@ -42,7 +42,7 @@ const Home = () => {
             <div>
                 <spam>Etapas da Doação</spam>
                 <p>Conheça todas as Etapas da Doação de Sangue no Hemobanco.</p>
-                <Button type='primary' className={Style.button} style={{ borderColor: '#AF0107' }}>Saiba mais</Button>
+                <Button type='primary' className={Style.button} style={{ borderColor: '#AF0107' }} onClick={()=> navigate('/etapas')}>Saiba mais</Button>
             </div>
             <img src={Logo} className={Style.img2}></img>
         </section>
