@@ -21,6 +21,7 @@
     color: #AF0107;
 }
 
+
 .container1 .icone2{
     margin-left: -25px;
     margin-top: -63px;
@@ -31,12 +32,12 @@
     color: #d81118;
 }
 
- spam{
+.container1 spam{
     color: #AF0107;
     font-size: 2em;
 }
 
-p{
+.container1 p{
     font-weight: bold;
     font-size: 1em;
     display: flex;
@@ -46,7 +47,7 @@ p{
     font-size: medium;
 }
 
-ul li{
+.container1  ul li{
     /* margin-left: 10%; */
     font-size: medium;
 }
@@ -67,5 +68,24 @@ ul li{
     height: 40px;
     margin-bottom: 90px;
     margin-top: 25px;
+}
+
+.bloco spam{
+    color: #AF0107;
+    font-size: 2em;
+}
+
+.bloco p{
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-start;
+    color: #AF0107;    
+    margin-left: 15%;
+    font-size: medium;
+}
+
+.bloco  ul li{
+    /* margin-left: 10%; */
+    font-size: medium;
 }
 

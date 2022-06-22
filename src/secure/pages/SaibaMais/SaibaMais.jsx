@@ -38,7 +38,7 @@ const SaibaMais = () => {
                     Homens: 2 meses (4 doações anuais)<br />
                     Mulheres: 3 meses (3 doações anuais)</p>
             </div>
-
+            <div className={Style.bloco}>
             <spam style={{ color: '#AF0107', fontSize: '2em', justifyContent: 'center', display: 'flex'}}>QUEM NÃO PODE DOAR?</spam>
             <p style={{ fontWeight: 'bold', color: 'black', marginTop: '10px' }}>Listamos abaixo as causas mais comuns de impedimento, lembrando não serem as únicas:</p>
             <p>Impedimentos Definitivos:</p>
@@ -79,7 +79,8 @@ const SaibaMais = () => {
                 <li>Procedimentos endoscópicos: 6 meses.</li>
                 <li>Outras doenças.</li>
             </ul>
-            <p className={Style.lista}>*O candidato à doação deverá passar por avaliação por profissional treinado e qualificado.
+            </div>
+            <p style={{fontSize:'medium', color:'#AF0107', display:'flex', justifyContent:'flex-start', marginLeft:'15%'}}>*O candidato à doação deverá passar por avaliação por profissional treinado e qualificado.
                 Seja consciente: sua doação salva vidas! Sua sinceridade muito mais!</p>
             <div style={{display:'flex', justifyContent:'center'}}>
                 <Button type='primary' className={Style.button} style={{ borderColor: '#AF0107' }} onClick={()=> navigate('/home')}>Voltar</Button>
