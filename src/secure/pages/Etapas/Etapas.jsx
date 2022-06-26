@@ -130,6 +130,9 @@ const Etapas = () => {
                 </section>
                 <Button type='primary' className={Styles.button} style={{ borderColor: '#AF0107' }} onClick={()=> navigate('/home')}>Voltar</Button>
             </div>
+                <div style={{display:'flex', justifyContent:'center'}}>
+                    <img src={Logo} className={Styles.img2}></img>
+                </div>
         </>
     )
 }
