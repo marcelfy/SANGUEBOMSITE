@@ -1,0 +1,108 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4em;
+    text-align: center;
+    min-height: 100%;
+    /* pra deixar o footer certin */
+    position: relative;
+    /* pra deixar o footer certin */
+    width: 100%;
+    /* pra deixar o footer certin */
+    background: rgba(255, 255, 255, 0.973958) 0.01%;
+}
+
+.container p{
+    color: #AF0107;
+    font-size: 1em;
+}
+
+.container spam{
+    color: #AF0107;
+    font-size: 2em;
+}
+
+.img {
+    width: 55%;
+    /* height: 28%; */
+    margin: 2em 0;
+}
+
+.imgArea{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.gotas{
+    font-size: 4em;
+    color: #AF0107;
+}
+
+.groupGotas{
+    display: flex;   
+}
+
+.etapas{
+    display: flex;
+    justify-content: flex-start;
+    padding: 2em;
+    margin-top: 4%;
+    width: 90%;
+}
+
+.icone{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+.numero{
+    display: flex;
+    justify-content: center;
+    width: 65px;
+    background-color: #AF0107;
+    color: white;
+    border-radius: 50%;
+    font-size: 3em;
+    margin-left: 30px;
+}
+
+.info{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: -20px;
+    margin-left: 30px;
+}
+
+.info spam{
+    font-size: medium;
+    color: #AF0107;
+    font-weight: bold;
+}
+
+.topicos{
+    margin-left: 2em;
+}
+
+.bloco{
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+    flex-wrap: wrap;
+    margin-top: -35px;
+}
+
+.button{
+    background-color: #AF0107!important;
+    color: white;
+    width: 150px;
+    border-radius: 10px;
+    height: 40px;
+    margin-bottom: 90px;
+    margin-top: 25px;
+}

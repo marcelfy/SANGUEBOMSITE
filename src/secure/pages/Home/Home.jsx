@@ -42,7 +42,7 @@ const Home = () => {
             <div>
                 <spam>Etapas da Doação</spam>
                 <p>Conheça todas as Etapas da Doação de Sangue no Hemobanco.</p>
-                <Button type='primary' className={Style.button} style={{ borderColor: '#AF0107' }} onClick={()=> navigate('/etapas')}>Saiba mais</Button>
+                <Button type='primary' className={Style.button} style={{ borderColor: '#AF0107' }} onClick={()=> navigate('/home/etapas')}>Saiba mais</Button>
             </div>
             <img src={Logo} className={Style.img2}></img>
         </section>

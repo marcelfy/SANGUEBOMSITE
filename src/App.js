@@ -11,6 +11,7 @@ import Campanha from './secure/pages/Campanha/Campanha'
 import Home from './secure/pages/Home/Home';
 import Agendamento from './secure/pages/Agendamento/Agendamento';
 import SaibaMais from './secure/pages/SaibaMais/SaibaMais';
+import Etapas from './secure/pages/Etapas/Etapas';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/campanha" element={<Campanha/>}></Route>
           <Route path="/agendamento" element={<Agendamento/>}></Route>
           <Route path="/home/saiba-mais" element={<SaibaMais/>}></Route>
+          <Route path="/home/etapas" element={<Etapas/>}></Route>
         </Routes>
        
       <Footer/>

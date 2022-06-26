@@ -2,6 +2,7 @@ import Style from './SaibaMais.module.css'
 import { GiWaterDrop } from 'react-icons/gi'
 import { Button } from 'antd'
 import { useNavigate } from 'react-router-dom'
+import Logo from '../../../public/Assets/img/logo.png'
 
 const SaibaMais = () => {
 
@@ -9,6 +10,9 @@ const SaibaMais = () => {
 
     return (
         <>
+            <div className={Style.imagens}>
+                <img src={Logo} className={Style.img}></img>
+            </div>
             <section className={Style.container1}>
                 <div className={Style.iconArea}>
                     <GiWaterDrop className={Style.icone} style={{ marginBottom: '5px' }} />
@@ -84,6 +88,9 @@ const SaibaMais = () => {
                 Seja consciente: sua doação salva vidas! Sua sinceridade muito mais!</p>
             <div style={{display:'flex', justifyContent:'center'}}>
                 <Button type='primary' className={Style.button} style={{ borderColor: '#AF0107' }} onClick={()=> navigate('/home')}>Voltar</Button>
+            </div>
+            <div className={Style.imagens}>
+                <img src={Logo} className={Style.img2}></img>
             </div>
         </>
     )
