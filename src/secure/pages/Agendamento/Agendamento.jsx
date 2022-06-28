@@ -83,7 +83,7 @@ const Agendamento = () => {
                             wrapperCol={{ span: 24 }}
 
                         >
-                            <MaskedInput mask="999.999.999-99" className={Styles.input} placeholder="Informe o CPF" style={{ borderRadius: '10px', border: '1px solid #386F61' }} />
+                            <MaskedInput mask="999.999.999-99" className={Styles.input} placeholder="Informe o CPF" style={{ borderRadius: '10px', border: '1px solid #386F61', width:'90%' }} />
                         </Form.Item>
                         <Form.Item
                             label={<p style={{ color: 'white', marginBottom: '0' }}>Data de Nascimento</p>}
@@ -191,7 +191,7 @@ const Agendamento = () => {
 
                     </div>
 
-                    <p style={{ display: 'flex', fontSize: '15px', justifyContent: 'center' }}>Agendamento de Horário* De Segunda a Sexta-feira das 08h:00m às 14h:00m -> 30 minutos para </p>
+                    <p style={{ display: 'flex', fontSize: '15px', justifyContent: 'center' }}>Agendamento de Horário* De Segunda a Sexta-feira das 08h:00m às 14h:00m -&gt; 30 minutos para </p>
                     <p style={{ display: 'flex', fontSize: '15px', justifyContent: 'center' }}>cada agendamento.</p>
                     <div style={{display:'flex'}}>
                         <Form.Item
