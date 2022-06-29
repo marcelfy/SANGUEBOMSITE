@@ -16,8 +16,8 @@ const Agendamento = () => {
 
     const onFinish = (values) => {
         setLoading(true)
-        info()
         setTimeout(() => {
+            info()
             navigate("/home")
         }, 1000)
         console.log(values);
@@ -31,7 +31,7 @@ const Agendamento = () => {
 
     const info = () => {
         message.success({
-            content: 'Usuário cadastrado com sucesso',
+            content: 'Agendamento realizado com sucesso',
             duration: 3
         });
     }

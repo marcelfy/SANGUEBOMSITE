@@ -14,8 +14,8 @@ const Cadastro = () => {
     
     const onFinish = (values) => {
         setLoading(true)
-        info()
         setTimeout(() => {
+            info()
             navigate("/")
         }, 1000)
         console.log(values);

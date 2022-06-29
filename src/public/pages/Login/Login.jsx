@@ -1,11 +1,29 @@
 import Style from './Login.module.css'
-import { Form, Input, Button, Select } from 'antd';
+import { Form, Input, Button, Select, Spin, message } from 'antd';
 import Logo from '../../../public/Assets/img/logo.png'
+import { useNavigate } from 'react-router-dom';
+import Spinner from '../../components/Spinner/Spinner'
+import { useState } from 'react';
 
 const Login = () => {
 
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate()
+
+
+    const info = () => {
+        message.success({
+            content: 'Usuário logado com sucesso',
+            duration: 3});
+      }
+
     const onFinish = (values) => {
-        console.log('Success:', values);
+        setLoading(true)
+        setTimeout(() => {
+            info()
+            navigate("/home")
+        }, 1000)
+        console.log(values);
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -14,8 +32,9 @@ const Login = () => {
 
     return (
         <>
+            <Spinner loading={loading}/>
             <div className={Style.logo}>
-                <img src={Logo} width={500} height={190} />
+                <img src={Logo} width={500} height={190} alt=''/>
             </div>
             <Form
                 name="basic"
@@ -30,9 +49,9 @@ const Login = () => {
                 <fieldset className={Style.containerForm}>
                     <div className={Style.entrar}>Entrar</div>
                     <Form.Item
-                        label={<p style={{ color: 'white', marginBottom: '0' }}>Usuário</p>}
-                        name="user"
-                        rules={[{ required: true, message: 'Campo nome obrigatório' }]}
+                        label={<p style={{ color: 'white', marginBottom: '0' }}>E-mail</p>}
+                        name="email"
+                        rules={[{ required: true, message: 'Campo e-mail obrigatório' }]}
                         labelCol={{ span: 24 }}
                         wrapperCol={{ span: 24 }}
                     >

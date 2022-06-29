@@ -1,13 +1,12 @@
 import style from './Header.module.css'
 import { Link } from 'react-router-dom'
 import Logo from '../../../public/Assets/img/logo.png'
-
+import {Menu} from 'antd'
 
 const NavBar = () => {
     return (
         <nav className={style.navbar}>
             
-
                 <ul className={style.list} style={{marginBottom:'none'}}>
 
                     <li className={style.item}><Link to="/">Início</Link></li>
