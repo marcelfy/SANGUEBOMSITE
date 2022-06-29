@@ -119,7 +119,7 @@ const Agendamento = () => {
                         <Input placeholder='Digite seu email' className={Styles.input} style={{ border: '1px solid #386F61', borderRadius: '10px', width: '100%' }} />
                     </Form.Item>
 
-                    <p style={{ display: 'flex', justifyContent: 'center', fontSize: '15px' }}>Endereço</p>
+                    <p style={{ display: 'flex', justifyContent: 'center', fontSize: '15px' }}><b>Endereço</b></p>
 
                     <div style={{ display: 'flex' }}>
                         <Form.Item
@@ -191,8 +191,8 @@ const Agendamento = () => {
 
                     </div>
 
-                    <p style={{ display: 'flex', fontSize: '15px', justifyContent: 'center' }}>Agendamento de Horário* De Segunda a Sexta-feira das 08h:00m às 14h:00m -&gt; 30 minutos para </p>
-                    <p style={{ display: 'flex', fontSize: '15px', justifyContent: 'center' }}>cada agendamento.</p>
+                    <p style={{ display: 'flex', fontSize: '15px', justifyContent: 'center' }}><b>Agendamento de Horário* De Segunda a Sexta-feira das 08h:00m às 14h:00m -&gt; 30 minutos para cada agendamento.</b> </p>
+                   
                     <div style={{display:'flex'}}>
                         <Form.Item
                             label={<p style={{ color: 'white', marginBottom: '0' }}>Data</p>}

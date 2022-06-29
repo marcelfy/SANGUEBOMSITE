@@ -4,6 +4,7 @@ import { GiWaterDrop } from 'react-icons/gi'
 import { Button } from 'antd'
 import { BsCalendar3 } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
+import Sider from '../../../public/components/Sider/Sider'
 
 const Home = () => {
 
@@ -14,7 +15,7 @@ const Home = () => {
             <div className={Style.logo}>
                 <img src={Logo} width={700} height={230} />
             </div>
-
+            <Sider/>
             <div className={Style.iconArea}>
                 <GiWaterDrop className={Style.icone} style={{marginBottom:'5px'}}/>
                 <GiWaterDrop className={Style.icone2} style={{marginBottom:'15px'}}/>
