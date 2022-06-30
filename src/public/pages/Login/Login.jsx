@@ -26,8 +26,15 @@ const Login = () => {
         console.log(values);
     };
 
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
+    const info2 = () =>{
+        message.error({
+            content:'Preencha o formulário corretamente',
+            duration:3,
+        })
+    }
+
+    const onFinishFailed = () => {
+        info2()
     };
 
     return (

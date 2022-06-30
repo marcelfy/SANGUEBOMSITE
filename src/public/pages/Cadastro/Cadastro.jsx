@@ -203,7 +203,6 @@ const Cadastro = () => {
                             <FormItem
                                 label={<p style={{color:'white', marginBottom:'0'}}>Tipo Sanguineo</p>}
                                 name="tipoSanguineo"
-                                rules={[{ required: true, message: 'Selecione um tipo sanguíneo' }]}
                                 labelCol={{ span: 24 }}
                                 style={{ width: '169px' }}
                                 wrapperCol={{ span: 24 }}
