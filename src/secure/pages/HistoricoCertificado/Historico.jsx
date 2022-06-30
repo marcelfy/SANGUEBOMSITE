@@ -36,6 +36,17 @@ const HistoricoCertificado = () => {
             ),
 
         },
+        {
+            title: 'Certificado',
+            dataIndex: 'certificado',
+            key: 'download',
+            render: (record) => (
+                <Space size="middle" className={Styles.centralizar}>
+                    <a>Baixar</a>
+                </Space>
+            ),
+
+        }
     ]
 
     const data = [
