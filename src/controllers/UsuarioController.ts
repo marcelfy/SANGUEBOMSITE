@@ -16,8 +16,8 @@ class UsuarioController {
             uf,
             cidade, 
             tipoSanguineo
-        })
-        return res.status(201).json();
+        });
+        return res.status(201).json(usuario);
     }
     async put(req: Request, res: Response){}
     async delete(req: Request, res: Response){}
