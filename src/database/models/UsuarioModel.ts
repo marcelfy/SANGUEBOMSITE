@@ -2,45 +2,45 @@ import {db} from '../db'
 const { DataTypes } = require("sequelize")
 
 export const UsuarioModel = db.define('Usuario', {
-    UsuarioID:{
+    usuarioID:{
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true,
     },
-    Nome:{
+    nome:{
         type: DataTypes.STRING,
         allowNull: true,
     },
-    Telefone:{
+    telefone:{
         type: DataTypes.STRING,
         allowNull: true,
     },
-    DataNascimento:{
+    dataNascimento:{
         type: DataTypes.DATE,
         allowNull: true,
     },
-    Cpf:{
+    cpf:{
         type: DataTypes.STRING,
         allowNull: true,
     },
-    Email:{
+    email:{
         type: DataTypes.STRING,
         allowNull: true,
     },
-    Senha:{
+    senha:{
         type: DataTypes.STRING,
         allowNull: true,
     },
-    Uf:{
+    uf:{
         type: DataTypes.STRING,
         allowNull: true,
     },
-    Cidade:{
+    cidade:{
         type: DataTypes.STRING,
         allowNull: true,
     },
-    TipoSanguineo:{
+    tipoSanguineo:{
         type: DataTypes.STRING,
         allowNull: true,
     }
