@@ -18,7 +18,7 @@ GET http://localhost:3030/usuarios
 
 
 ###
-GET http://localhost:3030/usuario/5
+GET http://localhost:3030/usuario/6
 
 ###
 PUT http://localhost:3030/usuario/5
@@ -29,4 +29,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3030/usuario/5
+DELETE http://localhost:3030/usuario/6

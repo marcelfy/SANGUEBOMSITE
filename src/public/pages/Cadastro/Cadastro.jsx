@@ -7,6 +7,7 @@ import Logo from '../../../public/Assets/img/logo.png'
 import { useNavigate } from "react-router-dom";
 import Spinner from '../../components/Spinner/Spinner';
 import { useState } from 'react';
+import UsuarioController from '../../../controllers/UsuarioController';
 
 const Cadastro = () => {
     
@@ -14,6 +15,8 @@ const Cadastro = () => {
     
     const onFinish = (values) => {
         setLoading(true)
+        UsuarioController.post(values)
+        .then((resp)=> console.log(resp))
         setTimeout(() => {
             info()
             navigate("/")
