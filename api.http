@@ -29,4 +29,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3030/usuario/6
+DELETE http://localhost:3030/usuario/9

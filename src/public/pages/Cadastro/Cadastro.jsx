@@ -3,20 +3,18 @@ import { Form, Input, Button, Select, message } from 'antd';
 import 'antd/dist/antd.css'
 import MaskedInput from 'react-input-mask';
 import FormItem from 'antd/lib/form/FormItem';
-import Logo from '../../../public/Assets/img/logo.png'
+import Logo from '../../Assets/img/logo.png';
 import { useNavigate } from "react-router-dom";
 import Spinner from '../../components/Spinner/Spinner';
 import { useState } from 'react';
-import UsuarioController from '../../../controllers/UsuarioController';
+import React from 'react';
+
 
 const Cadastro = () => {
     
     const [loading, setLoading] = useState(false)
-    
     const onFinish = (values) => {
         setLoading(true)
-        UsuarioController.post(values)
-        .then((resp)=> console.log(resp))
         setTimeout(() => {
             info()
             navigate("/")
