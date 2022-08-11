@@ -21,9 +21,4 @@ try{
     console.log(error);
 }
 
-
-app.get('/', (req,res)=>{
-    res.send('opa')
-})
-
 app.listen(8000, ()=> console.log("Rodando na porta 8000"))

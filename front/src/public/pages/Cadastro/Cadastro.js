@@ -18,7 +18,9 @@ const Cadastro = () => {
     const [loading, setLoading] = useState(false)
     const [usuarios, setUsuarios] = useState()
 
-    
+    // useEffect(()=>{
+    //     axios.get(URL).then((resp)=> console.log(resp.data))
+    // },[])
 
     const onFinish = (values) => {
         setLoading(true)
