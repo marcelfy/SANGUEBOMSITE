@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Spinner from '../../components/Spinner/Spinner'
 import { useState } from 'react';
 import React from 'react';
+import axios from 'axios';
 
 const Login = () => {
 
@@ -15,22 +16,35 @@ const Login = () => {
     const info = () => {
         message.success({
             content: 'Usuário logado com sucesso',
-            duration: 3});
-      }
+            duration: 3
+        });
+    }
 
     const onFinish = (values) => {
         setLoading(true)
-        setTimeout(() => {
-            info()
-            navigate("/home")
-        }, 1000)
-        console.log(values);
+        axios.post("http://localhost:8000/login/", values).then((res) => {
+
+            console.log(res.data.erro);
+            if (res.success) {
+                setTimeout(() => {
+                    info()
+                    // navigate("/home")
+                }, 1000)
+                console.log(res);
+            } else {
+                message.error({
+                    content: 'Usuario ou senha incorreto',
+                    duration: 3
+                })
+            }
+        }).finally(() => setLoading(false))
+        .catch((error) => message.error(error))
     };
 
-    const info2 = () =>{
+    const info2 = () => {
         message.error({
-            content:'Preencha o formulário corretamente',
-            duration:3,
+            content: 'Preencha o formulário corretamente',
+            duration: 3,
         })
     }
 
@@ -40,9 +54,9 @@ const Login = () => {
 
     return (
         <>
-            <Spinner loading={loading}/>
+            <Spinner loading={loading} />
             <div className={Style.logo}>
-                <img src={Logo} width={500} height={190} alt=''/>
+                <img src={Logo} width={500} height={190} alt='' />
             </div>
             <Form
                 name="basic"
@@ -76,7 +90,7 @@ const Login = () => {
                         <Input.Password placeholder='Digite sua senha' className={Style.input} style={{ border: '1px solid black', borderRadius: '10px' }} />
                     </Form.Item>
 
-                        
+
                     <div className={Style.btn}>
                         <Button type='primary' htmlType="submit" style={{ backgroundColor: '#AF0107', borderRadius: '10px', borderColor: '#AF0107', width: '90px' }}>
                             Entrar

@@ -8,5 +8,6 @@ UsuarioRoute.get("/usuario", UsuarioController.get);
 UsuarioRoute.get("/usuario/:usuarioID", UsuarioController.getByUsuarioId);
 UsuarioRoute.put("/usuario/:usuarioID", UsuarioController.post);
 UsuarioRoute.delete("/usuario/:usuarioID", UsuarioController.delete);
+UsuarioRoute.post("/login", UsuarioController.login)
 
 export default UsuarioRoute;

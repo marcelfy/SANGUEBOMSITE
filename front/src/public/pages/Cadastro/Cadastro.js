@@ -16,11 +16,7 @@ const Cadastro = () => {
 
     const URL = 'http://localhost:8000/usuario/'
     const [loading, setLoading] = useState(false)
-    const [usuarios, setUsuarios] = useState()
 
-    // useEffect(()=>{
-    //     axios.get(URL).then((resp)=> console.log(resp.data))
-    // },[])
 
     const onFinish = (values) => {
         setLoading(true)
@@ -32,7 +28,6 @@ const Cadastro = () => {
             }, 1000)
         })
         
-        console.log(values);
     }
     
     const onFinishFailed = () =>{
