@@ -25,22 +25,10 @@ const UsuarioController = {
     },
 
     async post(req, res) {
-        // const { nome, telefone, dataNascimento, cpf, email, senha, uf, cidade, tipoSanguineo } = req.body;
         var usuario = req.body;
         usuario.senha =  await bcript.hash(usuario.senha, 8);
         console.log(req.body)
         try {
-            // const usuario = await UsuarioModel.create({
-            //     nome,
-            //     telefone,
-            //     dataNascimento,
-            //     cpf,
-            //     email,
-            //     senha,
-            //     uf,
-            //     cidade,
-            //     tipoSanguineo
-            // });
             UsuarioModel.create(usuario)
             return res.status(201).json(usuario);
         } catch (error) {
@@ -78,13 +66,14 @@ const UsuarioController = {
             })
 
             if(usuario ===null){
-                return res.json({erro:true, message: "Usuário ou senha incorreto"})
+                return res.json({erro:true, message: "Usuário ou senha incorreto user null"})
             }
 
             if(!(await bcript.compare( req.body.senha ,usuario.senha))){
-                return res.status(400).json({erro:true, message: "Usuário ou senha incorreto"})
+                return res.status(400).json({success:false, message: "Usuário ou senha incorreto"})
             }
-            return res.json({erro:false, message: "Usuario logado com sucesso"})
+           
+            return res.status(201).json({success:true, usuario: usuario})
         }
         catch(error){
             return res.json({message: error.message})

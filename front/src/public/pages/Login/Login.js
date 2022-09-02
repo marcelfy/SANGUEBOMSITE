@@ -11,7 +11,7 @@ const Login = () => {
 
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate()
-
+  
 
     const info = () => {
         message.success({
@@ -23,14 +23,14 @@ const Login = () => {
     const onFinish = (values) => {
         setLoading(true)
         axios.post("http://localhost:8000/login/", values).then((res) => {
-
-            console.log(res.data.erro);
-            if (res.success) {
+            
+            
+            if (res.data.success) {
                 setTimeout(() => {
                     info()
                     // navigate("/home")
                 }, 1000)
-                console.log(res);
+                sessionStorage.setItem('usuarioLogado', JSON.stringify(res.data.usuario))
             } else {
                 message.error({
                     content: 'Usuario ou senha incorreto',
