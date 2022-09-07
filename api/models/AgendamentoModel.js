@@ -1,18 +1,24 @@
 import db from '../database/db.js'
 import { DataTypes } from 'sequelize'
+import UsuarioModel from './UsuarioModel.js';
 
-const UsuarioModel = db.define('Usuario', {
-    usuarioID:{
+const AgendamentoModel = db.define('Agendamento', {
+    agendamentoID:{
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true,
     },
+    usuarioID:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        foreignKey: true
+    },
     nome:{
         type: DataTypes.STRING,
         allowNull: false,
     },
-    telefone:{
+    cpf:{
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -20,7 +26,7 @@ const UsuarioModel = db.define('Usuario', {
         type: DataTypes.DATE,
         allowNull: false,
     },
-    cpf:{
+    telefone:{
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -28,11 +34,19 @@ const UsuarioModel = db.define('Usuario', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    senha:{
+    cep:{
         type: DataTypes.STRING,
         allowNull: false,
     },
-    uf:{
+    endereco:{
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    bairro:{
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    estado:{
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -40,10 +54,16 @@ const UsuarioModel = db.define('Usuario', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    tipoSanguineo:{
+    numero:{
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
+    },
+    data:{
+        type: DataTypes.DATE,
+        allowNull: false,
     }
-},{tableName:'Usuario'})
+},{tableName:'Agendamento'});
 
-export default UsuarioModel
+AgendamentoModel.belongsTo(UsuarioModel, {foreignKey:'usuarioID', allowNull:false})
+
+export default AgendamentoModel

@@ -14,7 +14,7 @@ app.use(UsuarioRoute)
 
 try{
     await db.authenticate()
-    db.sync()
+    await db.sync()
     console.log("Conexão feita com sucesso!");
 }catch(error){
     console.log(error);
