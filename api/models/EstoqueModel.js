@@ -1,28 +1,25 @@
 import db from '../database/db.js'
 import { DataTypes } from 'sequelize'
 
-const DoacaoModel = db.define('Doacao', {
-    doacaoID:{
+const EstoqueSangueModel = db.define('EstoqueSangue', {
+    estoqueSangueID:{
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true,
     },
-    usuarioID:{
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        foreignKey: true,
-    },
     tipoSangue:{
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    quantidadeTotal:{
         type: DataTypes.STRING,
         allowNull:false,
     },
-    quantidade:{
+    quantidadeMaxima:{
         type: DataTypes.STRING,
         allowNull: false,
     }
-},{tableName:'Doacao'});
+},{tableName:'EstoqueSangue'});
 
-DoacaoModel.belongsTo(UsuarioModel, {foreignKey:'usuarioID', allowNull:false})
-
-export default DoacaoModel
+export default EstoqueSangueModel

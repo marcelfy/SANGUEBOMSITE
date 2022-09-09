@@ -19,6 +19,9 @@ const UsuarioModel = db.define('Usuario', {
     dataNascimento:{
         type: DataTypes.DATE,
         allowNull: false,
+        validate:{
+            isDate:true,
+        }
     },
     cpf:{
         type: DataTypes.STRING,
@@ -27,6 +30,9 @@ const UsuarioModel = db.define('Usuario', {
     email:{
         type: DataTypes.STRING,
         allowNull: false,
+        validate:{
+            isEmail:true
+        },
     },
     senha:{
         type: DataTypes.STRING,

@@ -58,6 +58,10 @@ const AgendamentoModel = db.define('Agendamento', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    situacao:{
+        type: DataTypes.STRING,
+        allowNull:false,
+    },
     data:{
         type: DataTypes.DATE,
         allowNull: false,
