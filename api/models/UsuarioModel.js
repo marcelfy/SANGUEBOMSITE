@@ -49,6 +49,10 @@ const UsuarioModel = db.define('Usuario', {
     tipoSanguineo:{
         type: DataTypes.STRING,
         allowNull: true,
+    },
+    medula:{
+        type: DataTypes.BOOLEAN,
+        allowNull: true
     }
 },{tableName:'Usuario'})
 

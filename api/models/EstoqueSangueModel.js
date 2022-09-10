@@ -20,6 +20,6 @@ const EstoqueSangueModel = db.define('EstoqueSangue', {
         type: DataTypes.STRING,
         allowNull: false,
     }
-},{tableName:'EstoqueSangue'});
+},{tableName:'EstoqueSangue'})
 
 export default EstoqueSangueModel

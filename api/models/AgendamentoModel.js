@@ -14,26 +14,6 @@ const AgendamentoModel = db.define('Agendamento', {
         allowNull: false,
         foreignKey: true
     },
-    nome:{
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    cpf:{
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    dataNascimento:{
-        type: DataTypes.DATE,
-        allowNull: false,
-    },
-    telefone:{
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    email:{
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
     cep:{
         type: DataTypes.STRING,
         allowNull: false,
@@ -66,7 +46,7 @@ const AgendamentoModel = db.define('Agendamento', {
         type: DataTypes.DATE,
         allowNull: false,
     }
-},{tableName:'Agendamento'});
+},{tableName:'Agendamento'})
 
 AgendamentoModel.belongsTo(UsuarioModel, {foreignKey:'usuarioID', allowNull:false})
 
