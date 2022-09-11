@@ -1,5 +1,5 @@
 import Style from './Cadastro.module.css'
-import { Form, Input, Button, Select, message } from 'antd';
+import { Form, Input, Button, Select, message, Checkbox } from 'antd';
 import 'antd/dist/antd.css'
 import MaskedInput from 'react-input-mask';
 import FormItem from 'antd/lib/form/FormItem';
@@ -17,7 +17,6 @@ const Cadastro = () => {
     const URL = 'http://localhost:8000/usuario/'
     const [loading, setLoading] = useState(false)
 
-
     const onFinish = (values) => {
         setLoading(true)
         axios.post(URL, values)
@@ -30,8 +29,9 @@ const Cadastro = () => {
         
     }
     
-    const onFinishFailed = () =>{
+    const onFinishFailed = (values) =>{
         info2()
+        console.log(values);
     }
     
     const navigate = useNavigate()
@@ -187,8 +187,6 @@ const Cadastro = () => {
                             style={{ width: '187px' }}
 
                         >
-
-
                             <Select defaultValue="Selecione" style={{ width: '200px', border: '1px solid black', borderRadius: '10px', backgroundColor:'#fff' }} bordered={false}>
                                 {estados.map((estado) => (
                                     <Option key={estado.id} value={estado.nome}><p style={{ fontSize: '13px' }}>{estado.nome}</p></Option>
@@ -202,7 +200,7 @@ const Cadastro = () => {
                             <FormItem
                                 label={<p style={{color:'white', marginBottom:'0'}}>Cidade</p>}
                                 name="cidade"
-                                style={{ width: '60%' }}
+                                style={{ width: '40%' }}
                                 rules={[{ required: true, message: 'Selecione uma cidade' }]}
                                 labelCol={{ span: 24 }}
                                 wrapperCol={{ span: 24 }}
@@ -221,6 +219,15 @@ const Cadastro = () => {
                                         <Option key={tipo.key} value={tipo.tipo}>{tipo.tipo}</Option>
                                     ))}
                                 </Select>
+                            </FormItem>
+                            <FormItem
+                                name="medula"
+                                valuePropName="checked"
+                                labelCol={{ span: 24 }}
+                                style={{ width: '169px' }}
+                                wrapperCol={{ span: 24 }}
+                            >
+                                <Checkbox  style={{marginTop:'45px', color:'white'}}>Gostaria de doar medula óssea?</Checkbox>
                             </FormItem>
                         </div>
 
