@@ -22,6 +22,4 @@ const CampanhaModel = db.define('Campanha', {
     }
 },{tableName:'Campanha'});
 
-
-
 export default CampanhaModel
