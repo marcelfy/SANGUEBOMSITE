@@ -7,6 +7,7 @@ import { DatePicker, Space, TimePicker } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../../../public/components/Spinner/Spinner';
 import { useState } from 'react';
+import locale from 'antd/es/date-picker/locale/pt_BR';
 import React from 'react';
 
 const Agendamento = () => {
@@ -57,68 +58,13 @@ const Agendamento = () => {
             </div>
 
             <Form
-                style={{ padding: '15px', marginBottom: '15em' }}
+                style={{ padding: '15px' }}
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
                 className={Styles.form}
             >
                 <fieldset className={Styles.containerForm}>
-                    <Form.Item
-                        label={<p style={{ color: 'white', marginBottom: '0' }}>Nome Completo</p>}
-                        name="nome"
-                        rules={[{ required: true, message: 'Campo nome é obrigatório' }]}
-                        labelCol={{ span: 24 }}
-                        wrapperCol={{ span: 24 }}
-                        style={{ width: '100%' }}
-                    >
-                        <Input className={Styles.input} placeholder="Digite seu nome" style={{ border: '1px solid black', borderRadius: '10px' }} />
-                    </Form.Item>
-                    <div style={{ display: 'flex' }}>
-                        <Form.Item
-                            label={<p style={{ color: 'white', marginBottom: '0' }}>CPF</p>}
-                            name="cpf"
-                            style={{ width: '50%' }}
-                            rules={[{ required: true, message: 'O campo cpf é obrigatório' }]}
-                            labelCol={{ span: 24 }}
-                            wrapperCol={{ span: 24 }}
-
-                        >
-                            <MaskedInput mask="999.999.999-99" className={Styles.input} placeholder="Informe o CPF" style={{ borderRadius: '10px', border: '1px solid black', width:'90%' }} />
-                        </Form.Item>
-                        <Form.Item
-                            label={<p style={{ color: 'white', marginBottom: '0' }}>Data de Nascimento</p>}
-                            name="dataNascimento"
-                            rules={[{ required: true, message: 'Campo Data de Nascimento é obrigatório' }]}
-                            labelCol={{ span: 24 }}
-                            wrapperCol={{ span: 24 }}
-                            style={{ width: '60%' }}
-                        >
-                            <MaskedInput mask="99/99/9999" className={Styles.input} placeholder="Informe a data de nascimento" style={{ borderRadius: '10px', border: '1px solid black', width: '90%' }} />
-                        </Form.Item>
-
-                        <Form.Item
-                            label={<p style={{ color: 'white', marginBottom: '0' }}>Telefone</p>}
-                            name="telefone"
-                            rules={[{ required: true, message: 'Campo telefone é obrigatório' }]}
-                            labelCol={{ span: 24 }}
-                            wrapperCol={{ span: 24 }}
-                            style={{ width: '50%' }}
-                        >
-                            <MaskedInput mask='(99) 99999 9999' className={Styles.input} placeholder="Informe o telefone" style={{ border: '1px solid black', borderRadius: '10px', width: '100%' }} />
-                        </Form.Item>
-                    </div>
-
-                    <Form.Item
-                        label={<p style={{ color: 'white', marginBottom: '0' }}>E-mail</p>}
-                        name="email"
-                        style={{ width: '100%' }}
-                        rules={[{ required: true, message: 'O campo email é obrigatório' }]}
-                        labelCol={{ span: 24 }}
-                        wrapperCol={{ span: 24 }}
-                    >
-                        <Input placeholder='Digite seu email' className={Styles.input} style={{ border: '1px solid black', borderRadius: '10px', width: '100%' }} />
-                    </Form.Item>
 
                     <p style={{ display: 'flex', justifyContent: 'center', fontSize: '15px' }}><b>Endereço</b></p>
 
@@ -203,7 +149,7 @@ const Agendamento = () => {
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
                         >
-                            <DatePicker style={{ border: '1px solid black', borderRadius: '10px', width: '90%' }} format={'DD/MM/YYYY'} />
+                            <DatePicker locale={locale} style={{ border: '1px solid black', borderRadius: '10px', width: '90%' }} format={'DD/MM/YYYY'} placeholder="Escolha uma data"/>
                         </Form.Item>
 
                         <Form.Item
@@ -214,7 +160,7 @@ const Agendamento = () => {
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
                         >
-                            <TimePicker style={{ border: '1px solid black', borderRadius: '10px', width: '100%' }}/>
+                            <TimePicker style={{ border: '1px solid black', borderRadius: '10px', width: '100%' }} placeholder="Escolha um horário" format={'HH:mm'} />
                         </Form.Item>
                     </div>
                     <div style={{display:'flex', justifyContent:'center'}}>

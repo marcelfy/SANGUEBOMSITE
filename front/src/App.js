@@ -14,10 +14,10 @@ import SaibaMais from './secure/pages/SaibaMais/SaibaMais';
 import Etapas from './secure/pages/Etapas/Etapas';
 import HistoricoCertificado from './secure/pages/HistoricoCertificado/Historico';
 
+
 function App() {
   return (
     <Router>
-      <Header />
       
         <Routes>
           <Route path="/" element={<PaginaInicial />} > </Route>
@@ -30,9 +30,10 @@ function App() {
           <Route path="/home/saiba-mais" element={<SaibaMais/>}></Route>
           <Route path="/home/etapas" element={<Etapas/>}></Route>
           <Route path="/home/historico" element={<HistoricoCertificado/>}></Route>
+          <Route path="/teste" element={<Sidebar/>}></Route>
         </Routes>
        
-      <Footer/>
+    
     </Router >
   )
 }
