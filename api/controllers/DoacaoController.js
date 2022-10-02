@@ -1,7 +1,4 @@
-import DoacaoModel from '../models/DoacaoModel';
-import * as bcript from 'bcrypt'
-import jwt from 'jsonwebtoken'
-
+import DoacaoModel from '../models/DoacaoModel.js';
 
 const DoacaoController = {
 

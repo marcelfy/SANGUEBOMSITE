@@ -9,24 +9,29 @@ import Spinner from '../../components/Spinner/Spinner';
 import { useEffect, useState } from 'react';
 import React from 'react';
 import axios from 'axios'
+import UsuarioService from '../../../service/UsuarioService.ts';
 
 
 
 const Cadastro = () => {
 
-    const URL = 'http://localhost:8000/usuario/'
+   
     const [loading, setLoading] = useState(false)
 
     const onFinish = (values) => {
         setLoading(true)
-        axios.post(URL, values)
-        .then(()=>{
-            setTimeout(() => {
-                info()
-                navigate("/")
-            }, 1000)
-        })
-        
+        UsuarioService.post(values)
+        .then((resp)=>{
+            if(resp.success){
+                setTimeout(() => {
+                    info()
+                    navigate("/")
+                }, 1000)
+            }else{
+                message.error(resp.message)
+                return;
+            }
+        }).finally(()=> setLoading(false))
     }
     
     const onFinishFailed = (values) =>{

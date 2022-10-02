@@ -6,13 +6,16 @@
     justify-content: center;
     padding: 4em;
     text-align: center;
-    min-height: 100%;
     /* pra deixar o footer certin */
     position: relative;
     /* pra deixar o footer certin */
     width: 100%;
     /* pra deixar o footer certin */
     background: rgba(255, 255, 255, 0.973958) 0.01%;
+}
+
+.containerGeral{
+    margin: 100px 0;
 }
 
 .container1 .icone{
@@ -92,7 +95,7 @@
 .img2 {
     width: 19em;
     height: 30%;
-    margin: 2em 0;
+    margin: -5em 0;
     margin-top: 2em;
 }
 

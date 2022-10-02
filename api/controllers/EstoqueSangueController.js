@@ -1,7 +1,4 @@
-import EstoqueSangueModel from '../models/EstoqueSangueModel';
-import * as bcript from 'bcrypt'
-import jwt from 'jsonwebtoken'
-
+import EstoqueSangueModel from '../models/EstoqueSangueModel.js';
 
 const EstoqueSangueController = {
 

@@ -1,7 +1,4 @@
-import CampanhaModel from '../models/CampanhaModel';
-import * as bcript from 'bcrypt'
-import jwt from 'jsonwebtoken'
-
+import CampanhaModel from '../models/CampanhaModel.js';
 
 const CampanhaController = {
 

@@ -1,4 +1,4 @@
-import AgendamentoModel from '../models/AgendamentoModel';
+import AgendamentoModel from '../models/AgendamentoModel.js';
 import * as bcript from 'bcrypt'
 import jwt from 'jsonwebtoken'
 

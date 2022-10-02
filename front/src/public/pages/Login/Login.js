@@ -3,60 +3,48 @@ import { Form, Input, Button, Select, Spin, message } from 'antd';
 import Logo from '../../../public/Assets/img/logo.png'
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../../components/Spinner/Spinner'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import React from 'react';
-import axios from 'axios';
+import UsuarioService from '../../../service/UsuarioService.ts';
 
 const Login = () => {
 
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate()
-  
-
-    const info = () => {
-        message.success({
-            content: 'Usuário logado com sucesso',
-            duration: 3
-        });
-    }
 
     const onFinish = (values) => {
         setLoading(true)
-        axios.post("http://localhost:8000/login/", values).then((res) => {
-            
-            
-            if (res.data.success) {
+        UsuarioService.login(values).then((res)=>{
+            console.log(res);
+            if (res.success) {
                 setTimeout(() => {
-                    info()
-                    // navigate("/home")
+                    message.success("Usuário logado com sucesso")
+                    navigate("/home")
                 }, 1000)
-                sessionStorage.setItem('usuarioLogado', JSON.stringify(res.data.usuario))
+                sessionStorage.setItem('usuarioLogado', JSON.stringify(res.usuario))
             } else {
                 message.error({
-                    content: 'Usuario ou senha incorreto',
+                    content: res.message,
                     duration: 3
                 })
             }
-        }).finally(() => setLoading(false))
+        })    
+        .finally(() => setLoading(false))
         .catch((error) => message.error(error))
     };
 
-    const info2 = () => {
+    const onFinishFailed = () => {
         message.error({
             content: 'Preencha o formulário corretamente',
             duration: 3,
         })
-    }
-
-    const onFinishFailed = () => {
-        info2()
     };
 
     return (
         <>
             <Spinner loading={loading} />
             <div className={Style.logo}>
-                <img src={Logo} width={500} height={190} alt='' />
+                <img src={Logo} width={500} height={190} alt='' style={{marginBottom: '30px'}}/>
             </div>
             <Form
                 name="basic"

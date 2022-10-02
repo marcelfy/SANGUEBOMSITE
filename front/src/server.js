@@ -1,7 +1,7 @@
 import express from 'express'
 import db  from './database/db.js';
 import  UsuarioRoute  from './routes/UsuarioRoute.js';
-
+ 
 const app = express();
 
 app.use(express.json())
