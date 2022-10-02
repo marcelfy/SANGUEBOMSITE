@@ -85,7 +85,7 @@ const UsuarioController = {
             }
 
             if (!(await bcript.compare(req.body.senha, usuario.senha))) {
-                return res.status(400).json({ success: false, message: "Usuário ou senha incorreto" })
+                return res.status(200).json({ success: false, message: "Usuário ou senha incorreto" })
             }
 
             const token = jwt.sign({ usuarioID: usuario.usuarioID }, "LSJCH7JKSG2FDJKAS8907VHJ34S5S21HS1X2", {

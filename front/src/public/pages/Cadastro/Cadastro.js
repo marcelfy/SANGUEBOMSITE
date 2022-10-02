@@ -20,6 +20,7 @@ const Cadastro = () => {
 
     const onFinish = (values) => {
         setLoading(true)
+        console.log(values);
         UsuarioService.post(values)
         .then((resp)=>{
             if(resp.success){
@@ -229,6 +230,7 @@ const Cadastro = () => {
                                 name="medula"
                                 valuePropName="checked"
                                 labelCol={{ span: 24 }}
+                                initialValue={false}
                                 style={{ width: '169px' }}
                                 wrapperCol={{ span: 24 }}
                             >

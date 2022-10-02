@@ -23,10 +23,7 @@ const Login = () => {
                 }, 1000)
                 sessionStorage.setItem('usuarioLogado', JSON.stringify(res.usuario))
             } else {
-                message.error({
-                    content: res.message,
-                    duration: 3
-                })
+                message.error(res.message);
             }
         })    
         .finally(() => setLoading(false))
@@ -34,10 +31,7 @@ const Login = () => {
     };
 
     const onFinishFailed = () => {
-        message.error({
-            content: 'Preencha o formulário corretamente',
-            duration: 3,
-        })
+        message.error("Preencha o formulário corretamente")
     };
 
     return (
