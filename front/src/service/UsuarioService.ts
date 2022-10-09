@@ -16,7 +16,7 @@ const UsuarioService = {
             return res.data});
     },
     delete:async(usuarioID:any):Promise<any> => {
-        return  await Api.put(`/usuario${usuarioID}`)
+        return  await Api.put(`/usuario/${usuarioID}`)
         .then((res:any) => {
             return res.data});
     },

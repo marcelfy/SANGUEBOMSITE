@@ -1,18 +1,16 @@
 import db from '../database/db.js'
 import { DataTypes } from 'sequelize'
-import UsuarioModel from './UsuarioModel.js';
 
-const AgendamentoModel = db.define('Agendamento', {
-    agendamentoID:{
+const HemocentroModel = db.define('Hemocentro', {
+    hemocentroID:{
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true,
     },
-    usuarioID:{
-        type: DataTypes.INTEGER,
+    nome:{
+        type: DataTypes.STRING,
         allowNull: false,
-        foreignKey: true,
     },
     cep:{
         type: DataTypes.STRING,
@@ -38,16 +36,6 @@ const AgendamentoModel = db.define('Agendamento', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    situacao:{
-        type: DataTypes.STRING,
-        allowNull:false,
-    },
-    data:{
-        type: DataTypes.DATE,
-        allowNull: false,
-    }
-},{tableName:'Agendamento'})
+},{tableName:'Hemocentro'})
 
-AgendamentoModel.belongsTo(UsuarioModel, {foreignKey:'usuarioID', allowNull:false})
-
-export default AgendamentoModel
+export default HemocentroModel

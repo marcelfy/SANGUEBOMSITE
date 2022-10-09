@@ -6,7 +6,7 @@ const DoacaoRoute  = express.Router();
 
 DoacaoRoute.post("/doacao", DoacaoController.post);
 DoacaoRoute.get("/doacao", DoacaoController.get );
-DoacaoRoute.get("/doacao/:doacaoID", DoacaoController.getByDoacaoId);
+DoacaoRoute.get("/doacao/getbydoacaoid/:doacaoID", DoacaoController.getByDoacaoId);
 DoacaoRoute.put("/doacao/:doacaoID", DoacaoController.put);
 DoacaoRoute.delete("/doacao/:doacaoID", DoacaoController.delete);
 

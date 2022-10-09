@@ -1,9 +1,20 @@
 import Style from './Hemocentros.module.css'
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import HemocentroService from '../../../service/HemocentroService.ts';
 
 const Hemocentros = () => {
+
+    const [hemocentros, setHemocentros] = useState();
+
+    useEffect(()=>{
+        HemocentroService.get().then((resp)=>{
+            setHemocentros(resp)
+        })
+    },[])
+
     return(
-        <h1>Hemocentros</h1>
+        <div className={Style.container}>
+        </div>
     )
 }
 
