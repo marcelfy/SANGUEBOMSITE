@@ -14,10 +14,12 @@ import UsuarioService from '../../../service/UsuarioService.ts';
 
 
 const Cadastro = () => {
-
-   
+    
+    
     const [loading, setLoading] = useState(false)
-
+    
+    const navigate = useNavigate()
+    
     const onFinish = (values) => {
         setLoading(true)
         console.log(values);
@@ -25,7 +27,9 @@ const Cadastro = () => {
         .then((resp)=>{
             if(resp.success){
                 setTimeout(() => {
-                    info()
+                    message.success({
+                        content: 'Usuário cadastrado com sucesso',
+                        duration: 3});
                     navigate("/")
                 }, 1000)
             }else{
@@ -37,16 +41,8 @@ const Cadastro = () => {
     
     const onFinishFailed = (values) =>{
         info2()
-        console.log(values);
     }
     
-    const navigate = useNavigate()
-
-    const info = () => {
-        message.success({
-            content: 'Usuário cadastrado com sucesso',
-            duration: 3});
-      }
 
     const info2 = () =>{
         message.error({

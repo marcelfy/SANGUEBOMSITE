@@ -4,38 +4,73 @@ import Logo from '../../../public/Assets/img/logo.png'
 import { BsCalendar3 } from 'react-icons/bs'
 import MaskedInput from 'react-input-mask';
 import { DatePicker, Space, TimePicker } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Spinner from '../../../public/components/Spinner/Spinner';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import locale from 'antd/es/date-picker/locale/pt_BR';
 import React from 'react';
+import {default as localeTimePicker} from 'antd/lib/time-picker/locale/pt_BR'
+import HemocentroService from '../../../service/HemocentroService.ts';
+import AgendamentoService from '../../../service/AgendamentoService.ts';
+import moment from 'moment';
 
 const Agendamento = () => {
 
     const [loading, setLoading] = useState(false)
 
     const navigate = useNavigate()
+    
+    const [form] = Form.useForm()
+    
+    const {hemocentroID} = useParams();
+
+    const usuarioLogado = JSON.parse(sessionStorage.getItem('usuarioLogado'));
+
+    useEffect(()=>{
+        HemocentroService.getByHemocentroId(hemocentroID).then((resp)=>{
+            form.setFieldsValue({
+                cep: resp.cep,
+                endereco: resp.endereco,
+                bairro: resp.bairro,
+                estado: resp.estado,
+                cidade: resp.cidade,
+                numero: resp.numero,
+            })
+        })
+
+    },[])
 
     const onFinish = (values) => {
-        setLoading(true)
-        setTimeout(() => {
-            info()
-            navigate("/home")
-        }, 1000)
-        console.log(values);
+        // setLoading(true)
+
+        let agendamento = {
+            usuarioID : usuarioLogado.usuarioID,
+            situacao: 'Aberto',
+            data: values.data,
+            hemocentroID: hemocentroID,
+            horario: moment(values.horario).format('HH:mm'),
+        }
+
+        console.log(agendamento);
+        // console.log(usuarioLogado);
+
+        AgendamentoService.post(agendamento).then((resp)=>{
+            if(resp.success){
+                setTimeout(() => {
+                    message.success({
+                        content: resp.message,
+                        duration: 3
+                    });
+                    navigate("/home")
+                }, 1000)
+
+            }
+        })
+
     }
 
     const onFinishFailed = () => {
         info2()
-    }
-
-
-
-    const info = () => {
-        message.success({
-            content: 'Agendamento realizado com sucesso',
-            duration: 3
-        });
     }
 
     const info2 = () => {
@@ -58,6 +93,7 @@ const Agendamento = () => {
             </div>
 
             <Form
+                form={form}
                 style={{ padding: '15px' }}
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
@@ -77,7 +113,7 @@ const Agendamento = () => {
                             wrapperCol={{ span: 24 }}
                             style={{ width: '50%' }}
                         >
-                            <MaskedInput mask="99999-999" className={Styles.input} placeholder="Informe o cep" style={{ borderRadius: '10px', border: '1px solid black', width: '90%' }} />
+                            <MaskedInput disabled={true} mask="99999-999" className={Styles.input} placeholder="Informe o cep" style={{ borderRadius: '10px', border: '1px solid black', width: '90%', color:'rgba(0, 0, 0, 0.25)', background:'#f5f5f5', cursor:'not-allowed' }} />
                         </Form.Item>
 
                         <Form.Item
@@ -88,7 +124,7 @@ const Agendamento = () => {
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
                         >
-                            <Input placeholder='Digite seu endereço' className={Styles.input} style={{ border: '1px solid black', borderRadius: '10px', width: '90%' }} />
+                            <Input placeholder='Digite seu endereço' disabled={true} className={Styles.input} style={{ border: '1px solid black', borderRadius: '10px', width: '90%' }} />
                         </Form.Item>
 
                         <Form.Item
@@ -99,7 +135,7 @@ const Agendamento = () => {
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
                         >
-                            <Input placeholder='Digite o bairro' className={Styles.input} style={{ border: '1px solid black', borderRadius: '10px', width: '90%' }} />
+                            <Input placeholder='Digite o bairro' disabled={true} className={Styles.input} style={{ border: '1px solid black', borderRadius: '10px', width: '90%' }} />
                         </Form.Item>
                     </div>
                     <div style={{ display: 'flex' }}>
@@ -111,7 +147,7 @@ const Agendamento = () => {
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
                         >
-                            <Input placeholder='Digite o estado' className={Styles.input} style={{ border: '1px solid black', borderRadius: '10px', width: '90%' }} />
+                            <Input placeholder='Digite o estado' disabled={true} className={Styles.input} style={{ border: '1px solid black', borderRadius: '10px', width: '90%' }} />
                         </Form.Item>
 
                         <Form.Item
@@ -122,7 +158,7 @@ const Agendamento = () => {
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
                         >
-                            <Input placeholder='Digite a cidade' className={Styles.input} style={{ border: '1px solid black', borderRadius: '10px', width: '90%' }} />
+                            <Input placeholder='Digite a cidade' disabled={true} className={Styles.input} style={{ border: '1px solid black', borderRadius: '10px', width: '90%' }} />
                         </Form.Item>
 
                         <Form.Item
@@ -133,7 +169,7 @@ const Agendamento = () => {
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
                         >
-                            <Input placeholder='Digite o número' className={Styles.input} style={{ border: '1px solid black', borderRadius: '10px', width: '100%' }} />
+                            <Input placeholder='Digite o número' disabled={true} className={Styles.input} style={{ border: '1px solid black', borderRadius: '10px', width: '100%' }} />
                         </Form.Item>
 
                     </div>
@@ -160,7 +196,7 @@ const Agendamento = () => {
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
                         >
-                            <TimePicker style={{ border: '1px solid black', borderRadius: '10px', width: '100%' }} placeholder="Escolha um horário" format={'HH:mm'} />
+                            <TimePicker style={{ border: '1px solid black', borderRadius: '10px', width: '100%' }} placeholder="Escolha um horário" format={'HH:mm'} locale={localeTimePicker} />
                         </Form.Item>
                     </div>
                     <div style={{display:'flex', justifyContent:'center'}}>
