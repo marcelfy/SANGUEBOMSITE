@@ -1,5 +1,6 @@
 import db from '../database/db.js'
 import { DataTypes } from 'sequelize'
+import AgendamentoModel from './AgendamentoModel.js'
 
 const UsuarioModel = db.define('Usuario', {
     usuarioID:{

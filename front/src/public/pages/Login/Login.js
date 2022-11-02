@@ -15,18 +15,23 @@ const Login = () => {
     const onFinish = (values) => {
         setLoading(true)
         UsuarioService.login(values).then((res)=>{
-            console.log(res);
             if (res.success) {
                 setTimeout(() => {
                     message.success("Usuário logado com sucesso")
-                    navigate("/home")
+                    
                 }, 1000)
                 sessionStorage.setItem('usuarioLogado', JSON.stringify(res.usuario))
             } else {
                 message.error(res.message);
             }
         })    
-        .finally(() => setLoading(false))
+        .finally(() => {
+            setLoading(false)
+            setTimeout(() => {
+                window.location.reload()
+            }, 500);
+            navigate("/home")
+        })
         .catch((error) => message.error(error))
     };
 

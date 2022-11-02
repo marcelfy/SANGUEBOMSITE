@@ -1,6 +1,8 @@
 import AgendamentoModel from '../models/AgendamentoModel.js';
 import * as bcript from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import UsuarioModel from '../models/UsuarioModel.js';
+import HemocentroModel from '../models/HemocentroModel.js';
 
 
 const AgendamentoController = {
@@ -30,7 +32,7 @@ const AgendamentoController = {
         var agendamento = req.body;
         try {
             AgendamentoModel.create(agendamento)
-            return res.status(201).json(agendamento);
+            return res.status(201).json({success:true, message: "Agendamento realizado com sucesso"});
         } catch (error) {
             console.log(error);
             return res.json({ message: error.message })

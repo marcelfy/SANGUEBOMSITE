@@ -32,7 +32,7 @@ const Home = () => {
             <div>
                 <b>Agende sua Doação</b>
                 <p>Atendimento ágil e eficaz para os doadores de sangue, com hora marcada.</p>
-                <Button type='primary' className={Style.button} style={{ borderColor: '#AF0107' }} onClick={()=> navigate('/agendamento')}>Saiba mais</Button>
+                <Button type='primary' className={Style.button} style={{ borderColor: '#AF0107' }} onClick={()=> navigate('/hemocentros')}>Saiba mais</Button>
             </div>
 
             <div className={Style.groupGotas}>

@@ -41,7 +41,7 @@ const Agendamento = () => {
     },[])
 
     const onFinish = (values) => {
-        // setLoading(true)
+        setLoading(true)
 
         let agendamento = {
             usuarioID : usuarioLogado.usuarioID,
@@ -51,7 +51,7 @@ const Agendamento = () => {
             horario: moment(values.horario).format('HH:mm'),
         }
 
-        console.log(agendamento);
+        // console.log(agendamento);
         // console.log(usuarioLogado);
 
         AgendamentoService.post(agendamento).then((resp)=>{
@@ -61,10 +61,13 @@ const Agendamento = () => {
                         content: resp.message,
                         duration: 3
                     });
-                    navigate("/home")
-                }, 1000)
-
+                }, 500)
+                
             }
+        })
+        .finally(()=> {
+            setLoading(false)
+            navigate("/hemocentros")
         })
 
     }

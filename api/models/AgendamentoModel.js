@@ -1,5 +1,5 @@
 import db from '../database/db.js'
-import { DataTypes } from 'sequelize'
+import { DataTypes, Deferrable } from 'sequelize'
 import UsuarioModel from './UsuarioModel.js';
 import HemocentroModel from './HemocentroModel.js';
 
@@ -13,12 +13,12 @@ const AgendamentoModel = db.define('Agendamento', {
     usuarioID:{
         type: DataTypes.INTEGER,
         allowNull: false,
-        foreignKey: true,
+        foreignKey: true
     },
     hemocentroID:{
         type: DataTypes.INTEGER,
         allowNull: false,
-        foreignKey: true,
+        foreignKey: true
     },
     situacao:{
         type: DataTypes.STRING,
@@ -33,8 +33,5 @@ const AgendamentoModel = db.define('Agendamento', {
         allowNull: false,
     }
 },{tableName:'Agendamento'})
-
-AgendamentoModel.belongsTo(UsuarioModel, {foreignKey:'usuarioID', allowNull:false})
-AgendamentoModel.belongsTo(HemocentroModel, {foreignKey:'hemocentroID', allowNull:false})
 
 export default AgendamentoModel

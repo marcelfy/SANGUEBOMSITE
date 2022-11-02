@@ -10,6 +10,7 @@ main{
     color: #fff;
     width: 200px;
     transition: all 0.5s;
+    height: auto;
 }
 .topsection{
     display: flex;

@@ -33,13 +33,15 @@ try {
     // await db.sync()
     await AgendamentoModel.sync()
     await UsuarioModel.sync()    
+    await HemocentroModel.sync()
     await CampanhaModel.sync()
     await EstoqueSangueModel.sync()
     await DoacaoModel.sync()
-    await HemocentroModel.sync()
+
     console.log("Conexão feita com sucesso!")
 } catch (error) {
     console.log(error);
 }
+
 
 app.listen(8000, () => console.log("Rodando na porta 8000"))

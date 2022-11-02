@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import {
-    FaTh,
     FaBars,
-    FaUserAlt,
     FaRegChartBar,
-    FaCommentAlt,
-    FaShoppingBag,
-    FaThList
+    FaHospitalAlt
 }from "react-icons/fa";
+import {AiFillInfoCircle} from 'react-icons/ai'
+import {MdCampaign} from 'react-icons/md'
 import { NavLink } from 'react-router-dom';
 import Styles from'./SideBar.module.css'
 
@@ -15,31 +13,32 @@ import Styles from'./SideBar.module.css'
 const Sidebar = ({children}) => {
     const[isOpen ,setIsOpen] = useState(false);
     const toggle = () => setIsOpen (!isOpen);
+    
     const menuItem=[
         {
             path:"/home/saiba-mais",
             name:"Saiba Mais",
-            icon:<FaUserAlt/>
+            icon:<AiFillInfoCircle/>
         },
         {
             path:"/home/etapas",
             name:"Etapas",
             icon:<FaRegChartBar/>
         },
-        {
-            path:"/home/historico",
-            name:"Histórico",
-            icon:<FaCommentAlt/>
-        },
+        // {
+        //     path:"/home/historico",
+        //     name:"Histórico",
+        //     icon:<FaCommentAlt/>
+        // },
         {
             path:"/hemocentros",
             name:"Hemocentros",
-            icon:<FaShoppingBag/>
+            icon:<FaHospitalAlt/>
         },
         {
             path:"/campanha",
-            name:"Camapnha",
-            icon:<FaThList/>
+            name:"Campanhas",
+            icon:<MdCampaign/>
         }
     ]
     return (

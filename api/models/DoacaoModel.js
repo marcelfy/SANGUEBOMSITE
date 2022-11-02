@@ -24,6 +24,4 @@ const DoacaoModel = db.define('Doacao', {
     }
 },{tableName:'Doacao'});
 
-DoacaoModel.belongsTo(UsuarioModel, {foreignKey:'usuarioID', allowNull:false})
-
 export default DoacaoModel

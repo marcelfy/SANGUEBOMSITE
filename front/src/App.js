@@ -35,7 +35,6 @@ function App() {
         </Routes>
       </Sidebar>
       <Footer />
-
     </Router >
   )
 }
