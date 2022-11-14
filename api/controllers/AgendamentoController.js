@@ -9,7 +9,7 @@ const AgendamentoController = {
 
     async get(req, res) {
         try {
-            const agendamentos = await AgendamentoModel.findAll();
+            const agendamentos = await AgendamentoModel.findAll({include:[HemocentroModel, UsuarioModel]});
             return agendamentos.length > 0 ? res.status(200).json(agendamentos) :
                 res.status(204).send();
 
@@ -23,7 +23,18 @@ const AgendamentoController = {
         const agendamento = await AgendamentoModel.findOne({
             where: {
                 agendamentoID: agendamentoID,
-            }
+            },
+        })
+        return agendamento ? res.status(200).json(agendamento) : res.status(204).send()
+    },
+
+    async getByHemocentroId(req, res) {
+        const { hemocentroID } = req.params
+        const agendamento = await AgendamentoModel.findAll({
+            where: {
+                hemocentroID: hemocentroID,
+            },
+            include:[HemocentroModel, UsuarioModel]
         })
         return agendamento ? res.status(200).json(agendamento) : res.status(204).send()
     },

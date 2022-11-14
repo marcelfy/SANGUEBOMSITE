@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken'
-// const { promisify } = require('util')
 import util from 'util'
 
 

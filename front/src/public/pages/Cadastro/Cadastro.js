@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import React from 'react';
 import axios from 'axios'
 import UsuarioService from '../../../service/UsuarioService.ts';
+import {unmaskCPF, validaCPF } from '../../../utils.js';
 
 
 
@@ -21,8 +22,12 @@ const Cadastro = () => {
     const navigate = useNavigate()
     
     const onFinish = (values) => {
+        if(validaCPF(unmaskCPF(values.cpf))==false){
+            message.error("Cpf inválido");
+            return;
+        }
+        values.cpf = unmaskCPF(values.cpf)
         setLoading(true)
-        console.log(values);
         UsuarioService.post(values)
         .then((resp)=>{
             if(resp.success){

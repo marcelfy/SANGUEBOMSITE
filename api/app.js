@@ -13,6 +13,7 @@ import EstoqueSangueRoute from './routes/EstoqueSangueRoute.js'
 import DoacaoRoute from './routes/DoacaoRoute.js'
 import HemocentroModel from './models/HemocentroModel.js'
 import HemocentroRoute from './routes/HemocentroRoute.js'
+import { Associations } from './Associations/Associations.js'
 
 const app = express()
 
@@ -27,21 +28,22 @@ app.use(EstoqueSangueRoute)
 app.use(DoacaoRoute)
 app.use(HemocentroRoute)
 
-
 try {
     await db.authenticate()
-    // await db.sync()
-    await AgendamentoModel.sync()
-    await UsuarioModel.sync()    
-    await HemocentroModel.sync()
+    
+    await Associations()
+
+    await AgendamentoModel.sync({ alter: true })
+    await UsuarioModel.sync({ alter: true })
+    await HemocentroModel.sync({ alter: true })
     await CampanhaModel.sync()
     await EstoqueSangueModel.sync()
     await DoacaoModel.sync()
+
 
     console.log("Conexão feita com sucesso!")
 } catch (error) {
     console.log(error);
 }
-
 
 app.listen(8000, () => console.log("Rodando na porta 8000"))

@@ -27,14 +27,16 @@ const NavBar = () => {
         atualizar()
     }
 
+    const abrirTooltip=()=>{
 
+    }
 
     return (
 
         <nav className={style.navbar}>
             <ul className={style.list} style={{ marginBottom: 'none' }}>
                 <li className={style.item}><Link to="/">Início</Link></li>
-                <li className={style.item}><Link to="/login">{usuarioLogado? usuarioLogado.nome : "Login"}</Link></li>
+                <li className={style.item}><a onClick={usuarioLogado? abrirTooltip : ()=>navigate("/login")}>{usuarioLogado? usuarioLogado.nome : "Login"}</a></li>
                 <li className={style.item}><a onClick={usuarioLogado? logout : ()=> navigate("/cadastro")}>{usuarioLogado? "Sair":"Cadastrar"}</a></li>
             </ul>
         </nav>

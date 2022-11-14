@@ -15,7 +15,7 @@ main{
 .topsection{
     display: flex;
     align-items:center;
-    padding:20px 15px;
+    padding:30px 15px;
     cursor: pointer;
 }
 .bars{

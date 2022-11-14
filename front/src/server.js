@@ -8,7 +8,7 @@ app.use(express.json())
 
 app.use(cors())
 
-app.use('/usuario', UsuarioRoute)
+// app.use('/usuario', UsuarioRoute)
 
 try{
     await db.authenticate()

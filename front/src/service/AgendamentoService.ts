@@ -26,6 +26,11 @@ const AgendamentoService = {
         .then((res:any)=>  {        
             return res.data});
     },
+    getByHemocentroId : async (hemocentroID:number):Promise<any> => {    
+        return await Api.get(`/agendamento/getbyhemocentroid/${hemocentroID}`)
+        .then((res:any)=>  {        
+            return res.data});
+    },
     
 }
 

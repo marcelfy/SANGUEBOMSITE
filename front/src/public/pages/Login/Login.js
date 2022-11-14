@@ -16,21 +16,19 @@ const Login = () => {
         setLoading(true)
         UsuarioService.login(values).then((res)=>{
             if (res.success) {
-                setTimeout(() => {
-                    message.success("Usuário logado com sucesso")
-                    
-                }, 1000)
                 sessionStorage.setItem('usuarioLogado', JSON.stringify(res.usuario))
+                setTimeout(() => {
+                    window.location.reload()
+                    message.success("Usuário logado com sucesso")
+                }, 300);
+                navigate("/home")
             } else {
                 message.error(res.message);
             }
         })    
         .finally(() => {
             setLoading(false)
-            setTimeout(() => {
-                window.location.reload()
-            }, 500);
-            navigate("/home")
+            
         })
         .catch((error) => message.error(error))
     };

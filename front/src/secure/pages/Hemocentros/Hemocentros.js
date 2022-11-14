@@ -24,8 +24,8 @@ const Hemocentros = () => {
                     <h2 style={{ fontSize: '30px',fontWeight:'650' }}>Hemocentros</h2>
                 </div>
                 <div className={Style.container}>
-                    {hemocentros.map((h) => {
-                        return <HemocentroCard hemocentroID={h.hemocentroID} nome={h.nome} endereco={h.endereco}
+                    {hemocentros.map((h, index) => {
+                        return <HemocentroCard key={index} hemocentroID={h.hemocentroID} nome={h.nome} endereco={h.endereco}
                             numero={h.numero} bairro={h.bairro} cidade={h.cidade} estado={h.estado} />
                     })}
                 </div>
