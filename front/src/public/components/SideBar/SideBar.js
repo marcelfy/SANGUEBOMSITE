@@ -20,11 +20,6 @@ const Sidebar = ({children}) => {
             name:"Saiba Mais",
             icon:<AiFillInfoCircle/>
         },
-        {
-            path:"/home/etapas",
-            name:"Etapas",
-            icon:<FaRegChartBar/>
-        },
         // {
         //     path:"/home/historico",
         //     name:"Histórico",

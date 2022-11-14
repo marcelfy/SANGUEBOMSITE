@@ -33,9 +33,9 @@ try {
     
     await Associations()
 
-    await AgendamentoModel.sync({ alter: true })
-    await UsuarioModel.sync({ alter: true })
-    await HemocentroModel.sync({ alter: true })
+    await AgendamentoModel.sync()
+    await UsuarioModel.sync()
+    await HemocentroModel.sync()
     await CampanhaModel.sync()
     await EstoqueSangueModel.sync()
     await DoacaoModel.sync()
