@@ -36,6 +36,7 @@ const AgendamentoPorHemocentro = () => {
     })
   }
 
+
   const onFinish = (values) => {
     let doacao = {
       usuarioID : usuarioID,
@@ -50,19 +51,19 @@ const AgendamentoPorHemocentro = () => {
         message.success("Agendamento realizado com sucesso")
         setModal(false)
         form.resetFields()
-        // realizarAgendamento()
-        AgendamentoService.realizarAgendamento(agendamentoID)
+        realizarAgendamento()
+        
       }
     })
     .finally(()=>{setLoading(false)})
 
   }
 
-  // const realizarAgendamento = () =>{
-  //   AgendamentoService.realizarAgendamento(agendamentoID).then((resp)=> console.log(resp)).finally(()=> {
-      
-  //   })
-  // }
+  const realizarAgendamento = () =>{
+    AgendamentoService.realizarAgendamento(agendamentoID)
+    AgendamentoService.get().then((resp)=> setAgendamentos(resp))
+    window.location.reload()
+  }
 
   const onFinishFailed = () => {
     message.error("Preencha o formulário corretamente")

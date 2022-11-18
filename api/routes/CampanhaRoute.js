@@ -1,5 +1,4 @@
 import express from 'express'
-import auth from '../middleware/auth.js';
 import CampanhaController from '../controllers/CampanhaController.js';
 
 const CampanhaRoute  = express.Router();

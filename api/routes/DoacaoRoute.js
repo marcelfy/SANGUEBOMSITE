@@ -1,5 +1,4 @@
 import express from 'express'
-import auth from '../middleware/auth.js';
 import DoacaoController from '../controllers/DoacaoController.js';
 
 const DoacaoRoute  = express.Router();

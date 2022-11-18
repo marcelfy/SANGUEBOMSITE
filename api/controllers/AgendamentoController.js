@@ -63,11 +63,11 @@ const AgendamentoController = {
 
     async realizarAgendamento(req, res){
         const { agendamentoID } = req.params
-        console.log(agendamentoID);
+
         try {
             await AgendamentoModel.update({situacao: "Finalizado"},{where: {agendamentoID : agendamentoID}} )
             
-            return res.status(204).send().json({success:true , message:"Atendimento realizado"});
+            return res.status(202).json({success:true , message:"Atendimento realizado"});
         } catch (error) {
             return res.json({ message: error.message })
         }
