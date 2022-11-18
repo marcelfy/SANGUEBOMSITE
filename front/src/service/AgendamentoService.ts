@@ -11,7 +11,12 @@ const AgendamentoService = {
         return Api.get('/agendamento').then((res) => { return res.data })
     },
     put:async(agendamento:any):Promise<any> => {
-        return  await Api.put(`/hemocentro/`, agendamento)
+        return  await Api.put(`/agendamento/`, agendamento)
+        .then((res:any) => {
+            return res.data});
+    },
+    realizarAgendamento:async(agendamentoID:any):Promise<any> => {
+        return  await Api.put(`/agendamento/relizaragendamento/${agendamentoID}`)
         .then((res:any) => {
             return res.data});
     },

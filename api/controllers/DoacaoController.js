@@ -27,7 +27,7 @@ const DoacaoController = {
         var doacao = req.body;
         try {
             DoacaoModel.create(doacao)
-            return res.status(201).json(doacao);
+            return res.status(201).json({success:true, message:"Doação realizada com sucesso"});
         } catch (error) {
             console.log(error);
             return res.json({ message: error.message })

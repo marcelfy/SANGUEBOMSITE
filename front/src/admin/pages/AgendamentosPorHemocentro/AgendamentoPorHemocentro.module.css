@@ -14,3 +14,15 @@
     flex-direction: column;
     width: 400px;
 }
+
+.btnAreaa {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
+    column-gap: 20px;
+}
+
+.btn {
+    width: 10em;
+}
