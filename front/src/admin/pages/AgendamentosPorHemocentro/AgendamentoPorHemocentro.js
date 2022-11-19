@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import Styles from './AgendamentoPorHemocentro.module.css'
-import { Table, Button, Select, Option, Form, message, Input, Spin } from 'antd'
+import { Table, Button, Select, Form, message, Input, Spin } from 'antd'
 import AgendamentoService from '../../../service/AgendamentoService.ts'
 import HemocentroService from '../../../service/HemocentroService.ts'
 import Logo from '../../../public/Assets/img/logo.png'
-import UsuarioService from '../../../service/UsuarioService.ts'
 import Modal from 'antd/lib/modal/Modal'
 import DoacaoService from '../../../service/DoacaoService.ts'
-import { useForm } from 'rc-field-form'
 
 const AgendamentoPorHemocentro = () => {
 
@@ -52,7 +50,7 @@ const AgendamentoPorHemocentro = () => {
         setModal(false)
         form.resetFields()
         realizarAgendamento()
-        
+        AgendamentoService.get().then((resp)=> setAgendamentos(resp))    
       }
     })
     .finally(()=>{setLoading(false)})
@@ -61,7 +59,7 @@ const AgendamentoPorHemocentro = () => {
 
   const realizarAgendamento = () =>{
     AgendamentoService.realizarAgendamento(agendamentoID)
-    AgendamentoService.get().then((resp)=> setAgendamentos(resp))
+    
     window.location.reload()
   }
 
@@ -128,7 +126,7 @@ const AgendamentoPorHemocentro = () => {
   return (
     <Spin spinning={loading}>
       <div className={Styles.container}>
-        <img src={Logo} width={700} height={230} style={{ marginBottom: '20px' }} />
+        <img src={Logo} width={700} height={230} style={{ marginBottom: '20px' }} alt=""/>
         <div className={Styles.select}>
           <Form.Item wrapperCol={{ span: 12 }} labelCol={{ span: 12 }} label="Selecione um hemocentro" rules={[{ required: true, message: 'É necessário selecionar um hemocentro' }]}>
             <Select placeholder="Selecione" style={{ width: '150px' }} onSelect={(e) => { pesquisarPorHemocentro(e) }}>
