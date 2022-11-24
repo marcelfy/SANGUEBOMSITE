@@ -14,10 +14,12 @@ import DoacaoRoute from './routes/DoacaoRoute.js'
 import HemocentroModel from './models/HemocentroModel.js'
 import HemocentroRoute from './routes/HemocentroRoute.js'
 import { Associations } from './Associations/Associations.js'
-
+import * as dotenv from 'dotenv'
 const app = express()
 
+dotenv.config()
 app.use(cors())
+
 
 app.use(express.json())
 
@@ -29,6 +31,7 @@ app.use(DoacaoRoute)
 app.use(HemocentroRoute)
 
 try {
+    
     await db.authenticate()
     
     await Associations()
