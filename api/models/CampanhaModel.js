@@ -19,6 +19,10 @@ const CampanhaModel = db.define('Campanha', {
     descricao:{
         type: DataTypes.STRING,
         allowNull: false,
+    },
+    ativo:{
+        type: DataTypes.BOOLEAN,
+        allowNull: false
     }
 },{tableName:'Campanha'});
 

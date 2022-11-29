@@ -3,9 +3,19 @@ import Logo from '../../../public/Assets/img/logo.png'
 import {FaExclamation, } from 'react-icons/fa'
 import {MdBloodtype} from 'react-icons/md'
 import {GrEmptyCircle} from 'react-icons/gr'
-import React from 'react';
+import DoacaoService from '../../../service/DoacaoService.ts'
+import React, { useEffect, useState } from 'react';
 
 const Home = () => {
+
+    const [doacao, setDoacao] = useState()
+
+    useEffect(()=>{
+        DoacaoService.get().then((resp)=>{
+            setDoacao(resp)
+        })
+    },[])
+
     return(
         <section className={style.home_container}>
             <img src={Logo} className={style.img}></img>
@@ -13,7 +23,7 @@ const Home = () => {
             
                 <div className={style.numDoacoes}>
                     <b>SANGUE</b>
-                    <b style={{color:'black'}}>00043</b>
+                    <b style={{color:'black'}}>{doacao?.length}</b>
                 </div>
             <div className={style.infosangue}>
                 <MdBloodtype className={style.icon}/>

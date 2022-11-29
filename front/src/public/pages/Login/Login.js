@@ -18,7 +18,6 @@ const Login = () => {
             if (res.success) {
                 sessionStorage.setItem('usuarioLogado', JSON.stringify(res.usuario))
                 setTimeout(() => {
-                    window.location.reload()
                     message.success("Usuário logado com sucesso")
                 }, 300);
                 navigate("/home")

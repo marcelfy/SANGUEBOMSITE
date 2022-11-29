@@ -48,7 +48,7 @@ const Campanha = () => {
 
                 <div className={Style.campanhaCard}>
                     {campanhas?.map((c, key) => {
-                        return <CampanhaCard titulo={c.titulo} tipoSangue={c.tipoSangue} descricao={c.descricao} />
+                        return <CampanhaCard key={key} titulo={c.titulo} tipoSangue={c.tipoSangue} descricao={c.descricao} />
                     })}
                 </div>
                 <div className={Style.btnArea}>
