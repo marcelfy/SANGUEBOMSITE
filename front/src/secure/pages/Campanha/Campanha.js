@@ -5,13 +5,18 @@ import Logo from '../../../public/Assets/img/logo.png'
 import CampanhaService from '../../../service/CampanhaService.ts'
 import CampanhaCard from '../../components/CampanhaCard/CampanhaCard'
 import { Button, Modal, Form, message, Input, Select } from 'antd'
+import { Spin } from 'antd'
 
 const Campanha = () => {
 
     const [campanhas, setCampanhas] = useState()
+    const [loading, setLoading] = useState(false)
     const [modal, setModal] = useState(false)
+    // const [ehAdmin, setEhAdmin] = useState()
     const { Option } = Select;
     const { TextArea } = Input;
+    const [form] = Form.useForm()
+    const ehAdmin = window.location.pathname.includes("admin")
 
     var tipoSanguineo = [
         { tipo: 'A+', key: 1 },
@@ -27,16 +32,55 @@ const Campanha = () => {
 
     useEffect(() => {
         CampanhaService.get().then((resp) => {
-            setCampanhas(resp) 
+            if (ehAdmin) {
+                setCampanhas(resp.filter((c) => c.ativo == false))
+            } else {
+                setCampanhas(resp.filter((c) => c.ativo == true))
+            }
         })
     }, [])
 
     const onFinish = (values) => {
-        console.log(values);
+
+        let campanha = {
+            titulo: values.titulo,
+            tipoSangue: values.tipoSangue,
+            descricao: values.descricao,
+            ativo: false,
+        }
+        CampanhaService.post(campanha)
+            .then((resp) => {
+                setLoading(true)
+                if (resp.success) {
+                    message.success({
+                        duration: 5,
+                        content: resp.data
+                    })
+                    resetarForm()
+                    pesquisarCampanhas()
+                }
+            })
+            .finally(() => setLoading(false))
+            .catch((error) => { })
+    }
+
+    function resetarForm() {
+        form.resetFields()
+        setModal(false)
     }
 
     const onFinishFailed = () => {
+        message.error("Preencha o formulário corretamente")
+    }
 
+    const pesquisarCampanhas = () => {
+        CampanhaService.get().then((resp) => {
+            if (ehAdmin) {
+                setCampanhas(resp.filter((c) => c.ativo == false))
+            } else {
+                setCampanhas(resp.filter((c) => c.ativo == true))
+            }
+        })
     }
 
     return (
@@ -46,48 +90,58 @@ const Campanha = () => {
                 <BiDonateBlood size={50} style={{ color: 'red' }} />
                 <h1 style={{ color: 'red' }}>Campanhas</h1>
 
+                {!ehAdmin ?
+                    <div className={Style.btnArea}>
+                        <Button type='primary' onClick={() => setModal(true)}>Nova Campanha</Button>
+                    </div>
+
+                    : null}
+                {campanhas?.length == 0 && !ehAdmin ?
+                    <div>
+                        <h2>Não existem campanhas cadastradas/aprovadas</h2>
+                    </div> : null
+                }
                 <div className={Style.campanhaCard}>
                     {campanhas?.map((c, key) => {
-                        return <CampanhaCard key={key} titulo={c.titulo} tipoSangue={c.tipoSangue} descricao={c.descricao} />
+                        return <CampanhaCard key={key} titulo={c.titulo} tipoSangue={c.tipoSangue} descricao={c.descricao} ehAdmin={ehAdmin} id={c.campanhaID} />
                     })}
                 </div>
-                <div className={Style.btnArea}>
-                    <Button type='primary' onClick={() => setModal(true)}>Nova Campanha</Button>
-                </div>
             </div>
-            <Modal onCancel={() => setModal(false)} onOk={() => onFinish} visible={modal} title="Cadastrar Nova Campanha" 
-            okText="Cadastrar" cancelText="Voltar" footer={''}>
-                <Form
-                    labelCol={{ span: 8 }}
-                    wrapperCol={{ span: 16 }}
-                    onFinish={onFinish}
-                    onFinishFailed={onFinishFailed}
-                >
-                    <div style={{display:'flex'}}>
-                        <Form.Item
-                            label="Titulo"
-                            name="titulo"
-                            labelCol={{ span: 24 }}
-                            wrapperCol={{ span: 24 }}
-                            style={{width:'90%'}}
-                            rules={[{ required: true, message: 'Insira um título' }]}
-                        >
-                            <Input placeholder='Digite o titulo' style={{width:'90%'}}/>
-                        </Form.Item>
+            <Modal onCancel={() => { resetarForm() }} onOk={() => onFinish} visible={modal} title="Cadastrar Nova Campanha"
+                okText="Cadastrar" cancelText="Voltar" footer={''}>
+                <Spin spinning={loading}>
+                    <Form
+                        labelCol={{ span: 8 }}
+                        wrapperCol={{ span: 16 }}
+                        onFinish={onFinish}
+                        onFinishFailed={onFinishFailed}
+                        form={form}
+                    >
+                        <div style={{ display: 'flex' }}>
+                            <Form.Item
+                                label="Titulo"
+                                name="titulo"
+                                labelCol={{ span: 24 }}
+                                wrapperCol={{ span: 24 }}
+                                style={{ width: '90%' }}
+                                rules={[{ required: true, message: 'Insira um título' }]}
+                            >
+                                <Input placeholder='Digite o titulo' style={{ width: '90%' }} />
+                            </Form.Item>
 
-                        <Form.Item
-                            label="Tipo Sanguíneo"
-                            name="tipoSangue"
-                            labelCol={{ span: 24 }}
-                            wrapperCol={{ span: 24 }}
-                            rules={[{ required: true, message: 'Informe o tipo sanguíneo' }]}
-                        >
-                            <Select placeholder="Selecione">
-                                {tipoSanguineo.map((a, index)=>{
-                                    return <Option key={a.key} value={a.tipo}><p>{a.tipo}</p></Option>
-                                })}
-                            </Select>
-                        </Form.Item>
+                            <Form.Item
+                                label="Tipo Sanguíneo"
+                                name="tipoSangue"
+                                labelCol={{ span: 24 }}
+                                wrapperCol={{ span: 24 }}
+                                rules={[{ required: true, message: 'Informe o tipo sanguíneo' }]}
+                            >
+                                <Select placeholder="Selecione">
+                                    {tipoSanguineo.map((a, index) => {
+                                        return <Option key={a.key} value={a.tipo}><p>{a.tipo}</p></Option>
+                                    })}
+                                </Select>
+                            </Form.Item>
                         </div>
                         <Form.Item
                             label="Descrição"
@@ -96,24 +150,25 @@ const Campanha = () => {
                             wrapperCol={{ span: 24 }}
                             rules={[{ required: true, message: 'Informe uma descrição' }]}
                         >
-                            <TextArea rows={5} placeholder="Digite a descrição"/>
+                            <TextArea showCount rows={5} maxLength={255} placeholder="Digite a descrição" />
                         </Form.Item>
                         <div className={Style.btnAreaa}>
-                        <Form.Item>
-                            <Button danger className={Style.btn} style={{backgroundColor:'#B60707', borderRadius:'10px', borderColor:'#B60707', width:'110px', color:'white'}}>
-                                <a href='/'>Voltar</a>
-                            </Button>
-                        </Form.Item>
-                        <Form.Item>
-                            <Button  type="primary" htmlType="submit" className={Style.btn} style={{backgroundColor:'#12c512', borderRadius:'10px', borderColor:'#12c512', width:'110px'}}>
-                                Cadastrar
-                            </Button>
-                        </Form.Item>
-                    </div>
-                    
-                </Form>
+                            <Form.Item>
+                                <Button danger onClick={() => setModal(false)} className={Style.btn} style={{ backgroundColor: '#B60707', borderRadius: '10px', borderColor: '#B60707', width: '110px', color: 'white' }} >
+                                    <a >Voltar</a>
+                                </Button>
+                            </Form.Item>
+                            <Form.Item>
+                                <Button type="primary" htmlType="submit" className={Style.btn} style={{ backgroundColor: '#12c512', borderRadius: '10px', borderColor: '#12c512', width: '110px' }}>
+                                    Cadastrar
+                                </Button>
+                            </Form.Item>
+                        </div>
+
+                    </Form>
+                </Spin>
             </Modal>
-        </div>
+        </div >
     )
 }
 

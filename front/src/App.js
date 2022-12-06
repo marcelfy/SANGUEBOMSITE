@@ -14,6 +14,7 @@ import SaibaMais from './secure/pages/SaibaMais/SaibaMais';
 import Etapas from './secure/pages/Etapas/Etapas';
 import HistoricoCertificado from './secure/pages/HistoricoCertificado/Historico';
 import AgendamentoPorHemocentro from './admin/pages/AgendamentosPorHemocentro/AgendamentoPorHemocentro';
+import EstoqueSangue from './public/pages/EstoqueSangue/EstoqueSangue';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/cadastro" element={<Cadastro />}></Route>
           <Route path='/home' element={<Home />}></Route>
           <Route path="/hemocentros" element={<Hemocentros />}></Route>
+          <Route path="/estoque-sangue" element={<EstoqueSangue />}></Route>
           <Route path="/campanha" element={<Campanha />}></Route>
           <Route path="/agendamento/:hemocentroID" element={<Agendamento />}></Route>
           <Route path="/home/saiba-mais" element={<SaibaMais />}></Route>
@@ -34,6 +36,7 @@ function App() {
           <Route path="/home/historico" element={<HistoricoCertificado />}></Route>
           /*rotas admin */
           <Route path="/admin/agendamentos" element={<AgendamentoPorHemocentro />}></Route>
+          <Route path="/admin/campanha" element={<Campanha />}></Route>
         </Routes>
       </Sidebar>
       <Footer />

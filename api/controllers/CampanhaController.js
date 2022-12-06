@@ -27,34 +27,45 @@ const CampanhaController = {
         var campanha = req.body;
         try {
             CampanhaModel.create(campanha)
-            return res.status(201).json(campanha);
+            return res.status(201).json({ success: true, data: "Campanha cadastrada com sucesso e será enviada a um administrador para aprova-la" });
         } catch (error) {
             console.log(error);
             return res.json({ message: error.message })
         }
     },
 
-    async put(req, res){
+    async put(req, res) {
         const { campanhaID } = req.params
         try {
             await CampanhaModel.update(req.body, { where: { campanhaID: campanhaID } });
-            return res.status(204).send();
+            return res.status(204);
 
         } catch (error) {
             return res.json({ message: error.message })
         }
     },
 
-    async delete(req, res){
+    async delete(req, res) {
         const { campanhaID } = req.params;
         try {
             await CampanhaModel.destroy({ where: { campanhaID: campanhaID } });
-            return res.status(204).send()
-    
+            return res.status(200).json({ success: true, message: "Campanha excluida com sucesso" });
+
         } catch (error) {
             return res.json({ message: error.message })
         }
     },
+
+    async aprovarCampanha(req, res) {
+        const { campanhaID } = req.params;
+        try {
+            await CampanhaModel.update({ ativo: true }, { where: { campanhaID: campanhaID } })
+            return res.status(202).json({ success: true, message: "Campanha aprovada com sucesso" })
+        }
+        catch (error) {
+            return res.json({ message: error.message })
+        }
+    }
 
 }
 

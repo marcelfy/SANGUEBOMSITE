@@ -16,7 +16,7 @@ const CampanhaService = {
             return res.data});
     },
     delete:async(campanhaID:any):Promise<any> => {
-        return  await Api.put(`/campanha${campanhaID}`)
+        return  await Api.delete(`/campanha/${campanhaID}`)
         .then((res:any) => {
             return res.data});
     },
@@ -24,6 +24,11 @@ const CampanhaService = {
     getByCampanhaId : async (campanhaID:number):Promise<any> => {    
         return await Api.get(`/campanha/getbycampanhaid/${campanhaID}`)
         .then((res:any)=>  {        
+            return res.data});
+    },
+    aprovarCampanha:async(campanhaID:number):Promise<any> => {
+        return  await Api.put(`/campanha/aprovarcampanha/${campanhaID}`,)
+        .then((res:any) => {
             return res.data});
     },
     

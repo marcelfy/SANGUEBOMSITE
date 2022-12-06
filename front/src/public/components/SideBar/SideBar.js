@@ -5,7 +5,7 @@ import {
     FaHospitalAlt
 }from "react-icons/fa";
 import {AiFillInfoCircle} from 'react-icons/ai'
-import {MdCampaign} from 'react-icons/md'
+import {MdCampaign, MdInventory2} from 'react-icons/md'
 import { NavLink } from 'react-router-dom';
 import Styles from'./SideBar.module.css'
 
@@ -20,11 +20,6 @@ const Sidebar = ({children}) => {
             name:"Saiba Mais",
             icon:<AiFillInfoCircle/>
         },
-        // {
-        //     path:"/home/historico",
-        //     name:"Histórico",
-        //     icon:<FaCommentAlt/>
-        // },
         {
             path:"/hemocentros",
             name:"Hemocentros",
@@ -34,7 +29,12 @@ const Sidebar = ({children}) => {
             path:"/campanha",
             name:"Campanhas",
             icon:<MdCampaign/>
-        }
+        },
+        {
+            path:"/estoque-sangue",
+            name:"Estoque de Sangue",
+            icon:<MdInventory2/>
+        },
     ]
     return (
         <div className={Styles.container}>
@@ -46,7 +46,7 @@ const Sidebar = ({children}) => {
                </div>
                {
                    menuItem.map((item, index)=>(
-                       <NavLink to={item.path} key={index} className={Styles.link} activeclassName={Styles.active}>
+                       <NavLink to={item.path} key={index} className={Styles.link} >
                            <div className={Styles.icon}>{item.icon}</div>
                            <div style={{display: isOpen ? "block" : "none"}} className={Styles.link_text}>{item.name}</div>
                        </NavLink>

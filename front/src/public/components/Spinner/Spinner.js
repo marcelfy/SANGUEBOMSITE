@@ -1,3 +1,4 @@
+import React from 'react';
 import Styles from './Spinner.module.css'
 
 const Spinner = (props) => {  

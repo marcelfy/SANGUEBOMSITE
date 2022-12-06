@@ -7,6 +7,7 @@ CampanhaRoute.post("/campanha", CampanhaController.post);
 CampanhaRoute.get("/campanha", CampanhaController.get );
 CampanhaRoute.get("/campanha/getbycampanhaid/:campanhaID", CampanhaController.getByCampanhaId);
 CampanhaRoute.put("/campanha/:campanhaID", CampanhaController.put);
+CampanhaRoute.put("/campanha/aprovarcampanha/:campanhaID", CampanhaController.aprovarCampanha);
 CampanhaRoute.delete("/campanha/:campanhaID", CampanhaController.delete);
 
 export default CampanhaRoute;
