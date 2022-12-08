@@ -15,7 +15,7 @@ import Etapas from './secure/pages/Etapas/Etapas';
 import HistoricoCertificado from './secure/pages/HistoricoCertificado/Historico';
 import AgendamentoPorHemocentro from './admin/pages/AgendamentosPorHemocentro/AgendamentoPorHemocentro';
 import EstoqueSangue from './public/pages/EstoqueSangue/EstoqueSangue';
-
+import HomeAdmin from './admin/pages/HomeAdmin/HomeAdmin';
 
 function App() {
   return (
@@ -35,8 +35,10 @@ function App() {
           <Route path="/home/etapas" element={<Etapas />}></Route>
           <Route path="/home/historico" element={<HistoricoCertificado />}></Route>
           /*rotas admin */
+          <Route path="/admin" element={<HomeAdmin/>}></Route>
           <Route path="/admin/agendamentos" element={<AgendamentoPorHemocentro />}></Route>
           <Route path="/admin/campanha" element={<Campanha />}></Route>
+          <Route path="/admin/hemocentros" element={<Hemocentros />}></Route>
         </Routes>
       </Sidebar>
       <Footer />

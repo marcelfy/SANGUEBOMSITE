@@ -41,7 +41,7 @@ const HemocentroController = {
         const { hemocentroID } = req.params
         try {
             await HemocentroModel.update(req.body, { where: { hemocentroID: hemocentroID } });
-            return res.status(204).send();
+            return res.status(200).json({success:true, message:"Hemocentro atualizado com sucesso"});
 
         } catch (error) {
             return res.json({ message: error.message })
@@ -52,7 +52,7 @@ const HemocentroController = {
         const { hemocentroID } = req.params;
         try {
             await HemocentroModel.destroy({ where: { hemocentroID: hemocentroID } });
-            return res.status(204).send()
+            return res.status(200).json({success:true, message:"Hemocentro excluído com sucesso"})
     
         } catch (error) {
             return res.json({ message: error.message })

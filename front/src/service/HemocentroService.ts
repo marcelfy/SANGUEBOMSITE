@@ -10,13 +10,13 @@ const HemocentroService = {
     get: (): Promise<any> => {
         return Api.get('/hemocentro').then((res) => { return res.data })
     },
-    put:async(usuario:any):Promise<any> => {
-        return  await Api.put(`/hemocentro/`, usuario)
+    put:async(hemocentro:any, id:number):Promise<any> => {
+        return  await Api.put(`/hemocentro/${id}`, hemocentro)
         .then((res:any) => {
             return res.data});
     },
     delete:async(hemocentroID:any):Promise<any> => {
-        return  await Api.put(`/hemocentro/${hemocentroID}`)
+        return  await Api.delete(`/hemocentro/${hemocentroID}`)
         .then((res:any) => {
             return res.data});
     },

@@ -12,6 +12,7 @@
     width: 100%;
     /* pra deixar o footer certin */
     background: rgba(255, 255, 255, 0.973958) 0.01%;
+    flex-wrap: wrap;
 }
 
 .titulo{

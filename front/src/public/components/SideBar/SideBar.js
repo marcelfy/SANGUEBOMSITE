@@ -14,6 +14,8 @@ const Sidebar = ({children}) => {
     const[isOpen ,setIsOpen] = useState(false);
     const toggle = () => setIsOpen (!isOpen);
     
+    const ehAdmin = window.location.pathname.includes("admin")
+
     const menuItem=[
         {
             path:"/home/saiba-mais",
@@ -21,12 +23,12 @@ const Sidebar = ({children}) => {
             icon:<AiFillInfoCircle/>
         },
         {
-            path:"/hemocentros",
+            path: ehAdmin? "/admin/hemocentros" : "/hemocentros",
             name:"Hemocentros",
             icon:<FaHospitalAlt/>
         },
         {
-            path:"/campanha",
+            path:ehAdmin? "/admin/campanha" : "/campanha",
             name:"Campanhas",
             icon:<MdCampaign/>
         },
