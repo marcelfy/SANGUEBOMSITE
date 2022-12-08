@@ -30,30 +30,30 @@ const HemocentroController = {
         var hemocentro = req.body;
         try {
             HemocentroModel.create(hemocentro)
-            return res.status(201).json(hemocentro);
+            return res.status(201).json({ success: true, message: "Hemocentro cadastrado com sucesso" });
         } catch (error) {
             console.log(error);
             return res.json({ message: error.message })
         }
     },
 
-    async put(req, res){
+    async put(req, res) {
         const { hemocentroID } = req.params
         try {
             await HemocentroModel.update(req.body, { where: { hemocentroID: hemocentroID } });
-            return res.status(200).json({success:true, message:"Hemocentro atualizado com sucesso"});
+            return res.status(200).json({ success: true, message: "Hemocentro atualizado com sucesso" });
 
         } catch (error) {
             return res.json({ message: error.message })
         }
     },
 
-    async delete(req, res){
+    async delete(req, res) {
         const { hemocentroID } = req.params;
         try {
             await HemocentroModel.destroy({ where: { hemocentroID: hemocentroID } });
-            return res.status(200).json({success:true, message:"Hemocentro excluído com sucesso"})
-    
+            return res.status(200).json({ success: true, message: "Hemocentro excluído com sucesso" })
+
         } catch (error) {
             return res.json({ message: error.message })
         }

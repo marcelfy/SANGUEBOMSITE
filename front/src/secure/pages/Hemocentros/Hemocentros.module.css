@@ -15,6 +15,29 @@
     flex-wrap: wrap;
 }
 
+
+.input {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-variant: tabular-nums;
+    list-style: none;
+    font-feature-settings: 'tnum', "tnum";
+    position: relative;
+    display: inline-block;
+    min-width: 0;
+    padding: 4px 11px;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 14px;
+    line-height: 1.5715;
+    background-color: #fff;
+    border: 1px solid black;
+    border-radius: 2px;
+    transition: all 0.3s;
+    
+}
+
 .titulo{
     text-align: center;
 }
@@ -23,4 +46,22 @@
     display: flex;
     justify-content: center;
     margin-top: 40px;
+}
+
+.btnArea{
+    width: 80%;
+    justify-content: end;
+    display: flex;
+}
+
+.btnAreaa {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
+    column-gap: 20px;
+}
+
+.btn {
+    width: 8em;
 }

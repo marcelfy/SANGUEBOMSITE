@@ -56,7 +56,7 @@ const HemocentroCard = (props) => {
                     window.location.reload()
                 }, 500);
             } else {
-                message.error("Não é possível apagar este hemocentro, pois existem agendamentos no mesmo") 
+                message.error("Não é possível apagar este hemocentro, pois existem agendamentos no mesmo")
             }
         }).finally(() => { })
             .catch((error) => { })
@@ -75,7 +75,7 @@ const HemocentroCard = (props) => {
                             form.setFieldsValue({
                                 endereco: response.logradouro,
                                 bairro: response.bairro,
-                                cidade: response.cidade,
+                                cidade: response.localidade,
                                 estado: response.uf,
                             })
                             //caso seja invalido a api retorna status 200,
@@ -173,6 +173,16 @@ const HemocentroCard = (props) => {
 
                     </div>
                     <div style={{ display: 'flex' }}>
+                        <Form.Item
+                            label="Cidade"
+                            name="cidade"
+                            labelCol={{ span: 24 }}
+                            wrapperCol={{ span: 24 }}
+                            style={{ width: '60%' }}
+                            rules={[{ required: true, message: 'Informe uma cidade' }]}
+                        >
+                            <Input placeholder='Digite a cidade' style={{ width: '90%' }} />
+                        </Form.Item>
                         <Form.Item
                             label="Estado"
                             name="estado"
