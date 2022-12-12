@@ -94,7 +94,7 @@ const Hemocentros = () => {
                 <div className={Style.container}>
                     {hemocentros.map((h, index) => {
                         return <HemocentroCard key={index} hemocentroID={h.hemocentroID} nome={h.nome} endereco={h.endereco}
-                            numero={h.numero} bairro={h.bairro} cidade={h.cidade} estado={h.estado} ehAdmin={ehAdmin} />
+                            numero={h.numero} bairro={h.bairro} cidade={h.cidade} estado={h.estado} ehAdmin={ehAdmin} buscar={buscarHemocentros}/>
                     })}
                 </div>
                 <Modal onCancel={() => setModal(false)} visible={modal} footer="" title="Editar Hemocentro">

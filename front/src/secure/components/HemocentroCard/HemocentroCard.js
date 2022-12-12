@@ -16,7 +16,7 @@ const HemocentroCard = (props) => {
         HemocentroService.put(values, props.hemocentroID).then((resp) => {
             if (resp.success) {
                 message.success(resp.message)
-                window.location.reload()
+                props.buscar()
             }
         })
             .finally(() => {
@@ -53,7 +53,7 @@ const HemocentroCard = (props) => {
             if (resp.success) {
                 message.success(resp.message)
                 setTimeout(() => {
-                    window.location.reload()
+                    props.buscar()
                 }, 500);
             } else {
                 message.error("Não é possível apagar este hemocentro, pois existem agendamentos no mesmo")

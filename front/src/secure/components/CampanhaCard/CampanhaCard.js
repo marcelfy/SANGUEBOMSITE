@@ -26,7 +26,7 @@ const CampanhaCard = (props) => {
   }
 
   function recarregar(){
-    window.location.reload()
+    props.buscar()
   }
 
   return (

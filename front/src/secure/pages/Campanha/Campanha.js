@@ -101,9 +101,14 @@ const Campanha = () => {
                         <h2>Não existem campanhas cadastradas/aprovadas</h2>
                     </div> : null
                 }
+                {campanhas?.length == 0 && ehAdmin ?
+                    <div>
+                        <h2 style={{marginBottom:'1.3em'}}>Não existem campanhas para serem aprovadas</h2>
+                    </div> : null
+                }
                 <div className={Style.campanhaCard}>
                     {campanhas?.map((c, key) => {
-                        return <CampanhaCard key={key} titulo={c.titulo} tipoSangue={c.tipoSangue} descricao={c.descricao} ehAdmin={ehAdmin} id={c.campanhaID} />
+                        return <CampanhaCard key={key} titulo={c.titulo} tipoSangue={c.tipoSangue} descricao={c.descricao} ehAdmin={ehAdmin} id={c.campanhaID} buscar={pesquisarCampanhas}/>
                     })}
                 </div>
             </div>
