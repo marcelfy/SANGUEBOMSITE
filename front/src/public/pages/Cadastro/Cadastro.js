@@ -20,6 +20,8 @@ const Cadastro = () => {
     const [loading, setLoading] = useState(false)
     
     const navigate = useNavigate()
+
+    const { Option } = Select;
     
     const onFinish = (values) => {
         if(validaCPF(unmaskCPF(values.cpf))==false){
@@ -56,7 +58,6 @@ const Cadastro = () => {
         })
     }
 
-    const { Option } = Select;
 
     var tipoSanguineo = [
         { tipo: 'A+', key: 1 },
