@@ -6,9 +6,8 @@ import FormItem from 'antd/lib/form/FormItem';
 import Logo from '../../Assets/img/logo.png';
 import { useNavigate } from "react-router-dom";
 import Spinner from '../../components/Spinner/Spinner';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import React from 'react';
-import axios from 'axios'
 import UsuarioService from '../../../service/UsuarioService.ts';
 import {unmaskCPF, validaCPF } from '../../../utils.js';
 
@@ -24,7 +23,7 @@ const Cadastro = () => {
     const { Option } = Select;
     
     const onFinish = (values) => {
-        if(validaCPF(unmaskCPF(values.cpf))==false){
+        if(validaCPF(unmaskCPF(values.cpf))===false){
             message.error("Cpf inválido");
             return;
         }

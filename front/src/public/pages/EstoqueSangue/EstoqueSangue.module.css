@@ -12,10 +12,20 @@
     text-align: center;
     min-height: 100%;
     height: 100%;
+    flex-direction: column;
     /* pra deixar o footer certin */
     position: relative;
     /* pra deixar o footer certin */
     width: 100%;
     /* pra deixar o footer certin */
     background: rgba(255, 255, 255, 0.973958) 0.01%;
+}
+
+.graficoArea{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    margin: 3em 0;
 }
