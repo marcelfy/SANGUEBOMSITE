@@ -29,3 +29,17 @@
     flex-direction: row;
     margin: 3em 0;
 }
+
+.btn{
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px 0;
+}
+
+.form{
+    display: flex;
+}
+
+.botao{
+    width: 8em;
+}

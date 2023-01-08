@@ -33,7 +33,7 @@ const Sidebar = ({children}) => {
             icon:<MdCampaign/>
         },
         {
-            path:"/estoque-sangue",
+            path: ehAdmin? "/admin/estoque-sangue" : "/estoque-sangue",
             name:"Estoque de Sangue",
             icon:<MdInventory2/>
         },

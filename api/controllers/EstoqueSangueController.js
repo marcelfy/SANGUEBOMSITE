@@ -45,6 +45,18 @@ const EstoqueSangueController = {
         }
     },
 
+    async atualizarEstoqueMaximo(req, res){
+        const { estoqueSangueID } = req.params
+
+        try {
+            await EstoqueSangueModel.update({quantidadeMaxima: req.body.quantidadeMaxima},{where: {estoqueSangueID : estoqueSangueID}} )
+            
+            return res.status(202).json({success:true , message:"Quantidade alterada"});
+        } catch (error) {
+            return res.json({ message: error.message })
+        }
+    },
+
     async delete(req, res){
         const { estoqueSangueID } = req.params;
         try {

@@ -15,6 +15,11 @@ const EstoqueSangueService = {
         .then((res:any) => {
             return res.data});
     },
+    atualizarEstoqueMaximo:async(quantidade:any, estoqueSangueID:any):Promise<any> => {
+        return  await Api.put(`/estoquesangue/atualizarestoquemaximo/${estoqueSangueID}`, quantidade)
+        .then((res:any) => {
+            return res.data});
+    },
     delete:async(estoqueSangueID:any):Promise<any> => {
         return  await Api.put(`/estoquesangue/${estoqueSangueID}`)
         .then((res:any) => {

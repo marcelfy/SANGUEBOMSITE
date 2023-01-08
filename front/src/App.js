@@ -39,6 +39,7 @@ function App() {
           <Route path="/admin/agendamentos" element={<AgendamentoPorHemocentro />}></Route>
           <Route path="/admin/campanha" element={<Campanha />}></Route>
           <Route path="/admin/hemocentros" element={<Hemocentros />}></Route>
+          <Route path="/admin/estoque-sangue" element={<EstoqueSangue />}></Route>
         </Routes>
       </Sidebar>
       <Footer />

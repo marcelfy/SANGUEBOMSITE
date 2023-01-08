@@ -7,7 +7,7 @@ const EstoqueSangueComponent = (props) => {
         <div>
             <h3 className={Styles.title}>{props?.tipoSangue}</h3>
             <Progress type='circle' percent={props?.percentual} status="active" strokeColor={props?.percentual === 100? 'red' : 'blue'} 
-            format={()=> props?.percentual === 100? 'Cheio' :  props?.percentual + '%'}/>
+            format={()=> props?.percentual === 100? 'Cheio' :  props?.percentual.toFixed(2) + '%'}/>
         </div>
     )
 }

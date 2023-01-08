@@ -7,6 +7,7 @@ EstoqueSangueRoute.post("/estoquesangue", EstoqueSangueController.post);
 EstoqueSangueRoute.get("/estoquesangue", EstoqueSangueController.get );
 EstoqueSangueRoute.get("/estoquesangue/getbyestoquesangueid/:estoquesangueID", EstoqueSangueController.getByestoqueSangueId);
 EstoqueSangueRoute.put("/estoquesangue/:estoquesangueID", EstoqueSangueController.put);
+EstoqueSangueRoute.put("/estoquesangue/atualizarestoquemaximo/:estoqueSangueID", EstoqueSangueController.atualizarEstoqueMaximo);
 EstoqueSangueRoute.delete("/estoquesangue/:estoquesangueID", EstoqueSangueController.delete);
 
 export default EstoqueSangueRoute;
