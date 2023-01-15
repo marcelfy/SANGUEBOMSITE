@@ -20,6 +20,7 @@ const EstoqueSangue = () => {
   }, [])
 
   function calcularPercentual(max, quantidade) {
+    console.log(max, quantidade);
     return quantidade / max * 100
   }
 
@@ -29,7 +30,8 @@ const EstoqueSangue = () => {
     }
     EstoqueSangueService.atualizarEstoqueMaximo(aux, id).then((resp)=>{
       message.success("Quantidade alterada com sucesso")
-    }).finally(()=>{})
+    })
+    .finally(()=>{})
     .catch(()=>{})
   }
 

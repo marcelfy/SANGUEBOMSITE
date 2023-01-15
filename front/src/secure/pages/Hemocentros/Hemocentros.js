@@ -44,7 +44,6 @@ const Hemocentros = () => {
                 if (validacep.test(cep)) {
                     fetch(`http://viacep.com.br/ws/${cep}/json`, { method: 'GET' }).then(response => response.json())
                         .then(response => {
-                            console.log(response);
                             form.setFieldsValue({
                                 endereco: response.logradouro,
                                 bairro: response.bairro,
