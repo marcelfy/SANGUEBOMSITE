@@ -4,7 +4,7 @@ import {
     FaRegChartBar,
     FaHospitalAlt
 }from "react-icons/fa";
-import {AiFillInfoCircle} from 'react-icons/ai'
+import {AiFillInfoCircle, AiOutlineHistory} from 'react-icons/ai'
 import {MdCampaign, MdInventory2} from 'react-icons/md'
 import { NavLink } from 'react-router-dom';
 import Styles from'./SideBar.module.css'
@@ -37,6 +37,11 @@ const Sidebar = ({children}) => {
             name:"Estoque de Sangue",
             icon:<MdInventory2/>
         },
+        {
+            path:"/home/historico",
+            name:"Histórico",
+            icon:<AiOutlineHistory/>
+        }
     ]
     return (
         <div className={Styles.container}>

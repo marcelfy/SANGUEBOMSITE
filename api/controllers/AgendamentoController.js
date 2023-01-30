@@ -39,6 +39,17 @@ const AgendamentoController = {
         return agendamento ? res.status(200).json(agendamento) : res.status(204).send()
     },
 
+    async getByusuarioId(req, res) {
+        const { usuarioID } = req.params
+        const agendamento = await AgendamentoModel.findAll({
+            where: {
+                usuarioID: usuarioID,
+            },
+            include:[HemocentroModel, UsuarioModel]
+        })
+        return agendamento ? res.status(200).json(agendamento) : res.status(204).send()
+    },
+
     async post(req, res) {
         var agendamento = req.body;
         try {

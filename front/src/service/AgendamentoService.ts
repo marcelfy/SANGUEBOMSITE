@@ -36,6 +36,11 @@ const AgendamentoService = {
         .then((res:any)=>  {        
             return res.data});
     },
+    getByUsuarioId : async (usuarioID:number):Promise<any> => {    
+        return await Api.get(`/agendamento/getbyusuarioID/${usuarioID}`)
+        .then((res:any)=>  {        
+            return res.data});
+    },
     
 }
 

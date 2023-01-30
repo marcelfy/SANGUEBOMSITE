@@ -4,27 +4,41 @@ import Logo from '../../../public/Assets/img/logo.png'
 import { AiOutlineHistory } from 'react-icons/ai'
 import Certificado from '../../../public/Assets/img/certificado.png'
 import {useNavigate} from 'react-router-dom'
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import AgendamentoService from '../../../service/AgendamentoService.ts';
+import moment from 'moment';
 
 const HistoricoCertificado = () => {
 
     const navigate = useNavigate()
 
+    const usuario = JSON.parse(sessionStorage.getItem("usuarioLogado"))
+
+    const [data, setData] = useState();
+
+    useEffect(()=>{
+        AgendamentoService.getByUsuarioId(usuario.usuarioID).then((resp)=>{
+            setData(resp)
+        })
+    },[])
+
     const columns = [
         {
             title: 'Data de Doação',
-            dataIndex: 'dataDeDoacao',
-            key: 'dataDeDoacao',
+            dataIndex: 'createdAt',
+            key: 'createdAt',
             render: (record) => (
                 <Space size="middle" className={Styles.centralizar}>
-                    <>{record}</>
+                    <>{moment(record).format("DD/MM/YYYY")}</>
                 </Space>
             ),
         },
         {
-            title: <p style={{ marginBottom: '0' }} className={Styles.centralizar}>Descrição</p>,
-            dataIndex: 'descricao',
+            title: <p style={{ marginBottom: '0' }} className={Styles.centralizar}>Local</p>,
             key: 'descricao',
+            render: (record) => (
+                record.Hemocentro.endereco
+            )
         },
         {
             title: 'Download',
@@ -50,25 +64,6 @@ const HistoricoCertificado = () => {
         }
     ]
 
-    const data = [
-        {
-            dataDeDoacao: '29/09/2022',
-            descricao: 'Doação de sangue - Hemosul Av. Fernando Corrêa da Costa, Campo Grande MS'
-        },
-        {
-            dataDeDoacao: '10/04/2022',
-            descricao: 'Doação de sangue - Hemosul Av. Fernando Corrêa da Costa, Campo Grande MS'
-        },
-        {
-            dataDeDoacao: '20/10/2021',
-            descricao: 'Doação de sangue - Hemosul Av. Fernando Corrêa da Costa, Campo Grande MS'
-        },
-        {
-            dataDeDoacao: '12/02/2021',
-            descricao: 'Doação de sangue - Hemosul Av. Fernando Corrêa da Costa, Campo Grande MS'
-        },
-    ]
-
     return (
         <>
             <div className={Styles.centralizar} style={{ marginTop: '40px' }}>
@@ -80,7 +75,6 @@ const HistoricoCertificado = () => {
                     <img src={Certificado} className={Styles.icone} width={110} />
                 </div>
                 <b>Histórico e Certificados</b>
-
                 <Table columns={columns} dataSource={data} className={Styles.table} />
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <Button type='primary' className={Styles.button} style={{ borderColor: '#AF0107' }} onClick={() => navigate('/home')}>Voltar</Button>

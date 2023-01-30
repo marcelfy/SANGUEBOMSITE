@@ -5,6 +5,7 @@ const AgendamentoRoute  = express.Router();
 
 AgendamentoRoute.post("/agendamento", AgendamentoController.post);
 AgendamentoRoute.get("/agendamento", AgendamentoController.get );
+AgendamentoRoute.get("/agendamento/getbyusuarioid/:usuarioID", AgendamentoController.getByusuarioId );
 AgendamentoRoute.get("/agendamento/getbyhemocentroid/:hemocentroID", AgendamentoController.getByHemocentroId );
 AgendamentoRoute.get("/agendamento/getbyagendamentoid/:agendamentoID", AgendamentoController.getByAgendamentoId);
 AgendamentoRoute.put("/agendamento/", AgendamentoController.put);
