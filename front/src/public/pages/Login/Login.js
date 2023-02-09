@@ -17,6 +17,7 @@ const Login = () => {
         UsuarioService.login(values).then((res)=>{
             if (res.success) {
                 sessionStorage.setItem('usuarioLogado', JSON.stringify(res.usuario))
+                sessionStorage.setItem('token', res.token)
                 setTimeout(() => {
                     message.success("Usuário logado com sucesso")
                 }, 300);

@@ -1,4 +1,4 @@
-import {Api} from '../index.js'
+import Api from '../service/Api'
  
 const DoacaoService = {
     post: async (doacao: any): Promise<any> => {

@@ -88,9 +88,11 @@ const UsuarioController = {
                 return res.status(200).json({ success: false, message: "Usuário ou senha incorreto" })
             }
 
-            const token = jwt.sign({ usuarioID: usuario.usuarioID }, process.env.TOKEN_SECRET , {
-                expiresIn: 120, //1min
+            const token = jwt.sign({ usuario: usuario }, process.env.TOKEN_SECRET , {
+                expiresIn: 520, //1min
                 // expiresIn:'7d', 7dias,
+                // issuer : "Admin"
+                
             });
 
             return res.status(201).json({ success: true, usuario: usuario, token: token })

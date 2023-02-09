@@ -1,4 +1,4 @@
-import {Api} from '../index.js'
+import Api from '../service/Api'
  
 const AgendamentoService = {
     post: async (agendamento: any): Promise<any> => {
