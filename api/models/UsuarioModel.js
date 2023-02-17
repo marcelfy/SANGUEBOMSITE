@@ -47,6 +47,11 @@ const UsuarioModel = db.define('Usuario', {
     medula:{
         type: DataTypes.BOOLEAN,
         allowNull: true
+    },
+    perfilID:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        foreignKey: true,
     }
 },{tableName:'Usuario'})
 

@@ -15,6 +15,7 @@ import HemocentroModel from './models/HemocentroModel.js'
 import HemocentroRoute from './routes/HemocentroRoute.js'
 import { Associations } from './Associations/Associations.js'
 import * as dotenv from 'dotenv'
+import PerfilModel from './models/PerfilModel.js'
 const app = express()
 
 dotenv.config()
@@ -42,6 +43,7 @@ try {
     await CampanhaModel.sync()
     await EstoqueSangueModel.sync()
     await DoacaoModel.sync()
+    await PerfilModel.sync()
 
 
     console.log("Conexão feita com sucesso!")
