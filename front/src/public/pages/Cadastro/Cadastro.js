@@ -1,5 +1,5 @@
 import Style from './Cadastro.module.css'
-import { Form, Input, Button, Select, message, Checkbox } from 'antd';
+import { Form, Input, Button, Select, message, Checkbox, Tooltip } from 'antd';
 import 'antd/dist/antd.css'
 import MaskedInput from 'react-input-mask';
 import FormItem from 'antd/lib/form/FormItem';
@@ -9,51 +9,61 @@ import Spinner from '../../components/Spinner/Spinner';
 import { useState } from 'react';
 import React from 'react';
 import UsuarioService from '../../../service/UsuarioService.ts';
-import {unmaskCPF, validaCPF } from '../../../utils.js';
+import { unmaskCPF, validaCPF, validarSenha } from '../../../utils.js';
 
 
 
 const Cadastro = () => {
-    
-    
+
+
     const [loading, setLoading] = useState(false)
-    
+
     const navigate = useNavigate()
 
     const { Option } = Select;
-    
+
     const onFinish = (values) => {
-        if(validaCPF(unmaskCPF(values.cpf))===false){
+
+        var values = { ...values, perfilID: 2 }
+
+        if (validaCPF(unmaskCPF(values.cpf)) === false) {
             message.error("Cpf inválido");
             return;
         }
         values.cpf = unmaskCPF(values.cpf)
+
+        if (validarSenha(values.senha) === false) {
+            message.error("A senha não atende as regras");
+            return;
+        }
+
         setLoading(true)
         UsuarioService.post(values)
-        .then((resp)=>{
-            if(resp.success){
-                setTimeout(() => {
-                    message.success({
-                        content: 'Usuário cadastrado com sucesso',
-                        duration: 3});
-                    navigate("/")
-                }, 1000)
-            }else{
-                message.error(resp.message)
-                return;
-            }
-        }).finally(()=> setLoading(false))
+            .then((resp) => {
+                if (resp.success) {
+                    setTimeout(() => {
+                        message.success({
+                            content: 'Usuário cadastrado com sucesso',
+                            duration: 3
+                        });
+                        navigate("/")
+                    }, 1000)
+                } else {
+                    message.error(resp.message)
+                    return;
+                }
+            }).finally(() => setLoading(false))
     }
-    
-    const onFinishFailed = (values) =>{
+
+    const onFinishFailed = (values) => {
         info2()
     }
-    
 
-    const info2 = () =>{
+
+    const info2 = () => {
         message.error({
-            content:'Preencha o formulário corretamente',
-            duration:3,
+            content: 'Preencha o formulário corretamente',
+            duration: 3,
         })
     }
 
@@ -99,9 +109,23 @@ const Cadastro = () => {
         { uf: 'TO', nome: 'Tocantins', id: 27 }
     ]
 
+    const tooltip = () => {
+        return (
+            <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+                <b>Sua senha deve conter ao menos:</b>
+                <ul>
+                    <li>Um número;</li>
+                    <li>Um caractere especial;</li>
+                    <li>Uma letra maiúscula;</li>
+                </ul>
+            </div>
+
+        )
+    }
+
     return (
         <>
-            <Spinner loading={loading}/>
+            <Spinner loading={loading} />
             <div className={Style.logo}>
                 <img src={Logo} width={500} height={190} alt=''></img>
             </div>
@@ -116,7 +140,7 @@ const Cadastro = () => {
                 <fieldset className={Style.containerForm}>
                     <div className={Style.groupItem}>
                         <Form.Item
-                            label={<p style={{color:'white', marginBottom:'0'}}>Nome</p>}
+                            label={<p style={{ color: 'white', marginBottom: '0' }}>Nome</p>}
                             name="nome"
                             rules={[{ required: true, message: 'Campo nome é obrigatório' }]}
                             labelCol={{ span: 24 }}
@@ -126,7 +150,7 @@ const Cadastro = () => {
                             <Input className={Style.input} placeholder="Digite seu nome" style={{ border: '1px solid black', borderRadius: '10px' }} />
                         </Form.Item>
                         <Form.Item
-                            label={<p style={{color:'white', marginBottom:'0'}}>Telefone</p>}
+                            label={<p style={{ color: 'white', marginBottom: '0' }}>Telefone</p>}
                             name="telefone"
                             rules={[{ required: true, message: 'Campo telefone é obrigatório' }]}
                             labelCol={{ span: 24 }}
@@ -140,7 +164,7 @@ const Cadastro = () => {
 
                     <div className={Style.groupItem}>
                         <Form.Item
-                            label={<p style={{color:'white', marginBottom:'0'}}>Data de Nascimento</p>}
+                            label={<p style={{ color: 'white', marginBottom: '0' }}>Data de Nascimento</p>}
                             name="dataNascimento"
                             rules={[{ required: true, message: 'Campo Data de Nascimento é obrigatório' }]}
                             labelCol={{ span: 24 }}
@@ -151,20 +175,20 @@ const Cadastro = () => {
                         </Form.Item>
 
                         <Form.Item
-                            label={<p style={{color:'white', marginBottom:'0'}}>CPF</p>}
+                            label={<p style={{ color: 'white', marginBottom: '0' }}>CPF</p>}
                             name="cpf"
                             style={{ width: '50%' }}
                             rules={[{ required: true, message: 'O campo cpf é obrigatório' }]}
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
-                            
+
                         >
                             <MaskedInput mask="999.999.999-99" className={Style.input} placeholder="Informe o CPF" style={{ borderRadius: '10px' }} />
                         </Form.Item>
                     </div>
                     <div className={Style.groupItem}>
                         <Form.Item
-                            label={<p style={{color:'white', marginBottom:'0'}}>E-mail</p>}
+                            label={<p style={{ color: 'white', marginBottom: '0' }}>E-mail</p>}
                             name="email"
                             style={{ width: '50%' }}
                             rules={[{ required: true, message: 'O campo email é obrigatório' }]}
@@ -173,20 +197,22 @@ const Cadastro = () => {
                         >
                             <Input placeholder='Digite seu email' className={Style.input} style={{ border: '1px solid black', borderRadius: '10px' }} />
                         </Form.Item>
-                        <Form.Item
-                            label={<p style={{color:'white', marginBottom:'0'}}>Senha</p>}
-                            name="senha"
-                            style={{ width: '50%' }}
-                            rules={[{ required: true, message: 'O campo senha é obrigatório' }]}
-                            labelCol={{ span: 24 }}
-                            wrapperCol={{ span: 24 }}
-                        >
-                            <Input.Password className={Style.input} placeholder="Digite a senha" style={{ border: '1px solid black', borderRadius: '10px' }} />
-                        </Form.Item>
+                            <Form.Item
+                                label={<p style={{ color: 'white', marginBottom: '0' }}>Senha</p>}
+                                name="senha"
+                                style={{ width: '50%' }}
+                                rules={[{ required: true, message: 'O campo senha é obrigatório' }]}
+                                labelCol={{ span: 24 }}
+                                wrapperCol={{ span: 24 }}
+                            >
+                        <Tooltip title={tooltip}>
+                                <Input.Password className={Style.input} placeholder="Digite a senha" style={{ border: '1px solid black', borderRadius: '10px' }} />
+                        </Tooltip>
+                            </Form.Item>
                     </div>
                     <div className={Style.groupItem}>
                         <FormItem
-                            label={<p style={{color:'white', marginBottom:'0'}}>UF</p>}
+                            label={<p style={{ color: 'white', marginBottom: '0' }}>UF</p>}
                             name="uf"
                             rules={[{ required: true, message: 'Selecione uma UF' }]}
                             labelCol={{ span: 24 }}
@@ -194,7 +220,7 @@ const Cadastro = () => {
                             style={{ width: '187px' }}
 
                         >
-                            <Select defaultValue="Selecione" style={{ width: '200px', border: '1px solid black', borderRadius: '10px', backgroundColor:'#fff' }} bordered={false}>
+                            <Select defaultValue="Selecione" style={{ width: '200px', border: '1px solid black', borderRadius: '10px', backgroundColor: '#fff' }} bordered={false}>
                                 {estados.map((estado) => (
                                     <Option key={estado.id} value={estado.nome}><p style={{ fontSize: '13px' }}>{estado.nome}</p></Option>
                                 ))}
@@ -205,23 +231,23 @@ const Cadastro = () => {
                         <div className={Style.groupItem}>
 
                             <FormItem
-                                label={<p style={{color:'white', marginBottom:'0'}}>Cidade</p>}
+                                label={<p style={{ color: 'white', marginBottom: '0' }}>Cidade</p>}
                                 name="cidade"
                                 style={{ width: '40%' }}
                                 rules={[{ required: true, message: 'Selecione uma cidade' }]}
                                 labelCol={{ span: 24 }}
                                 wrapperCol={{ span: 24 }}
                             >
-                                <Input placeholder='Digite uma cidade' className={Style.input} style={{ border: '1px solid black', borderRadius: '10px', marginLeft:'10px' }} />
+                                <Input placeholder='Digite uma cidade' className={Style.input} style={{ border: '1px solid black', borderRadius: '10px', marginLeft: '10px' }} />
                             </FormItem>
                             <FormItem
-                                label={<p style={{color:'white', marginBottom:'0'}}>Tipo Sanguineo</p>}
+                                label={<p style={{ color: 'white', marginBottom: '0' }}>Tipo Sanguineo</p>}
                                 name="tipoSanguineo"
                                 labelCol={{ span: 24 }}
                                 style={{ width: '169px' }}
                                 wrapperCol={{ span: 24 }}
                             >
-                                <Select defaultValue="Selecione" style={{ width: '169px', border: '1px solid black', borderRadius: '10px', backgroundColor:'#fff' }} bordered={false}>
+                                <Select defaultValue="Selecione" style={{ width: '169px', border: '1px solid black', borderRadius: '10px', backgroundColor: '#fff' }} bordered={false}>
                                     {tipoSanguineo.map((tipo) => (
                                         <Option key={tipo.key} value={tipo.tipo}>{tipo.tipo}</Option>
                                     ))}
@@ -235,7 +261,7 @@ const Cadastro = () => {
                                 style={{ width: '169px' }}
                                 wrapperCol={{ span: 24 }}
                             >
-                                <Checkbox  style={{marginTop:'45px', color:'white'}}>Gostaria de doar medula óssea?</Checkbox>
+                                <Checkbox style={{ marginTop: '45px', color: 'white' }}>Gostaria de doar medula óssea?</Checkbox>
                             </FormItem>
                         </div>
 
@@ -243,12 +269,12 @@ const Cadastro = () => {
 
                     <div className={Style.btnArea}>
                         <Form.Item>
-                            <Button danger className={Style.btn} style={{backgroundColor:'#B60707', borderRadius:'10px', borderColor:'#B60707', width:'150px', color:'white'}}>
+                            <Button danger className={Style.btn} style={{ backgroundColor: '#B60707', borderRadius: '10px', borderColor: '#B60707', width: '150px', color: 'white' }}>
                                 <a href='/'>Voltar</a>
                             </Button>
                         </Form.Item>
                         <Form.Item>
-                            <Button  type="primary" htmlType="submit" className={Style.btn} style={{backgroundColor:'#12c512', borderRadius:'10px', borderColor:'#12c512', width:'150px'}}>
+                            <Button type="primary" htmlType="submit" className={Style.btn} style={{ backgroundColor: '#12c512', borderRadius: '10px', borderColor: '#12c512', width: '150px' }}>
                                 Cadastrar
                             </Button>
                         </Form.Item>

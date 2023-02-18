@@ -55,3 +55,23 @@ export const unMasked = (input) => {
   return input
       .replace(/\D/g, "");
 };
+
+export function validarSenha(senha) {
+  // Verifica se a senha contém pelo menos uma letra maiúscula
+  if (!/[A-Z]/.test(senha)) {
+    return false;
+  }
+
+  // Verifica se a senha contém pelo menos um caractere especial
+  if (!/[@$!%*?&]/.test(senha)) {
+    return false;
+  }
+
+  // Verifica se a senha contém pelo menos um número
+  if (!/\d/.test(senha)) {
+    return false;
+  }
+
+  // Se chegou aqui, a senha é válida
+  return true;
+}
