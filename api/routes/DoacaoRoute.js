@@ -5,7 +5,7 @@ import { verifyJWT } from '../Middleware/verifyJWT.js';
 const DoacaoRoute  = express.Router();
 
 DoacaoRoute.post("/doacao", verifyJWT ,DoacaoController.post);
-DoacaoRoute.get("/doacao", verifyJWT ,DoacaoController.get );
+DoacaoRoute.get("/doacao" ,DoacaoController.get );
 DoacaoRoute.get("/doacao/getbydoacaoid/:doacaoID", verifyJWT ,DoacaoController.getByDoacaoId);
 DoacaoRoute.put("/doacao/:doacaoID", verifyJWT ,DoacaoController.put);
 DoacaoRoute.delete("/doacao/:doacaoID", verifyJWT ,DoacaoController.delete);

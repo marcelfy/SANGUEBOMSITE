@@ -1,4 +1,5 @@
 import UsuarioModel from "../models/UsuarioModel.js";
+import PerfilModel from '../models/PerfilModel.js'
 import * as bcript from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
@@ -77,7 +78,8 @@ const UsuarioController = {
     async login(req, res) {
         try {
             const usuario = await UsuarioModel.findOne({
-                where: { email: req.body.email }
+                where: { email: req.body.email },
+                include: [PerfilModel]
             })
 
             if (usuario === null) {
@@ -88,7 +90,7 @@ const UsuarioController = {
                 return res.status(200).json({ success: false, message: "Usuário ou senha incorreto" })
             }
 
-            const token = jwt.sign({ perfil: usuario.perfilID }, process.env.TOKEN_SECRET , {
+            const token = jwt.sign({ perfil: usuario.Perfil?.nome }, process.env.TOKEN_SECRET , {
                 expiresIn: 60, //1min
                 // expiresIn:'7d', 7dias,
                 // issuer : "Admin"

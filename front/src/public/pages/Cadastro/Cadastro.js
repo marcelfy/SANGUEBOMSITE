@@ -12,7 +12,6 @@ import UsuarioService from '../../../service/UsuarioService.ts';
 import { unmaskCPF, validaCPF, validarSenha } from '../../../utils.js';
 
 
-
 const Cadastro = () => {
 
 
@@ -22,22 +21,15 @@ const Cadastro = () => {
 
     const { Option } = Select;
 
+    const [form] = Form.useForm()
+
     const onFinish = (values) => {
 
         var values = { ...values, perfilID: 2 }
 
-        if (validaCPF(unmaskCPF(values.cpf)) === false) {
-            message.error("Cpf inválido");
-            return;
-        }
         values.cpf = unmaskCPF(values.cpf)
 
-        if (validarSenha(values.senha) === false) {
-            message.error("A senha não atende as regras");
-            return;
-        }
-
-        setLoading(true)
+        // setLoading(true)
         UsuarioService.post(values)
             .then((resp) => {
                 if (resp.success) {
@@ -55,12 +47,28 @@ const Cadastro = () => {
             }).finally(() => setLoading(false))
     }
 
-    const onFinishFailed = (values) => {
-        info2()
+    const validarSenhaForm = () => {
+
+        var senha = form.getFieldValue("senha")
+
+        if (validarSenha(senha) === false) {
+            message.error('A senha não atende as regras')
+            return Promise.reject()
+        }
+        return Promise.resolve()
     }
 
+    const validarCpfForm = () => {
 
-    const info2 = () => {
+        var cpf = form.getFieldValue("cpf").toString()
+        if (validaCPF(unmaskCPF(cpf)) === false) {
+            message.error("Cpf inválido");
+            return Promise.reject()
+        }
+        return Promise.resolve()
+    }
+
+    const onFinishFailed = (values) => {
         message.error({
             content: 'Preencha o formulário corretamente',
             duration: 3,
@@ -136,6 +144,7 @@ const Cadastro = () => {
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
                 className={Style.form}
+                form={form}
             >
                 <fieldset className={Style.containerForm}>
                     <div className={Style.groupItem}>
@@ -178,7 +187,7 @@ const Cadastro = () => {
                             label={<p style={{ color: 'white', marginBottom: '0' }}>CPF</p>}
                             name="cpf"
                             style={{ width: '50%' }}
-                            rules={[{ required: true, message: 'O campo cpf é obrigatório' }]}
+                            rules={[{ required: true, message: 'O campo cpf é obrigatório' },{validator: validarCpfForm, message: "Cpf inválido", validateTrigger: 'onSubmit'}]}
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
 
@@ -197,18 +206,17 @@ const Cadastro = () => {
                         >
                             <Input placeholder='Digite seu email' className={Style.input} style={{ border: '1px solid black', borderRadius: '10px' }} />
                         </Form.Item>
-                            <Form.Item
-                                label={<p style={{ color: 'white', marginBottom: '0' }}>Senha</p>}
-                                name="senha"
-                                style={{ width: '50%' }}
-                                rules={[{ required: true, message: 'O campo senha é obrigatório' }]}
-                                labelCol={{ span: 24 }}
-                                wrapperCol={{ span: 24 }}
-                            >
-                        <Tooltip title={tooltip}>
+                        <Form.Item
+                            label={<p style={{ color: 'white', marginBottom: '0' }}>Senha</p>}
+                            name="senha"
+                            style={{ width: '50%' }}
+                            rules={[{ required: true, message: 'O campo senha é obrigatório' }, { validator: validarSenhaForm , message: "Senha não atende as regras", validateTrigger: 'onSubmit'}]}
+                            labelCol={{ span: 24 }}
+                            wrapperCol={{ span: 24 }}
+                            tooltip={tooltip}
+                        >
                                 <Input.Password className={Style.input} placeholder="Digite a senha" style={{ border: '1px solid black', borderRadius: '10px' }} />
-                        </Tooltip>
-                            </Form.Item>
+                        </Form.Item>
                     </div>
                     <div className={Style.groupItem}>
                         <FormItem
