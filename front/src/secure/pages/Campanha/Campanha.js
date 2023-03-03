@@ -12,7 +12,6 @@ const Campanha = () => {
     const [campanhas, setCampanhas] = useState()
     const [loading, setLoading] = useState(false)
     const [modal, setModal] = useState(false)
-    // const [ehAdmin, setEhAdmin] = useState()
     const { Option } = Select;
     const { TextArea } = Input;
     const [form] = Form.useForm()

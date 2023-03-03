@@ -29,7 +29,7 @@ const Cadastro = () => {
 
         values.cpf = unmaskCPF(values.cpf)
 
-        // setLoading(true)
+        setLoading(true)
         UsuarioService.post(values)
             .then((resp) => {
                 if (resp.success) {
@@ -63,6 +63,16 @@ const Cadastro = () => {
         var cpf = form.getFieldValue("cpf").toString()
         if (validaCPF(unmaskCPF(cpf)) === false) {
             message.error("Cpf inválido");
+            return Promise.reject()
+        }
+        return Promise.resolve()
+    }
+
+    const validarEmail = () => {
+        var email = form.getFieldValue("email")
+        const expressaoRegular = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (expressaoRegular.test(email) === false) {
+            message.error("Email inválido");
             return Promise.reject()
         }
         return Promise.resolve()
@@ -119,7 +129,7 @@ const Cadastro = () => {
 
     const tooltip = () => {
         return (
-            <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
                 <b>Sua senha deve conter ao menos:</b>
                 <ul>
                     <li>Um número;</li>
@@ -187,7 +197,7 @@ const Cadastro = () => {
                             label={<p style={{ color: 'white', marginBottom: '0' }}>CPF</p>}
                             name="cpf"
                             style={{ width: '50%' }}
-                            rules={[{ required: true, message: 'O campo cpf é obrigatório' },{validator: validarCpfForm, message: "Cpf inválido", validateTrigger: 'onSubmit'}]}
+                            rules={[{ required: true, message: 'O campo cpf é obrigatório' }, { validator: validarCpfForm, message: "Cpf inválido", validateTrigger: 'onSubmit' }]}
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
 
@@ -200,7 +210,7 @@ const Cadastro = () => {
                             label={<p style={{ color: 'white', marginBottom: '0' }}>E-mail</p>}
                             name="email"
                             style={{ width: '50%' }}
-                            rules={[{ required: true, message: 'O campo email é obrigatório' }]}
+                            rules={[{ required: true, message: 'O campo email é obrigatório' }, { validator: validarEmail, validateTrigger: 'onSubmit', message: "Email inválido" }]}
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
                         >
@@ -210,12 +220,12 @@ const Cadastro = () => {
                             label={<p style={{ color: 'white', marginBottom: '0' }}>Senha</p>}
                             name="senha"
                             style={{ width: '50%' }}
-                            rules={[{ required: true, message: 'O campo senha é obrigatório' }, { validator: validarSenhaForm , message: "Senha não atende as regras", validateTrigger: 'onSubmit'}]}
+                            rules={[{ required: true, message: 'O campo senha é obrigatório' }, { validator: validarSenhaForm, message: "Senha não atende as regras", validateTrigger: 'onSubmit' }, { min: 6, message: "Senha deve conter ao mínimo 6 caracteres" }]}
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
                             tooltip={tooltip}
                         >
-                                <Input.Password className={Style.input} placeholder="Digite a senha" style={{ border: '1px solid black', borderRadius: '10px' }} />
+                            <Input.Password className={Style.input} placeholder="Digite a senha" style={{ border: '1px solid black', borderRadius: '10px' }} />
                         </Form.Item>
                     </div>
                     <div className={Style.groupItem}>
