@@ -21,7 +21,7 @@ const Login = () => {
                 setTimeout(() => {
                     message.success("Usuário logado com sucesso")
                 }, 300);
-                navigate("/home")
+                navigate(res.Perfil?.nome == "Usuario" ? "/home" : "/admin")
             } else {
                 message.error(res.message);
             }

@@ -15,7 +15,8 @@ const Campanha = () => {
     const { Option } = Select;
     const { TextArea } = Input;
     const [form] = Form.useForm()
-    const ehAdmin = window.location.pathname.includes("admin")
+    const usuarioLogado = JSON.parse(sessionStorage.getItem("usuarioLogado"))
+    const ehAdmin = usuarioLogado.Perfil?.nome == "Admin"   
 
     var tipoSanguineo = [
         { tipo: 'A+', key: 1 },

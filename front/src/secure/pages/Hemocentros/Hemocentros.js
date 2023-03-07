@@ -11,7 +11,8 @@ const Hemocentros = () => {
     const [hemocentros, setHemocentros] = useState([]);
     const [modal, setModal] = useState(false)
     const [form] = Form.useForm()
-    const ehAdmin = window.location.pathname.includes('admin');
+    const usuarioLogado = JSON.parse(sessionStorage.getItem("usuarioLogado"))
+    const ehAdmin = usuarioLogado.Perfil?.nome == "Admin"   
 
     useEffect(() => {
         HemocentroService.get().then((resp) => {

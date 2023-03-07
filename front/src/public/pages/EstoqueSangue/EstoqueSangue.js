@@ -8,8 +8,13 @@ import { Button, Form, Input, message, Modal } from 'antd'
 const EstoqueSangue = () => {
 
   const [estoqueSangue, setEstoqueSangue] = useState([])
+
   const [modal, setModal] = useState(false)
-  const ehAdmin = window.location.pathname.includes("admin")
+
+  const usuarioLogado = JSON.parse(sessionStorage.getItem("usuarioLogado"))
+
+  const ehAdmin = usuarioLogado.Perfil?.nome == "Admin"
+  
   const [form] = Form.useForm()
 
   useEffect(() => {
@@ -25,18 +30,18 @@ const EstoqueSangue = () => {
 
   function atualizarQuantidade(quantidade, id) {
     let quantidadeMaxima = {
-      quantidadeMaxima : quantidade
+      quantidadeMaxima: quantidade
     }
-    EstoqueSangueService.atualizarEstoqueMaximo(quantidadeMaxima, id).then((resp)=>{
+    EstoqueSangueService.atualizarEstoqueMaximo(quantidadeMaxima, id).then((resp) => {
       message.success("Quantidade alterada com sucesso")
     })
-    .finally(()=>{
-      EstoqueSangueService.get()
-      .then((resp) => {
-        setEstoqueSangue(resp)
+      .finally(() => {
+        EstoqueSangueService.get()
+          .then((resp) => {
+            setEstoqueSangue(resp)
+          })
       })
-    })
-    .catch(()=>{})
+      .catch(() => { })
   }
 
   function preencherForm() {

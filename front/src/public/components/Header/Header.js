@@ -14,7 +14,7 @@ const NavBar = () => {
     const icon = usuario?.nome?.substr(0,1);
 
     function logout() {
-        sessionStorage.removeItem("usuarioLogado")
+        sessionStorage.clear()
         navigate("/")
     }
 
