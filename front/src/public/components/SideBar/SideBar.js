@@ -6,6 +6,7 @@ import {
 } from "react-icons/fa";
 import { AiFillInfoCircle, AiOutlineHistory } from 'react-icons/ai'
 import { MdCampaign, MdInventory2 } from 'react-icons/md'
+import {FaAddressBook} from 'react-icons/fa'    
 import { NavLink } from 'react-router-dom';
 import Styles from './SideBar.module.css'
 
@@ -16,8 +17,9 @@ const Sidebar = ({ children }) => {
 
     const usuarioLogado = JSON.parse(sessionStorage.getItem("usuarioLogado"))
 
-    const ehAdmin = usuarioLogado.Perfil?.nome == "Admin"
+    const ehAdmin = usuarioLogado?.Perfil?.nome == "Admin" || false
 
+    
     const menuItem = [
         {
             path: ehAdmin ? "/admin" : "/home/saiba-mais",
@@ -43,6 +45,11 @@ const Sidebar = ({ children }) => {
             path: "/home/historico",
             name: "Histórico",
             icon: <AiOutlineHistory />
+        },
+        {
+            path: "/admin/agendamentos",
+            name: "Agendamentos",
+            icon: <FaAddressBook/>
         }
     ]
 
@@ -57,9 +64,9 @@ const Sidebar = ({ children }) => {
                 {
                     menuItem.map((item, index) => (
                         <div>
-                            {ehAdmin && item.name == "Histórico"? null: 
+                            {ehAdmin && item.name == "Histórico" || !ehAdmin && item.name == "Agendamentos" || item.name == "Histórico" && !usuarioLogado? null: 
                             <NavLink to={item.path} key={index} className={Styles.link}>
-                                <div className={Styles.icon}>{item.icon}</div>
+                                <div className={Styles.icon} key={index}>{item.icon}</div>
                                 <div style={{ display: isOpen ? "block" : "none" }} className={Styles.link_text}>{item.name}</div>
                             </NavLink>}
                         </div>

@@ -16,7 +16,7 @@ const Campanha = () => {
     const { TextArea } = Input;
     const [form] = Form.useForm()
     const usuarioLogado = JSON.parse(sessionStorage.getItem("usuarioLogado"))
-    const ehAdmin = usuarioLogado.Perfil?.nome == "Admin"   
+    const ehAdmin = usuarioLogado?.Perfil?.nome == "Admin" || false
 
     var tipoSanguineo = [
         { tipo: 'A+', key: 1 },

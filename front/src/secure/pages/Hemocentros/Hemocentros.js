@@ -12,7 +12,7 @@ const Hemocentros = () => {
     const [modal, setModal] = useState(false)
     const [form] = Form.useForm()
     const usuarioLogado = JSON.parse(sessionStorage.getItem("usuarioLogado"))
-    const ehAdmin = usuarioLogado.Perfil?.nome == "Admin"   
+    const ehAdmin = usuarioLogado?.Perfil?.nome == "Admin" || false
 
     useEffect(() => {
         HemocentroService.get().then((resp) => {

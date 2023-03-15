@@ -17,7 +17,7 @@ const HistoricoCertificado = () => {
     const [data, setData] = useState();
 
     useEffect(()=>{
-        AgendamentoService.getByUsuarioId(usuario.usuarioID).then((resp)=>{
+        AgendamentoService.getByUsuarioId(usuario?.usuarioID).then((resp)=>{
             setData(resp)
         })
     },[])

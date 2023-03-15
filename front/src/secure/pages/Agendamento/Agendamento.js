@@ -51,9 +51,6 @@ const Agendamento = () => {
             horario: moment(values.horario).format('HH:mm'),
         }
 
-        // console.log(agendamento);
-        // console.log(usuarioLogado);
-
         AgendamentoService.post(agendamento).then((resp)=>{
             if(resp.success){
                 setTimeout(() => {

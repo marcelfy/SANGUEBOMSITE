@@ -13,7 +13,7 @@ const EstoqueSangue = () => {
 
   const usuarioLogado = JSON.parse(sessionStorage.getItem("usuarioLogado"))
 
-  const ehAdmin = usuarioLogado.Perfil?.nome == "Admin"
+  const ehAdmin = usuarioLogado?.Perfil?.nome == "Admin" || false
   
   const [form] = Form.useForm()
 
