@@ -34,3 +34,28 @@
     cursor: pointer;
     transition: 0.5s;
 }
+.tooltip{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.tooltip ul li{
+    font-size: 13px;
+    list-style: none;
+}
+
+.tooltip li{
+    width: max-content;
+    display: flex;
+    align-items: center;
+}
+
+.tooltip a{
+    color: red;
+}
+
+.tooltip svg{
+    margin: 3px;
+}
