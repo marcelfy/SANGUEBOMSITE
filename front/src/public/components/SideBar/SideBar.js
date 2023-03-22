@@ -4,7 +4,7 @@ import {
     FaRegChartBar,
     FaHospitalAlt
 } from "react-icons/fa";
-import { AiFillInfoCircle, AiOutlineHistory } from 'react-icons/ai'
+import { AiFillInfoCircle, AiOutlineHistory, AiOutlineUser } from 'react-icons/ai'
 import { MdCampaign, MdInventory2 } from 'react-icons/md'
 import {FaAddressBook} from 'react-icons/fa'    
 import { NavLink } from 'react-router-dom';
@@ -50,6 +50,11 @@ const Sidebar = ({ children }) => {
             path: "/admin/agendamentos",
             name: "Agendamentos",
             icon: <FaAddressBook/>
+        },
+        {
+            path: "/admin/usuarios",
+            name: "Usuarios",
+            icon: <AiOutlineUser/>
         }
     ]
 
@@ -64,7 +69,7 @@ const Sidebar = ({ children }) => {
                 {
                     menuItem.map((item, index) => (
                         <div>
-                            {ehAdmin && item.name == "Histórico" || !ehAdmin && item.name == "Agendamentos" || item.name == "Histórico" && !usuarioLogado? null: 
+                            {ehAdmin && item.name == "Histórico" || !ehAdmin && item.name == "Agendamentos" || item.name == "Histórico" && !usuarioLogado || item.name == "Usuarios" && !ehAdmin ? null: 
                             <NavLink to={item.path} key={index} className={Styles.link}>
                                 <div className={Styles.icon} key={index}>{item.icon}</div>
                                 <div style={{ display: isOpen ? "block" : "none" }} className={Styles.link_text}>{item.name}</div>

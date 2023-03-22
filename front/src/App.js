@@ -16,6 +16,7 @@ import HistoricoCertificado from './secure/pages/HistoricoCertificado/Historico'
 import AgendamentoPorHemocentro from './admin/pages/AgendamentosPorHemocentro/AgendamentoPorHemocentro';
 import EstoqueSangue from './public/pages/EstoqueSangue/EstoqueSangue';
 import HomeAdmin from './admin/pages/HomeAdmin/HomeAdmin';
+import UsuariosPage from './admin/pages/UsuariosPage/UsuariosPage';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path="/admin/campanha" element={<Campanha />}></Route>
           <Route path="/admin/hemocentros" element={<Hemocentros />}></Route>
           <Route path="/admin/estoque-sangue" element={<EstoqueSangue />}></Route>
+          <Route path="/admin/usuarios" element={<UsuariosPage />}></Route>
         </Routes>
       </Sidebar>
       <Footer />

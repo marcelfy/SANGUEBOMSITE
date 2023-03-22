@@ -16,6 +16,8 @@ import HemocentroRoute from './routes/HemocentroRoute.js'
 import { Associations } from './Associations/Associations.js'
 import * as dotenv from 'dotenv'
 import PerfilModel from './models/PerfilModel.js'
+import PerfilRoute from './routes/PerfilRoute.js'
+
 const app = express()
 
 dotenv.config()
@@ -30,6 +32,7 @@ app.use(CampanhaRoute)
 app.use(EstoqueSangueRoute)
 app.use(DoacaoRoute)
 app.use(HemocentroRoute)
+app.use(PerfilRoute)
 
 try {
     

@@ -8,7 +8,7 @@ const UsuarioController = {
 
     async get(req, res) {
         try {
-            const usuarios = await UsuarioModel.findAll();
+            const usuarios = await UsuarioModel.findAll({include: PerfilModel});
             return usuarios.length > 0 ? res.status(200).json(usuarios) :
                 res.status(204).send();
 
@@ -54,9 +54,8 @@ const UsuarioController = {
     },
 
     async put(req, res) {
-        const { usuarioID } = req.params
         try {
-            await UsuarioModel.update(req.body, { where: { usuarioID: usuarioID } });
+            await UsuarioModel.update(req.body, { where: { usuarioID: req.body.usuarioID } });
             return res.status(204).send();
 
         } catch (error) {
@@ -91,7 +90,7 @@ const UsuarioController = {
             }
 
             const token = jwt.sign({ perfil: usuario.Perfil?.nome }, process.env.TOKEN_SECRET , {
-                expiresIn: '7d', //1min
+                expiresIn: 60, //1min
                 // expiresIn:'7d', 7dias,
                 // issuer : "Admin"
             });

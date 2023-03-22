@@ -7,7 +7,7 @@ const UsuarioRoute  = express.Router();
 UsuarioRoute.post("/usuario",UsuarioController.post);
 UsuarioRoute.get("/usuario" ,UsuarioController.get);
 UsuarioRoute.get("/usuario/getbyusuarioid/:usuarioID",verifyJWT, UsuarioController.getByUsuarioId);
-UsuarioRoute.put("/usuario/:usuarioID",verifyJWT, UsuarioController.put);
+UsuarioRoute.put("/usuario", UsuarioController.put);
 UsuarioRoute.delete("/usuario/:usuarioID", verifyJWT ,UsuarioController.delete);
 UsuarioRoute.post("/login", UsuarioController.login)
 
