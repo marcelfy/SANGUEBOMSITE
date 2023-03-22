@@ -1,25 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
     FaBars,
-    FaRegChartBar,
     FaHospitalAlt
 } from "react-icons/fa";
 import { AiFillInfoCircle, AiOutlineHistory, AiOutlineUser } from 'react-icons/ai'
 import { MdCampaign, MdInventory2 } from 'react-icons/md'
-import {FaAddressBook} from 'react-icons/fa'    
+import { FaAddressBook } from 'react-icons/fa'
 import { NavLink } from 'react-router-dom';
 import Styles from './SideBar.module.css'
 
 
 const Sidebar = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);
+
     const toggle = () => setIsOpen(!isOpen);
 
     const usuarioLogado = JSON.parse(sessionStorage.getItem("usuarioLogado"))
 
-    const ehAdmin = usuarioLogado?.Perfil?.nome == "Admin" || false
+    const ehAdmin = usuarioLogado?.Perfil?.nome === "Admin" || false
 
-    
     const menuItem = [
         {
             path: ehAdmin ? "/admin" : "/home/saiba-mais",
@@ -49,12 +48,12 @@ const Sidebar = ({ children }) => {
         {
             path: "/admin/agendamentos",
             name: "Agendamentos",
-            icon: <FaAddressBook/>
+            icon: <FaAddressBook />
         },
         {
             path: "/admin/usuarios",
             name: "Usuarios",
-            icon: <AiOutlineUser/>
+            icon: <AiOutlineUser />
         }
     ]
 
@@ -68,12 +67,12 @@ const Sidebar = ({ children }) => {
                 </div>
                 {
                     menuItem.map((item, index) => (
-                        <div>
-                            {ehAdmin && item.name == "Histórico" || !ehAdmin && item.name == "Agendamentos" || item.name == "Histórico" && !usuarioLogado || item.name == "Usuarios" && !ehAdmin ? null: 
-                            <NavLink to={item.path} key={index} className={Styles.link}>
-                                <div className={Styles.icon} key={index}>{item.icon}</div>
-                                <div style={{ display: isOpen ? "block" : "none" }} className={Styles.link_text}>{item.name}</div>
-                            </NavLink>}
+                        <div key={index}>
+                            {ehAdmin && item.name == "Histórico" || !ehAdmin && item.name === "Agendamentos" || item.name === "Histórico" && !usuarioLogado || item.name === "Usuarios" && !ehAdmin ? null :
+                                <NavLink to={item.path} className={Styles.link}>
+                                    <div className={Styles.icon} key={index}>{item.icon}</div>
+                                    <div style={{ display: isOpen ? "block" : "none" }} className={Styles.link_text}>{item.name}</div>
+                                </NavLink>}
                         </div>
                     ))
                 }

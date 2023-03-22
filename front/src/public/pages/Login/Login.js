@@ -1,9 +1,9 @@
 import Style from './Login.module.css'
-import { Form, Input, Button, Select, Spin, message } from 'antd';
+import { Form, Input, Button,  message } from 'antd';
 import Logo from '../../../public/Assets/img/logo.png'
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../../components/Spinner/Spinner'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import React from 'react';
 import UsuarioService from '../../../service/UsuarioService.ts';
 
@@ -20,8 +20,9 @@ const Login = () => {
                 sessionStorage.setItem('token', res.token)
                 setTimeout(() => {
                     message.success("Usuário logado com sucesso")
-                }, 300);
-                navigate(res.Perfil?.nome == "Usuario" ? "/home" : "/admin")
+                    window.location.reload()
+                }, 100);
+                navigate(res.usuario.Perfil?.nome === "Usuario" ? "/home" : "/admin")
             } else {
                 message.error(res.message);
             }

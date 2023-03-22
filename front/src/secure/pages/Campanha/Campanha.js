@@ -143,7 +143,7 @@ const Campanha = () => {
                             >
                                 <Select placeholder="Selecione">
                                     {tipoSanguineo.map((a, index) => {
-                                        return <Option key={a.key} value={a.tipo}><p>{a.tipo}</p></Option>
+                                        return <Option key={index} value={a.tipo}><p>{a.tipo}</p></Option>
                                     })}
                                 </Select>
                             </Form.Item>

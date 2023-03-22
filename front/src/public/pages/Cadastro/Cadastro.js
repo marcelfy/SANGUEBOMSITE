@@ -239,8 +239,8 @@ const Cadastro = () => {
 
                         >
                             <Select defaultValue="Selecione" style={{ width: '200px', border: '1px solid black', borderRadius: '10px', backgroundColor: '#fff' }} bordered={false}>
-                                {estados.map((estado) => (
-                                    <Option key={estado.id} value={estado.nome}><p style={{ fontSize: '13px' }}>{estado.nome}</p></Option>
+                                {estados.map((estado,index) => (
+                                    <Option key={index} value={estado.nome}><p style={{ fontSize: '13px' }}>{estado.nome}</p></Option>
                                 ))}
                             </Select>
                         </FormItem>
@@ -266,8 +266,8 @@ const Cadastro = () => {
                                 wrapperCol={{ span: 24 }}
                             >
                                 <Select defaultValue="Selecione" style={{ width: '169px', border: '1px solid black', borderRadius: '10px', backgroundColor: '#fff' }} bordered={false}>
-                                    {tipoSanguineo.map((tipo) => (
-                                        <Option key={tipo.key} value={tipo.tipo}>{tipo.tipo}</Option>
+                                    {tipoSanguineo.map((tipo, index) => (
+                                        <Option key={index} value={tipo.tipo}>{tipo.tipo}</Option>
                                     ))}
                                 </Select>
                             </FormItem>

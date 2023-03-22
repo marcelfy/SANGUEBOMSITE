@@ -27,7 +27,7 @@ function App() {
           <Route path="/" element={<PaginaInicial />} > </Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/cadastro" element={<Cadastro />}></Route>
-          <Route path='/home' element={<Home />}></Route>
+          <Route path="/home" element={<Home />}></Route>
           <Route path="/hemocentros" element={<Hemocentros />}></Route>
           <Route path="/estoque-sangue" element={<EstoqueSangue />}></Route>
           <Route path="/campanha" element={<Campanha />}></Route>

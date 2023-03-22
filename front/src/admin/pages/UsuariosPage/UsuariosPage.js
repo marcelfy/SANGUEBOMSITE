@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import UsuarioService from '../../../service/UsuarioService.ts'
 import Styles from './UsuariosPage.module.css'
 import Logo from '../../../public/Assets/img/logo.png'
-import { Checkbox, message, Select, Table } from 'antd'
+import { Checkbox, message, Table } from 'antd'
 import PerfilService from '../../../service/PerfilService.ts'
 
 const UsuariosPage = () => {
@@ -31,15 +31,15 @@ const UsuariosPage = () => {
     }
 
     function fixCpf(cpf) {
-        cpf = cpf.replace(/\D/g, '');
+        cpf = cpf.replace(/\D/g, "");
 
-        cpf = cpf.substr(0, 3) + '.' + cpf.substr(3, 3) + '.' + '***' + '-' + cpf.substr(9, 2);
+        cpf = cpf.substr(0, 3) + "." + cpf.substr(3, 3) + "." + "***" + "-" + cpf.substr(9, 2);
 
         return cpf;
     }
 
     function alterarPerfil(usuarioID, perfilID){
-        let usuario = usuarios.find(u => u.usuarioID == usuarioID)
+        let usuario = usuarios.find(u => u.usuarioID === usuarioID)
         usuario.perfilID = perfilID
         console.log(usuario);
         UsuarioService.put(usuario).then((resp)=>{
@@ -78,7 +78,7 @@ const UsuariosPage = () => {
             width: '250',
             render: (record) => {  
                  return perfil?.map((p, index)=>{
-                    return <div key={index}><Checkbox value={p.perfilID} checked={p.perfilID == record.perfilID? true: false} onChange={(e) => alterarPerfil(record.usuarioID, e.target.value)}/> <label >{p.nome}</label></div>
+                    return <div key={index}><Checkbox value={p.perfilID} checked={p.perfilID === record.perfilID? true: false} onChange={(e) => alterarPerfil(record.usuarioID, e.target.value)}/> <label >{p.nome}</label></div>
                 })
                 
             }

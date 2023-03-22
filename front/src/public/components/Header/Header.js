@@ -1,9 +1,6 @@
 import style from './Header.module.css'
 import { Link, useNavigate } from 'react-router-dom'
-import Logo from '../../../public/Assets/img/logo.png'
-import Sidebar from '../SideBar/SideBar'
-import React, { useEffect, useState } from 'react'
-import { UserOutlined } from '@ant-design/icons';
+import React from 'react'
 import { Avatar } from 'antd';
 
 
@@ -14,8 +11,11 @@ const NavBar = () => {
     const icon = usuario?.nome?.substr(0,1);
 
     function logout() {
+        navigate("/home")
+        setTimeout(() => {
+            window.location.reload()
+        }, 100);
         sessionStorage.clear()
-        navigate("/")
     }
 
     const abrirTooltip = () => {

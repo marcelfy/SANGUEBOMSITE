@@ -90,7 +90,7 @@ const UsuarioController = {
             }
 
             const token = jwt.sign({ perfil: usuario.Perfil?.nome }, process.env.TOKEN_SECRET , {
-                expiresIn: 60, //1min
+                expiresIn: '7d', // 60 /1min
                 // expiresIn:'7d', 7dias,
                 // issuer : "Admin"
             });
