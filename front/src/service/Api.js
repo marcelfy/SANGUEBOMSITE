@@ -12,6 +12,5 @@ const Api = axios.create({
       "access-token" : token
     }
   })
-  
 
 export default Api;

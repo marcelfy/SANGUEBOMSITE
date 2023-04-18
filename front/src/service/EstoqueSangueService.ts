@@ -31,6 +31,12 @@ const EstoqueSangueService = {
         .then((res:any)=>  {        
             return res.data});
     },
+
+    atualizarEstoqueSangue:async(tipoSangue:string, quantidade: string):Promise<any> => {    
+        return await Api.put(`/estoqueSangue/atualizarEstoqueSangue/${tipoSangue}/${quantidade}`)
+        .then((res:any)=>  {        
+            return res.data});
+    },
     
 }
 

@@ -1,6 +1,6 @@
 import Api from "../service/Api";
 import jwt_decode from 'jwt-decode'
-import { useNavigate } from "react-router-dom";
+import { Router, useNavigate } from "react-router-dom";
 
 
 export const RouteChangeMiddleware = () => {
@@ -15,7 +15,6 @@ export const RouteChangeMiddleware = () => {
       if (decoded.Perfil === 'Usuario' && rotaAdmin) {
         console.log('Usuário autenticado como usuário comum');
         //redirionar para pagina de nao possui permissao
-  
       } else {
         console.log('Usuário autenticado, mas não é um usuário comum');
         // redirecionar para a página de login ou mostrar uma mensagem de erro
@@ -27,4 +26,8 @@ export const RouteChangeMiddleware = () => {
 
     return request;
   })
+}
+
+export const RouteChange = () => {
+  Api.interceptors.response.use((response)=>{console.log(response);})
 }

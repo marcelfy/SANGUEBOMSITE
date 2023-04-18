@@ -4,8 +4,9 @@ import { BiDonateBlood } from 'react-icons/bi'
 import Logo from '../../../public/Assets/img/logo.png'
 import CampanhaService from '../../../service/CampanhaService.ts'
 import CampanhaCard from '../../components/CampanhaCard/CampanhaCard'
-import { Button, Modal, Form, message, Input, Select } from 'antd'
+import { Button, Modal, Form, message, Input, Select, notification } from 'antd'
 import { Spin } from 'antd'
+import { useNavigate } from 'react-router-dom'
 
 const Campanha = () => {
 
@@ -17,6 +18,7 @@ const Campanha = () => {
     const [form] = Form.useForm()
     const usuarioLogado = JSON.parse(sessionStorage.getItem("usuarioLogado"))
     const ehAdmin = usuarioLogado?.Perfil?.nome == "Admin" || false
+    const navigate = useNavigate()
 
     var tipoSanguineo = [
         { tipo: 'A+', key: 1 },
@@ -61,7 +63,23 @@ const Campanha = () => {
                 }
             })
             .finally(() => setLoading(false))
-            .catch((error) => { })
+            .catch((err) => {
+                notification.error({
+                    message: 'Necessário realizar o login',
+                    description:
+                        <p>Para ter acesso a essa funcionalidade é necessário realizar o login <a href='/login' style={{ fontWeight: 'bold' }}>aqui</a></p>,
+                    style: {
+                        width: 400,
+                        height: 100
+                    },
+                    duration: 5
+                })
+    
+                setTimeout(() => {
+                    navigate('/login')
+                }, 5000);
+            })
+    
     }
 
     function resetarForm() {

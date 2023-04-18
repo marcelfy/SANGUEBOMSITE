@@ -10,5 +10,6 @@ EstoqueSangueRoute.get("/estoquesangue/getbyestoquesangueid/:estoquesangueID",ve
 EstoqueSangueRoute.put("/estoquesangue/:estoquesangueID", verifyJWT , EstoqueSangueController.put);
 EstoqueSangueRoute.put("/estoquesangue/atualizarestoquemaximo/:estoqueSangueID", verifyJWT , EstoqueSangueController.atualizarEstoqueMaximo);
 EstoqueSangueRoute.delete("/estoquesangue/:estoquesangueID", verifyJWT , EstoqueSangueController.delete);
+EstoqueSangueRoute.put("/estoquesangue/atualizarEstoqueSangue/:tipoSangue/:quantidade", verifyJWT , EstoqueSangueController.atualizarEstoqueSangue);
 
 export default EstoqueSangueRoute;

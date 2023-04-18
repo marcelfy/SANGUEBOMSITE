@@ -1,10 +1,11 @@
 import Style from './Hemocentros.module.css'
-import { Button, Form, message, Modal, Input } from 'antd'
+import { Button, Form, message, Modal, Input, notification } from 'antd'
 import React, { useEffect, useState } from 'react';
 import HemocentroService from '../../../service/HemocentroService.ts';
 import HemocentroCard from '../../components/HemocentroCard/HemocentroCard.js';
 import Logo from '../../../public/Assets/img/logo.png'
 import MaskedInput from 'react-input-mask'
+import { useNavigate } from 'react-router-dom';
 
 const Hemocentros = () => {
 
@@ -13,6 +14,7 @@ const Hemocentros = () => {
     const [form] = Form.useForm()
     const usuarioLogado = JSON.parse(sessionStorage.getItem("usuarioLogado"))
     const ehAdmin = usuarioLogado?.Perfil?.nome == "Admin" || false
+    const navigate = useNavigate()
 
     useEffect(() => {
         HemocentroService.get().then((resp) => {
@@ -28,7 +30,23 @@ const Hemocentros = () => {
             }
         })
             .finally(() => { setModal(false) })
-            .catch((error) => { })
+            .catch((err) => {
+                notification.error({
+                    message: 'Necessário realizar o login',
+                    description:
+                        <p>Para ter acesso a essa funcionalidade é necessário realizar o login <a href='/login' style={{ fontWeight: 'bold' }}>aqui</a></p>,
+                    style: {
+                        width: 400,
+                        height: 100
+                    },
+                    duration: 5
+                })
+    
+                setTimeout(() => {
+                    navigate('/login')
+                }, 5000);
+            })
+    
     }
 
     const onFinishFailed = () => {

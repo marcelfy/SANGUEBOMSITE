@@ -17,11 +17,10 @@ import AgendamentoPorHemocentro from './admin/pages/AgendamentosPorHemocentro/Ag
 import EstoqueSangue from './public/pages/EstoqueSangue/EstoqueSangue';
 import HomeAdmin from './admin/pages/HomeAdmin/HomeAdmin';
 import UsuariosPage from './admin/pages/UsuariosPage/UsuariosPage';
-import { RouteChangeMiddleware } from './middleware/RouteChangeMiddleware';
+import { RouteChange, RouteChangeMiddleware } from './middleware/RouteChangeMiddleware';
 import { useEffect } from 'react';
 
 function App() {
-  RouteChangeMiddleware()
   return (
     <Router>
       <Header />

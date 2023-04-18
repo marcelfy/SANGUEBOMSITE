@@ -1,5 +1,5 @@
 import Styles from './Historico.module.css'
-import { Button, Space, Table, Tag } from 'antd';
+import { Button, Space, Table, notification } from 'antd';
 import Logo from '../../../public/Assets/img/logo.png'
 import { AiOutlineHistory } from 'react-icons/ai'
 import Certificado from '../../../public/Assets/img/certificado.png'
@@ -20,6 +20,23 @@ const HistoricoCertificado = () => {
         AgendamentoService.getByUsuarioId(usuario?.usuarioID).then((resp)=>{
             setData(resp)
         })
+        .catch((err) => {
+            notification.error({
+                message: 'Necessário realizar o login',
+                description:
+                    <p>Para ter acesso a essa funcionalidade é necessário realizar o login <a href='/login' style={{ fontWeight: 'bold' }}>aqui</a></p>,
+                style: {
+                    width: 400,
+                    height: 100
+                },
+                duration: 5
+            })
+
+            setTimeout(() => {
+                navigate('/login')
+            }, 5000);
+        })
+
     },[])
 
     const columns = [

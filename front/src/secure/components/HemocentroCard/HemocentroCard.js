@@ -1,16 +1,18 @@
-import { Button, Form, message, Modal, Input, Popconfirm } from 'antd'
+import { Button, Form, message, Modal, Input, Popconfirm, notification } from 'antd'
 import React, { useState } from 'react'
 import { ImLocation2 } from 'react-icons/im'
 import Styles from './HemocentroCard.module.css'
 import { AiOutlineEdit } from 'react-icons/ai'
 import HemocentroService from '../../../service/HemocentroService.ts'
 import MaskedInput from 'react-input-mask'
+import { useNavigate } from 'react-router-dom'
 
 const HemocentroCard = (props) => {
 
     const [hemocentro, setHemocentro] = useState()
     const [modal, setModal] = useState(false)
     const [form] = Form.useForm()
+    const navigate = useNavigate()
 
     const onFinish = (values) => {
         HemocentroService.put(values, props.hemocentroID).then((resp) => {
@@ -22,7 +24,23 @@ const HemocentroCard = (props) => {
             .finally(() => {
                 setModal(false)
             })
-            .catch((error) => { })
+            .catch((err) => {
+                notification.error({
+                    message: 'Necessário realizar o login',
+                    description:
+                        <p>Para ter acesso a essa funcionalidade é necessário realizar o login <a href='/login' style={{ fontWeight: 'bold' }}>aqui</a></p>,
+                    style: {
+                        width: 400,
+                        height: 100
+                    },
+                    duration: 5
+                })
+    
+                setTimeout(() => {
+                    navigate('/login')
+                }, 5000);
+            })
+    
 
     }
 

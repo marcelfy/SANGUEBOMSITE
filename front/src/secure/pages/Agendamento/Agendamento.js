@@ -1,33 +1,34 @@
 import Styles from './Agendamento.module.css'
-import { Form, Input, message, Button } from 'antd'
+import { Form, Input, message, Button, notification } from 'antd'
 import Logo from '../../../public/Assets/img/logo.png'
 import { BsCalendar3 } from 'react-icons/bs'
 import MaskedInput from 'react-input-mask';
 import { DatePicker, Space, TimePicker } from 'antd';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, use } from 'react-router-dom';
 import Spinner from '../../../public/components/Spinner/Spinner';
 import { useEffect, useState } from 'react';
 import locale from 'antd/es/date-picker/locale/pt_BR';
 import React from 'react';
-import {default as localeTimePicker} from 'antd/lib/time-picker/locale/pt_BR'
+import { default as localeTimePicker } from 'antd/lib/time-picker/locale/pt_BR'
 import HemocentroService from '../../../service/HemocentroService.ts';
 import AgendamentoService from '../../../service/AgendamentoService.ts';
 import moment from 'moment';
+
 
 const Agendamento = () => {
 
     const [loading, setLoading] = useState(false)
 
     const navigate = useNavigate()
-    
+
     const [form] = Form.useForm()
-    
-    const {hemocentroID} = useParams();
+
+    const { hemocentroID } = useParams();
 
     const usuarioLogado = JSON.parse(sessionStorage.getItem('usuarioLogado'));
 
-    useEffect(()=>{
-        HemocentroService.getByHemocentroId(hemocentroID).then((resp)=>{
+    useEffect(() => {
+        HemocentroService.getByHemocentroId(hemocentroID).then((resp) => {
             form.setFieldsValue({
                 cep: resp.cep,
                 endereco: resp.endereco,
@@ -36,36 +37,68 @@ const Agendamento = () => {
                 cidade: resp.cidade,
                 numero: resp.numero,
             })
+        }).catch((err) => {
+            notification.error({
+                message: 'Necessário realizar o login',
+                description:
+                    <p>Para ter acesso a essa funcionalidade é necessário realizar o login <a href='/login' style={{ fontWeight: 'bold' }}>aqui</a></p>,
+                style: {
+                    width: 400,
+                    height: 100
+                },
+                duration: 5
+            })
+
+            setTimeout(() => {
+                navigate('/login')
+            }, 5000);
         })
 
-    },[])
+    }, [])
+
 
     const onFinish = (values) => {
         setLoading(true)
 
         let agendamento = {
-            usuarioID : usuarioLogado.usuarioID,
+            usuarioID: usuarioLogado.usuarioID,
             situacao: 'Aberto',
             data: values.data,
             hemocentroID: hemocentroID,
             horario: moment(values.horario).format('HH:mm'),
         }
 
-        AgendamentoService.post(agendamento).then((resp)=>{
-            if(resp.success){
+        AgendamentoService.post(agendamento).then((resp) => {
+            if (resp.success) {
                 setTimeout(() => {
                     message.success({
                         content: resp.message,
                         duration: 3
                     });
                 }, 500)
-                
+
             }
         })
-        .finally(()=> {
-            setLoading(false)
-            navigate("/hemocentros")
-        })
+            .finally(() => {
+                setLoading(false)
+                navigate("/hemocentros")
+            })
+            .catch((err) => {
+                notification.error({
+                    message: 'Necessário realizar o login',
+                    description:
+                        <p>Para ter acesso a essa funcionalidade é necessário realizar o login <a href='/login' style={{ fontWeight: 'bold' }}>aqui</a></p>,
+                    style: {
+                        width: 400,
+                        height: 100
+                    },
+                    duration: 5
+                })
+
+                setTimeout(() => {
+                    navigate('/login')
+                }, 5000);
+            })
 
     }
 
@@ -82,7 +115,7 @@ const Agendamento = () => {
 
     return (
         <>
-            <Spinner loading={loading}/>
+            <Spinner loading={loading} />
             <div className={Styles.logo}>
                 <img src={Logo} width={700} height={230} />
             </div>
@@ -113,7 +146,7 @@ const Agendamento = () => {
                             wrapperCol={{ span: 24 }}
                             style={{ width: '50%' }}
                         >
-                            <MaskedInput disabled={true} mask="99999-999" className={Styles.input} placeholder="Informe o cep" style={{ borderRadius: '10px', border: '1px solid black', width: '90%', color:'rgba(0, 0, 0, 0.25)', background:'#f5f5f5', cursor:'not-allowed' }} />
+                            <MaskedInput disabled={true} mask="99999-999" className={Styles.input} placeholder="Informe o cep" style={{ borderRadius: '10px', border: '1px solid black', width: '90%', color: 'rgba(0, 0, 0, 0.25)', background: '#f5f5f5', cursor: 'not-allowed' }} />
                         </Form.Item>
 
                         <Form.Item
@@ -175,8 +208,8 @@ const Agendamento = () => {
                     </div>
 
                     <p style={{ display: 'flex', fontSize: '15px', justifyContent: 'center' }}><b>Agendamento de Horário* De Segunda a Sexta-feira das 08h:00m às 14h:00m -&gt; 30 minutos para cada agendamento.</b> </p>
-                   
-                    <div style={{display:'flex'}}>
+
+                    <div style={{ display: 'flex' }}>
                         <Form.Item
                             label={<p style={{ color: 'white', marginBottom: '0' }}>Data</p>}
                             name="data"
@@ -185,7 +218,7 @@ const Agendamento = () => {
                             labelCol={{ span: 24 }}
                             wrapperCol={{ span: 24 }}
                         >
-                            <DatePicker locale={locale} style={{ border: '1px solid black', borderRadius: '10px', width: '90%' }} format={'DD/MM/YYYY'} placeholder="Escolha uma data"/>
+                            <DatePicker locale={locale} style={{ border: '1px solid black', borderRadius: '10px', width: '90%' }} format={'DD/MM/YYYY'} placeholder="Escolha uma data" />
                         </Form.Item>
 
                         <Form.Item
@@ -199,12 +232,12 @@ const Agendamento = () => {
                             <TimePicker style={{ border: '1px solid black', borderRadius: '10px', width: '100%' }} placeholder="Escolha um horário" format={'HH:mm'} locale={localeTimePicker} />
                         </Form.Item>
                     </div>
-                    <div style={{display:'flex', justifyContent:'center'}}>
-                    <Form.Item>
-                            <Button  type="primary" htmlType="submit" className={Styles.btn} style={{backgroundColor:'#AF0107', borderRadius:'10px', borderColor:'#AF0107', width:'150px'}}>
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <Form.Item>
+                            <Button type="primary" htmlType="submit" className={Styles.btn} style={{ backgroundColor: '#AF0107', borderRadius: '10px', borderColor: '#AF0107', width: '150px' }}>
                                 Agendar
                             </Button>
-                    </Form.Item>
+                        </Form.Item>
                     </div>
                 </fieldset>
             </Form>

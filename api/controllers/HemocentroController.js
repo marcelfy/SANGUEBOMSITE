@@ -32,7 +32,6 @@ const HemocentroController = {
             HemocentroModel.create(hemocentro)
             return res.status(201).json({ success: true, message: "Hemocentro cadastrado com sucesso" });
         } catch (error) {
-            console.log(error);
             return res.json({ message: error.message })
         }
     },

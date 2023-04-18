@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import Styles from './AgendamentoPorHemocentro.module.css'
-import { Table, Button, Select, Form, message, Input, Spin } from 'antd'
+import { Table, Button, Select, Form, message, Input, Spin, notification } from 'antd'
 import AgendamentoService from '../../../service/AgendamentoService.ts'
 import HemocentroService from '../../../service/HemocentroService.ts'
 import Logo from '../../../public/Assets/img/logo.png'
 import Modal from 'antd/lib/modal/Modal'
 import DoacaoService from '../../../service/DoacaoService.ts'
+import { useNavigate } from 'react-router-dom'
+import EstoqueSangueService from '../../../service/EstoqueSangueService.ts'
 
 const AgendamentoPorHemocentro = () => {
 
@@ -17,15 +19,50 @@ const AgendamentoPorHemocentro = () => {
   const [modal, setModal] = useState(false)
   const { Option } = Select;
   const [form] = Form.useForm()
+  const navigate = useNavigate()
 
   useEffect(() => {
     AgendamentoService.get().then((resp) => {
       setAgendamentos(resp)
     })
+    .catch((err) => {
+      notification.error({
+        message: 'Necessário realizar o login',
+        description:
+          <p>Para ter acesso a essa funcionalidade é necessário realizar o login <a href='/login' style={{ fontWeight: 'bold' }}>aqui</a></p>,
+        style: {
+          width: 400,
+          height: 100
+        },
+        duration: 5
+      })
+
+      setTimeout(() => {
+        navigate('/login')
+      }, 5000);
+    })
+
 
     HemocentroService.get().then((resp) => {
       setHemocentros(resp)
     })
+    .catch((err) => {
+      notification.error({
+          message: 'Necessário realizar o login',
+          description:
+              <p>Para ter acesso a essa funcionalidade é necessário realizar o login <a href='/login' style={{ fontWeight: 'bold' }}>aqui</a></p>,
+          style: {
+              width: 400,
+              height: 100
+          },
+          duration: 5
+      })
+
+      setTimeout(() => {
+          navigate('/login')
+      }, 5000);
+  })
+
   }, [])
 
   const pesquisarPorHemocentro = (id) => {
@@ -37,30 +74,53 @@ const AgendamentoPorHemocentro = () => {
 
   const onFinish = (values) => {
     let doacao = {
-      usuarioID : usuarioID,
-      tipoSangue : values.tipoSangue,
-      quantidade : values.quantidade
+      usuarioID: usuarioID,
+      tipoSangue: values.tipoSangue,
+      quantidade: values.quantidade
     }
 
     DoacaoService.post(doacao)
-    .then((resp)=> {
-      setLoading(true)
-      if(resp?.success){
-        message.success("Agendamento realizado com sucesso")
-        setModal(false)
-        form.resetFields()
-        realizarAgendamento()
-        AgendamentoService.get().then((resp)=> setAgendamentos(resp))    
-      }
+      .then((resp) => {
+        setLoading(true)
+        if (resp?.success) {
+          message.success("Agendamento realizado com sucesso")
+          setModal(false)
+          form.resetFields()
+          realizarAgendamento()
+          AgendamentoService.get().then((resp) => setAgendamentos(resp))
+        }
+      })
+      .finally(() => { setLoading(false) })
+      
+      //atualizar estoque sangue
+      EstoqueSangueService.atualizarEstoqueSangue(doacao.tipoSangue, doacao.quantidade).then(()=>{})
+      .catch((err) => {
+        notification.error({
+            message: 'Necessário realizar o login',
+            description:
+                <p>Para ter acesso a essa funcionalidade é necessário realizar o login <a href='/login' style={{ fontWeight: 'bold' }}>aqui</a></p>,
+            style: {
+                width: 400,
+                height: 100
+            },
+            duration: 5
+        })
+  
+        setTimeout(() => {
+            navigate('/login')
+        }, 5000);
     })
-    .finally(()=>{setLoading(false)})
 
   }
 
-  const realizarAgendamento = () =>{
+  const realizarAgendamento = () => {
     AgendamentoService.realizarAgendamento(agendamentoID)
-    
-    window.location.reload()
+
+    AgendamentoService.get().then((resp) => {
+      setAgendamentos(resp)
+    })
+
+
   }
 
   const onFinishFailed = () => {
@@ -80,9 +140,9 @@ const AgendamentoPorHemocentro = () => {
   ]
 
   const desabilitarBotao = (situacao) => {
-    if(situacao == "Aberto"){
+    if (situacao == "Aberto") {
       return false
-    }else{
+    } else {
       return true
     }
   }
@@ -117,7 +177,7 @@ const AgendamentoPorHemocentro = () => {
       width: '150',
       render: (record) => {
         return (
-          <Button type='primary' onClick={() => { setModal(true); setUsuarioID(record?.usuarioID); setAgendamentoID(record?.agendamentoID)}} disabled={desabilitarBotao(record?.situacao)}>Realizar agendamento</Button>
+          <Button type='primary' onClick={() => { setModal(true); setUsuarioID(record?.usuarioID); setAgendamentoID(record?.agendamentoID) }} disabled={desabilitarBotao(record?.situacao)}>Realizar agendamento</Button>
         )
       }
     }
@@ -126,7 +186,7 @@ const AgendamentoPorHemocentro = () => {
   return (
     <Spin spinning={loading}>
       <div className={Styles.container}>
-        <img src={Logo} width={700} height={230} style={{ marginBottom: '20px' }} alt=""/>
+        <img src={Logo} width={700} height={230} style={{ marginBottom: '20px' }} alt="" />
         <div className={Styles.select}>
           <Form.Item wrapperCol={{ span: 12 }} labelCol={{ span: 12 }} label="Selecione um hemocentro" rules={[{ required: true, message: 'É necessário selecionar um hemocentro' }]}>
             <Select placeholder="Selecione" style={{ width: '150px' }} onSelect={(e) => { pesquisarPorHemocentro(e) }}>

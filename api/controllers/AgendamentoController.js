@@ -56,7 +56,6 @@ const AgendamentoController = {
             AgendamentoModel.create(agendamento)
             return res.status(201).json({success:true, message: "Agendamento realizado com sucesso"});
         } catch (error) {
-            console.log(error);
             return res.json({ message: error.message })
         }
     },

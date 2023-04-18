@@ -29,7 +29,6 @@ const CampanhaController = {
             CampanhaModel.create(campanha)
             return res.status(201).json({ success: true, data: "Campanha cadastrada com sucesso e será enviada a um administrador para aprova-la" });
         } catch (error) {
-            console.log(error);
             return res.json({ message: error.message })
         }
     },

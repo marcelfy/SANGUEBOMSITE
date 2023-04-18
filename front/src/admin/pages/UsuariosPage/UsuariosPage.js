@@ -2,27 +2,42 @@ import React, { useEffect, useState } from 'react'
 import UsuarioService from '../../../service/UsuarioService.ts'
 import Styles from './UsuariosPage.module.css'
 import Logo from '../../../public/Assets/img/logo.png'
-import { Checkbox, message, Table } from 'antd'
+import { Checkbox, message, Table, notification } from 'antd'
 import PerfilService from '../../../service/PerfilService.ts'
+import { useNavigate } from 'react-router-dom'
 
 const UsuariosPage = () => {
 
     const [usuarios, setUsuarios] = useState()
     const [perfil, setPerfil] = useState()
+    const navigate = useNavigate()
 
     useEffect(() => {
         UsuarioService.get().then((resp) => {
             setUsuarios(resp)
         })
+        .catch((err) => {
+            notification.error({
+                message: 'Necessário realizar o login',
+                description:
+                    <p>Para ter acesso a essa funcionalidade é necessário realizar o login <a href='/login' style={{ fontWeight: 'bold' }}>aqui</a></p>,
+                style: {
+                    width: 400,
+                    height: 100
+                },
+                duration: 5
+            })
 
-       
-    }, [])
+            setTimeout(() => {
+                navigate('/login')
+            }, 5000);
+        })
 
-    useEffect(()=>{
+
         PerfilService.get().then((resp)=>{
             setPerfil(resp)
         })
-    },[])
+    }, [])
 
     function buscarUsuarios(){
         UsuarioService.get().then((resp) => {
@@ -41,7 +56,6 @@ const UsuariosPage = () => {
     function alterarPerfil(usuarioID, perfilID){
         let usuario = usuarios.find(u => u.usuarioID === usuarioID)
         usuario.perfilID = perfilID
-        console.log(usuario);
         UsuarioService.put(usuario).then((resp)=>{
             buscarUsuarios()
             message.success("Usuario atualizado com sucesso")

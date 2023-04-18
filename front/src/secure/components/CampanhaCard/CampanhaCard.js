@@ -1,9 +1,12 @@
-import { Button, message, Popconfirm } from 'antd';
+import { Button, message, notification, Popconfirm } from 'antd';
 import React from 'react'
 import Styles from './CampanhaCard.module.css'
 import CampanhaService from '../../../service/CampanhaService.ts'
+import { useNavigate } from 'react-router-dom';
 
 const CampanhaCard = (props) => {
+
+  const navigate = useNavigate()
 
   function aprovarCampanha(){
     CampanhaService.aprovarCampanha(props.id).then((resp) => {
@@ -12,7 +15,23 @@ const CampanhaCard = (props) => {
       }
     })
       .finally(() => recarregar())
-      .catch((error) => { })
+      .catch((err) => {
+            notification.error({
+                message: 'Necessário realizar o login',
+                description:
+                    <p>Para ter acesso a essa funcionalidade é necessário realizar o login <a href='/login' style={{ fontWeight: 'bold' }}>aqui</a></p>,
+                style: {
+                    width: 400,
+                    height: 100
+                },
+                duration: 5
+            })
+
+            setTimeout(() => {
+                navigate('/login')
+            }, 5000);
+        })
+
   }
 
   function excluirCampanha(){
@@ -22,7 +41,23 @@ const CampanhaCard = (props) => {
       }
     })
       .finally(() => recarregar())
-      .catch((error) => { })
+      .catch((err) => {
+            notification.error({
+                message: 'Necessário realizar o login',
+                description:
+                    <p>Para ter acesso a essa funcionalidade é necessário realizar o login <a href='/login' style={{ fontWeight: 'bold' }}>aqui</a></p>,
+                style: {
+                    width: 400,
+                    height: 100
+                },
+                duration: 5
+            })
+
+            setTimeout(() => {
+                navigate('/login')
+            }, 5000);
+        })
+
   }
 
   function recarregar(){

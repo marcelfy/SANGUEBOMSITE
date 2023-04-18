@@ -29,7 +29,6 @@ const EstoqueSangueController = {
             EstoqueSangueModel.create(estoqueSangue)
             return res.status(201).json(estoqueSangue);
         } catch (error) {
-            console.log(error);
             return res.json({ message: error.message })
         }
     },
@@ -63,6 +62,26 @@ const EstoqueSangueController = {
             await EstoqueSangueModel.destroy({ where: { estoqueSangueID: estoqueSangueID } });
             return res.status(204).send()
     
+        } catch (error) {
+            return res.json({ message: error.message })
+        }
+    },
+
+    async atualizarEstoqueSangue(req, res){
+        const { tipoSangue, quantidade } = req.params
+
+        try {
+            const estoqueSangue = await EstoqueSangueModel.findOne({where:{ tipoSangue: tipoSangue}})
+            
+            var quantidadeAntiga = estoqueSangue.getDataValue("quantidadeTotal")
+
+            var quantidadeNova = parseInt(quantidade) + parseInt(quantidadeAntiga);
+
+            estoqueSangue.setDataValue("quantidadeTotal", quantidadeNova.toString());
+
+            await EstoqueSangueModel.update({quantidadeTotal: quantidadeNova},{where:{ tipoSangue: tipoSangue}})
+
+            return res.status(202).json({success:true , message:"Estoque de sangue alterado"});
         } catch (error) {
             return res.json({ message: error.message })
         }
