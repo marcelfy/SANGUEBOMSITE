@@ -29,14 +29,13 @@ const AgendamentoPorHemocentro = () => {
       notification.error({
         message: 'Necessário realizar o login',
         description:
-          <p>Para ter acesso a essa funcionalidade é necessário realizar o login <a href='/login' style={{ fontWeight: 'bold' }}>aqui</a></p>,
+                <p>{err.response.data?.message} <br /><a href='/login' style={{ fontWeight: 'bold' }}>Fazer login</a></p>,
         style: {
-          width: 400,
-          height: 100
+            height: err.response.status == 500 ? 120 : 100
         },
         duration: 5
-      })
-
+    })
+    sessionStorage.clear()
       setTimeout(() => {
         navigate('/login')
       }, 5000);
@@ -48,16 +47,15 @@ const AgendamentoPorHemocentro = () => {
     })
     .catch((err) => {
       notification.error({
-          message: 'Necessário realizar o login',
-          description:
-              <p>Para ter acesso a essa funcionalidade é necessário realizar o login <a href='/login' style={{ fontWeight: 'bold' }}>aqui</a></p>,
-          style: {
-              width: 400,
-              height: 100
-          },
-          duration: 5
-      })
-
+        message: 'Necessário realizar o login',
+        description:
+                <p>{err.response.data?.message} <br /><a href='/login' style={{ fontWeight: 'bold' }}>Fazer login</a></p>,
+        style: {
+            height: err.response.status == 500 ? 120 : 100
+        },
+        duration: 5
+    })
+    sessionStorage.clear()
       setTimeout(() => {
           navigate('/login')
       }, 5000);
@@ -96,16 +94,15 @@ const AgendamentoPorHemocentro = () => {
       EstoqueSangueService.atualizarEstoqueSangue(doacao.tipoSangue, doacao.quantidade).then(()=>{})
       .catch((err) => {
         notification.error({
-            message: 'Necessário realizar o login',
-            description:
-                <p>Para ter acesso a essa funcionalidade é necessário realizar o login <a href='/login' style={{ fontWeight: 'bold' }}>aqui</a></p>,
-            style: {
-                width: 400,
-                height: 100
-            },
-            duration: 5
-        })
-  
+          message: 'Necessário realizar o login',
+          description:
+                  <p>{err.response.data?.message} <br /><a href='/login' style={{ fontWeight: 'bold' }}>Fazer login</a></p>,
+          style: {
+              height: err.response.status == 500 ? 120 : 100
+          },
+          duration: 5
+      })
+      sessionStorage.clear()
         setTimeout(() => {
             navigate('/login')
         }, 5000);
