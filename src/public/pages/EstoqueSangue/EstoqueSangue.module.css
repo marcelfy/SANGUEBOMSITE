@@ -2,6 +2,8 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    width: 600px;
+    height: 200px;
 }
 
 .container {
@@ -44,3 +46,19 @@
 .botao{
     width: 8em;
 }
+
+@media only screen and (max-width: 500px) {
+   .graficoArea{
+    flex-direction: column;
+   }
+
+   .container{
+    height: auto;
+    padding: 0px;
+   }
+
+   .logo{
+    width: 300px;
+    height: 150px;
+   }
+  }

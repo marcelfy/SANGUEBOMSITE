@@ -95,12 +95,12 @@ const Hemocentros = () => {
 
     return (
         <>
-            <div style={{ width: '100%', height: 'auto' }}>
+            <div className={Style.container}>
                 <div className={Style.logo}>
-                    <img src={Logo} width={700} height={230} />
+                    <img src={Logo} width={700} height={230} className={Style.img}/>
                 </div>
                 <div className={Style.titulo}>
-                    <h2 style={{ fontSize: '30px', fontWeight: '650' }}>Hemocentros</h2>
+                    <h2 style={{ fontSize: '30px', fontWeight: '650', alignSelf:'center' }}>Hemocentros</h2>
                 </div>
                 {ehAdmin ?
                     <div className={Style.btnArea}>

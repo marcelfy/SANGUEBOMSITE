@@ -19,7 +19,7 @@ const Home = () => {
     return(
         <section className={style.home_container}>
             <img src={Logo} className={style.img}></img>
-            <p style={{fontSize:'30px'}}>DOAÇÕES REALIZADAS ATRAVÉS DO <b>SANGUE BOM</b></p>
+            <p className={style.title}>DOAÇÕES REALIZADAS ATRAVÉS DO <b>SANGUE BOM</b></p>
             
                 <div className={style.numDoacoes}>
                     <b>SANGUE</b>

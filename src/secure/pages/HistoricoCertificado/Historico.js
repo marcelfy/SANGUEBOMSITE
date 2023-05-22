@@ -3,7 +3,7 @@ import { Button, Space, Table, notification } from 'antd';
 import Logo from '../../../public/Assets/img/logo.png'
 import { AiOutlineHistory } from 'react-icons/ai'
 import Certificado from '../../../public/Assets/img/certificado.png'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import React, { useEffect, useState } from 'react';
 import AgendamentoService from '../../../service/AgendamentoService.ts';
 import moment from 'moment';
@@ -16,27 +16,27 @@ const HistoricoCertificado = () => {
 
     const [data, setData] = useState();
 
-    useEffect(()=>{
-        AgendamentoService.getByUsuarioId(usuario?.usuarioID).then((resp)=>{
+    useEffect(() => {
+        AgendamentoService.getByUsuarioId(usuario?.usuarioID).then((resp) => {
             setData(resp)
         })
-        .catch((err) => {
-            notification.error({
-                message: 'Necessário realizar o login',
-                description:
+            .catch((err) => {
+                notification.error({
+                    message: 'Necessário realizar o login',
+                    description:
                         <p>{err.response.data?.message} <br /><a href='/login' style={{ fontWeight: 'bold' }}>Fazer login</a></p>,
-                style: {
-                    height: err.response.status == 500 ? 120 : 100
-                },
-                duration: 5
+                    style: {
+                        height: err.response.status == 500 ? 120 : 100
+                    },
+                    duration: 5
+                })
+                sessionStorage.clear()
+                setTimeout(() => {
+                    navigate('/login')
+                }, 5000);
             })
-            sessionStorage.clear()
-            setTimeout(() => {
-                navigate('/login')
-            }, 5000);
-        })
 
-    },[])
+    }, [])
 
     const columns = [
         {
@@ -82,22 +82,22 @@ const HistoricoCertificado = () => {
 
     return (
         <>
-            <div className={Styles.centralizar} style={{ marginTop: '40px' }}>
-                <img src={Logo} width={700} height={230} />
-            </div>
-            <div className={Styles.container}>
-                <div style={{ display: "flex", justifyContent: 'space-between', width: '20%' }}>
-                    <AiOutlineHistory className={Styles.icone} />
-                    <img src={Certificado} className={Styles.icone} width={110} />
-                </div>
-                <b>Histórico e Certificados</b>
-                <Table columns={columns} dataSource={data} className={Styles.table} />
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Button type='primary' className={Styles.button} style={{ borderColor: '#AF0107' }} onClick={() => navigate('/home')}>Voltar</Button>
-                </div>
-            <div className={Styles.imagens}>
-                <img src={Logo} className={Styles.img2}></img>
-            </div>
+            <div className={Styles.container} style={{ marginTop: '40px' }}>
+                <img src={Logo} className={Styles.img} />
+                {/* <div className={Styles.container}> */}
+                    <div style={{ display: "flex", justifyContent: 'space-between', width: '20%' }}>
+                        <AiOutlineHistory className={Styles.icone} />
+                        <img src={Certificado} className={Styles.icone} width={110} />
+                    </div>
+                    <b>Histórico e Certificados</b>
+                    <Table columns={columns} dataSource={data} className={Styles.table} />
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <Button type='primary' className={Styles.button} style={{ borderColor: '#AF0107' }} onClick={() => navigate('/home')}>Voltar</Button>
+                    </div>
+                    <div className={Styles.imagens}>
+                        <img src={Logo} className={Styles.img2}></img>
+                    </div>
+                {/* </div> */}
             </div>
         </>
     )

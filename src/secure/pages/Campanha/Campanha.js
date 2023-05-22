@@ -67,7 +67,7 @@ const Campanha = () => {
                 notification.error({
                     message: 'Necessário realizar o login',
                     description:
-                            <p>{err.response.data?.message} <br /><a href='/login' style={{ fontWeight: 'bold' }}>Fazer login</a></p>,
+                        <p>{err.response.data?.message} <br /><a href='/login' style={{ fontWeight: 'bold' }}>Fazer login</a></p>,
                     style: {
                         height: err.response.status == 500 ? 120 : 100
                     },
@@ -78,7 +78,7 @@ const Campanha = () => {
                     navigate('/login')
                 }, 5000);
             })
-    
+
     }
 
     function resetarForm() {
@@ -103,7 +103,8 @@ const Campanha = () => {
     return (
         <div style={{ width: '100%', height: 'auto' }}>
             <div className={Style.container}>
-                <img src={Logo} width={700} height={230} />
+                <img src={Logo} className={Style.img} />
+
                 <BiDonateBlood size={50} style={{ color: 'red' }} />
                 <h1 style={{ color: 'red' }}>Campanhas</h1>
 
@@ -120,12 +121,12 @@ const Campanha = () => {
                 }
                 {campanhas?.length == 0 && ehAdmin ?
                     <div>
-                        <h2 style={{marginBottom:'1.3em'}}>Não existem campanhas para serem aprovadas</h2>
+                        <h2 style={{ marginBottom: '1.3em' }}>Não existem campanhas para serem aprovadas</h2>
                     </div> : null
                 }
                 <div className={Style.campanhaCard}>
                     {campanhas?.map((c, key) => {
-                        return <CampanhaCard key={key} titulo={c.titulo} tipoSangue={c.tipoSangue} descricao={c.descricao} ehAdmin={ehAdmin} id={c.campanhaID} buscar={pesquisarCampanhas}/>
+                        return <CampanhaCard key={key} titulo={c.titulo} tipoSangue={c.tipoSangue} descricao={c.descricao} ehAdmin={ehAdmin} id={c.campanhaID} buscar={pesquisarCampanhas} />
                     })}
                 </div>
             </div>

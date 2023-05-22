@@ -54,8 +54,8 @@ const EstoqueSangue = () => {
 
   return (
     <div className={Styles.container}>
-      <div className={Styles.logo}>
-        <img src={Logo} width={600} height={200} alt='' style={{ marginBottom: '30px' }} />
+      <div >
+        <img src={Logo} alt='' className={Styles.logo} style={{ marginBottom: '30px' }} />
       </div>
       <b style={{ fontSize: 30 }}>Estoque de <b style={{ color: 'red' }}>Sangue</b></b>
       {ehAdmin ?

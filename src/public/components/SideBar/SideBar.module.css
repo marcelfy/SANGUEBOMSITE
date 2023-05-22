@@ -42,3 +42,9 @@ main{
 .icon, .link_text{
     font-size: 20px;
 }
+
+@media only screen and (max-width: 500px) {
+    main{
+        padding: 0px;
+    }   
+}
