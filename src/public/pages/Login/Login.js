@@ -1,5 +1,5 @@
 import Style from './Login.module.css'
-import { Form, Input, Button,  message } from 'antd';
+import { Form, Input, Button, message } from 'antd';
 import Logo from '../../../public/Assets/img/logo.png'
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../../components/Spinner/Spinner'
@@ -14,24 +14,21 @@ const Login = () => {
 
     const onFinish = (values) => {
         setLoading(true)
-        UsuarioService.login(values).then((res)=>{
+        UsuarioService.login(values).then((res) => {
             if (res.success) {
                 sessionStorage.setItem('usuarioLogado', JSON.stringify(res.usuario))
                 sessionStorage.setItem('token', res.token)
-                setTimeout(() => {
-                    message.success("Usuário logado com sucesso")
-                    window.location.reload()
-                }, 100);
+                message.success("Usuário logado com sucesso")
                 navigate(res.usuario.Perfil?.nome === "Usuario" ? "/home" : "/admin")
             } else {
                 message.error(res.message);
             }
-        })    
-        .finally(() => {
-            setLoading(false)
-            
         })
-        .catch((error) => message.error(error))
+            .finally(() => {
+                setLoading(false)
+
+            })
+            .catch((error) => message.error(error))
     };
 
     const onFinishFailed = () => {
@@ -42,7 +39,7 @@ const Login = () => {
         <>
             <Spinner loading={loading} />
             <div className={Style.logo}>
-                <img src={Logo} width={500} height={190} alt='' style={{marginBottom: '30px'}}/>
+                <img src={Logo} width={500} height={190} alt='' style={{ marginBottom: '30px' }} />
             </div>
             <Form
                 name="basic"

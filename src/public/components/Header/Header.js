@@ -1,6 +1,6 @@
 import style from './Header.module.css'
 import { Link, useNavigate } from 'react-router-dom'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Avatar, Popover } from 'antd';
 import {MdDriveFileRenameOutline} from 'react-icons/md'
 import {BsTelephoneMinus} from 'react-icons/bs'
@@ -10,15 +10,22 @@ import {BiLogOutCircle} from 'react-icons/bi'
 
 const NavBar = () => {
 
+    const [user, setUser] = useState()
+
+    useEffect(()=>{
+
+    },[user])
+
     const navigate = useNavigate()
     const usuario = JSON.parse(sessionStorage.getItem("usuarioLogado"))
     const icon = usuario?.nome?.substr(0, 1);
 
     function logout() {
         navigate("/home")
-        setTimeout(() => {
-            window.location.reload()
-        }, 100);
+        setUser("")
+        // setTimeout(() => {
+        //     window.location.reload()
+        // }, 100);
         sessionStorage.clear()
     }
 

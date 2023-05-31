@@ -14,9 +14,6 @@ const Footer = () => {
                 <li>
                     <FaInstagram />
                 </li>
-                <li>
-                    <FaGooglePlay />
-                </li>
 
             </ul>
             
