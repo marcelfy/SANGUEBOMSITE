@@ -11,3 +11,24 @@
     background: rgba(255, 255, 255, 0.973958) 0.01%;
     height: 100vh;
 }
+
+.info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: auto;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    color: #555;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info b {
+    font-size: 15px;
+    font-weight: bolder;
+    margin: 10px 0;
+}
