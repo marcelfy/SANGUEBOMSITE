@@ -14,21 +14,41 @@
 
 .info {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    width: 50%;
+    width: 60%;
     height: auto;
-    flex-direction: column;
+    flex-direction: row;
     border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 16px;
+    padding: 19px;
     color: #555;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.topico{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    flex-direction: column;
+}
+
+.topico p{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 4px solid gray;
+    font-size: 26px;
+    font-weight: bold;
+    padding: 20px;
+    margin-bottom: 0;
+}
+
+
 .info b {
-    font-size: 15px;
+    font-size: 18px;
     font-weight: bolder;
     margin: 10px 0;
 }
