@@ -6,14 +6,21 @@ import Spinner from '../../components/Spinner/Spinner'
 import { useState } from 'react';
 import React from 'react';
 import UsuarioService from '../../../service/UsuarioService.ts';
+import ReCAPTCHA from "react-google-recaptcha";
 
 const Login = () => {
 
     const [loading, setLoading] = useState(false);
+    const [captcha, setCaptcha] = useState(false)
     const navigate = useNavigate()
 
     const onFinish = (values) => {
         setLoading(true)
+        if(!captcha){
+            message.error("Confirme que você é humano")
+            setLoading(false)
+            return;
+        }
         UsuarioService.login(values).then((res) => {
             if (res.success) {
                 sessionStorage.setItem('usuarioLogado', JSON.stringify(res.usuario))
@@ -34,6 +41,10 @@ const Login = () => {
     const onFinishFailed = () => {
         message.error("Preencha o formulário corretamente")
     };
+    
+    const changeRecaptcha = (e) => {
+        setCaptcha(!captcha)
+    }
 
     return (
         <>
@@ -72,7 +83,12 @@ const Login = () => {
                     >
                         <Input.Password placeholder='Digite sua senha' className={Style.input} style={{ border: '1px solid black', borderRadius: '10px' }} />
                     </Form.Item>
-
+                    <div className={Style.recaptcha}>
+                        <ReCAPTCHA
+                            sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+                            onChange={changeRecaptcha}
+                        />
+                    </div>
 
                     <div className={Style.btn}>
                         <Button type='primary' htmlType="submit" style={{ backgroundColor: '#AF0107', borderRadius: '10px', borderColor: '#AF0107', width: '90px' }}>
