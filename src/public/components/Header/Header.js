@@ -23,9 +23,6 @@ const NavBar = () => {
     function logout() {
         navigate("/home")
         setUser("")
-        // setTimeout(() => {
-        //     window.location.reload()
-        // }, 100);
         sessionStorage.clear()
     }
 

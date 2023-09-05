@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Styles from './HomeAdmin.module.css'
 import Logo from '../../../public/Assets/img/logo.png'
 import DoacaoService from '../../../service/DoacaoService.ts'
+import { Statistic } from 'antd'
+import CountUp from 'react-countup'
 
 const HomeAdmin = () => {
 
@@ -17,6 +19,8 @@ const HomeAdmin = () => {
       setDoacoesAno(resp.filter((d) => new Date(d.createdAt).getFullYear() == anoAtual))
     })
   }, [])
+
+  const formatter = (value) => <CountUp end={value} separator="." />;
 
   const obterMesAtual = () => {
     let dataAtual = new Date();
@@ -37,12 +41,10 @@ const HomeAdmin = () => {
       <h2 style={{ marginBottom: '150px' }}>Bem vindo a área administrativa do Sangue Bom!</h2>
       <div className={Styles.info}>
         <div className={Styles.topico}>
-          <b>Doações realizadas no mês de {obterMesAtual()}</b>
-          <p>{doacoesMes?.length}</p>
+          <Statistic style={{fontSize:'13px'}} title={<b>Doações realizadas no mês de {obterMesAtual()}</b>} value={doacoesMes?.length} formatter={formatter} />
         </div>
         <div className={Styles.topico}>
-          <b>Doações realizadas no ano de {new Date().getFullYear()}</b>
-          <p>{doacoesAno?.length}</p>
+          <Statistic style={{fontSize:'13px'}} title={<b>Doações realizadas no ano de {new Date().getFullYear()}</b>} value={doacoesMes?.length} formatter={formatter} />
         </div>
       </div>
     </div>

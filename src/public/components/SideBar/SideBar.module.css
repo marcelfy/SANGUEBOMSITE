@@ -47,4 +47,8 @@ main{
     main{
         padding: 0px;
     }   
+
+    .link_text{
+        font-size: 15px;
+    }
 }

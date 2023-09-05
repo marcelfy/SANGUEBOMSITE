@@ -62,5 +62,7 @@
 
 
 @media only screen and (max-width: 500px) {
-    
+    .item {
+        margin: 0px;
+    }
   }
