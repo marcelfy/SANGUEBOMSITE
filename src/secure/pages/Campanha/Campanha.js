@@ -1,5 +1,6 @@
 import Style from './Campanha.module.css'
 import React, { useEffect, useState } from 'react'
+import HemocentroService from '../../../service/HemocentroService.ts';
 import { BiDonateBlood } from 'react-icons/bi'
 import Logo from '../../../public/Assets/img/logo.png'
 import CampanhaService from '../../../service/CampanhaService.ts'
@@ -11,6 +12,7 @@ import { useNavigate } from 'react-router-dom'
 const Campanha = () => {
 
     const [campanhas, setCampanhas] = useState()
+    const [hemocentro, setHemocentro] = useState()
     const [loading, setLoading] = useState(false)
     const [modal, setModal] = useState(false)
     const { Option } = Select;
@@ -35,12 +37,20 @@ const Campanha = () => {
     useEffect(() => {
         CampanhaService.get().then((resp) => {
             if (ehAdmin) {
-                setCampanhas(resp.filter((c) => c.ativo == false))
+                setCampanhas(resp?.filter((c) => c?.ativo == false))
             } else {
-                setCampanhas(resp.filter((c) => c.ativo == true))
+                setCampanhas(resp?.filter((c) => c?.ativo == true))
             }
         })
+
+        buscarHemocentros()
     }, [])
+
+    function buscarHemocentros() {
+        HemocentroService.get().then((resp) => {
+            setHemocentro(resp)
+        })
+    }
 
     const onFinish = (values) => {
 
@@ -48,12 +58,13 @@ const Campanha = () => {
             titulo: values.titulo,
             tipoSangue: values.tipoSangue,
             descricao: values.descricao,
+            hemocentroID: values.hemocentroID,
             ativo: false,
         }
         CampanhaService.post(campanha)
             .then((resp) => {
                 setLoading(true)
-                if (resp.success) {
+                if (resp?.success) {
                     message.success({
                         duration: 5,
                         content: resp.data
@@ -126,7 +137,7 @@ const Campanha = () => {
                 }
                 <div className={Style.campanhaCard}>
                     {campanhas?.map((c, key) => {
-                        return <CampanhaCard key={key} titulo={c.titulo} tipoSangue={c.tipoSangue} descricao={c.descricao} ehAdmin={ehAdmin} id={c.campanhaID} buscar={pesquisarCampanhas} />
+                        return <CampanhaCard key={key} titulo={c.titulo} hemocentro={c.Hemocentro} tipoSangue={c.tipoSangue} descricao={c.descricao} ehAdmin={ehAdmin} id={c.campanhaID} buscar={pesquisarCampanhas} />
                     })}
                 </div>
             </div>
@@ -146,12 +157,15 @@ const Campanha = () => {
                                 name="titulo"
                                 labelCol={{ span: 24 }}
                                 wrapperCol={{ span: 24 }}
-                                style={{ width: '90%' }}
+                                style={{ width: '100%' }}
                                 rules={[{ required: true, message: 'Insira um título' }]}
                             >
-                                <Input placeholder='Digite o titulo' style={{ width: '90%' }} />
+                                <Input placeholder='Digite o titulo' style={{ width: '100%' }} />
                             </Form.Item>
 
+
+                        </div>
+                        <div style={{ display: 'flex' , gap:'10px'}}>
                             <Form.Item
                                 label="Tipo Sanguíneo"
                                 name="tipoSangue"
@@ -160,8 +174,21 @@ const Campanha = () => {
                                 rules={[{ required: true, message: 'Informe o tipo sanguíneo' }]}
                             >
                                 <Select placeholder="Selecione">
-                                    {tipoSanguineo.map((a, index) => {
+                                    {tipoSanguineo?.map((a, index) => {
                                         return <Option key={index} value={a.tipo}><p>{a.tipo}</p></Option>
+                                    })}
+                                </Select>
+                            </Form.Item>
+                            <Form.Item
+                                label="Hemocentro onde é para realizar a doação"
+                                name="hemocentroID"
+                                labelCol={{ span: 24 }}
+                                wrapperCol={{ span: 24 }}
+                                rules={[{ required: true, message: 'Informe o hemocentro' }]}
+                            >
+                                <Select placeholder="Selecione">
+                                    {hemocentro?.map((h, index) => {
+                                        return <Option key={index} value={h.hemocentroID}><p>{h.nome}</p></Option>
                                     })}
                                 </Select>
                             </Form.Item>

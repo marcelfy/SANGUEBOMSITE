@@ -25,7 +25,7 @@ const Cadastro = () => {
 
     const onFinish = (values) => {
 
-        var values = { ...values, perfilID: 2 }
+        var values = { ...values, perfilID: 1 }
 
         values.cpf = unmaskCPF(values.cpf)
 
