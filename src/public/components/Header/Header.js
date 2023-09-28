@@ -6,7 +6,7 @@ import {MdDriveFileRenameOutline} from 'react-icons/md'
 import {BsTelephoneMinus} from 'react-icons/bs'
 import {CgProfile} from 'react-icons/cg'
 import {BiLogOutCircle} from 'react-icons/bi'
-
+import {AiFillEdit} from 'react-icons/ai'
 
 const NavBar = () => {
 
@@ -32,7 +32,9 @@ const NavBar = () => {
                 <li><MdDriveFileRenameOutline/><b>Nome:</b> {usuario?.nome}</li>
                 <li><BsTelephoneMinus/><b>Telefone:</b> {usuario?.telefone}</li>
                 <li><CgProfile/><b>Perfil:</b> {usuario?.Perfil?.nome}</li>
+                <li><AiFillEdit/><b onClick={()=> navigate("/editar-dados")} style={{cursor:'pointer'}}>Editar Dados</b></li>
                 <li><BiLogOutCircle/><a onClick={logout}>Sair</a></li>
+
             </ul>
         </div>
     );

@@ -18,6 +18,7 @@ import EstoqueSangue from './public/pages/EstoqueSangue/EstoqueSangue';
 import HomeAdmin from './admin/pages/HomeAdmin/HomeAdmin';
 import UsuariosPage from './admin/pages/UsuariosPage/UsuariosPage';
 import SemPermissao from './public/pages/SemPermissao/SemPermissao';
+import EditarDados from './secure/pages/EditarDados/EditarDados';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/cadastro" element={<Cadastro />}></Route>
           <Route path="/home" element={<Home />}></Route>
+          <Route path="/editar-dados" element={<EditarDados />}></Route>
           <Route path="/hemocentros" element={<Hemocentros />}></Route>
           <Route path="/estoque-sangue" element={<EstoqueSangue />}></Route>
           <Route path="/campanha" element={<Campanha />}></Route>

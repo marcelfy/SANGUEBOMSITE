@@ -1,0 +1,119 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4em;
+    text-align: center;
+    position: relative;
+    background: rgba(255, 255, 255, 0.973958) 0.01%;
+}
+
+.img{
+    width: 700px;
+    height: 230px;
+}
+
+.input {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-variant: tabular-nums;
+    list-style: none;
+    font-feature-settings: 'tnum', "tnum";
+    position: relative;
+    display: inline-block;
+    min-width: 0;
+    padding: 4px 11px;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 14px;
+    line-height: 1.5715;
+    background-color: #fff;
+    border: 1px solid black;
+    border-radius: 2px;
+    transition: all 0.3s;
+    
+}
+
+.input:disabled{
+    cursor: not-allowed;
+    background-color: #cdcbcb;
+}
+
+.containerForm{
+    background: #007DB1;
+    padding: 2em;
+    border: 2px solid #999696;
+    box-shadow: 8px 8px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+    /* height: 350px; */
+    
+}
+
+
+
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80vh;
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.groupItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 25px;
+    width: auto;
+    width: 100%;
+}
+
+.groupItem2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    column-gap: 50px;
+    margin-top: none;
+}
+
+.btn {
+    width: 10em;
+}
+
+.btnArea {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
+    column-gap: 50px;
+}
+
+.title {
+    font-size: 28px;
+    display: flex;
+    justify-content: center;
+    /* margin-bottom: 24px; */
+    color: #007DB1;
+    /* margin-top: 25px; */
+}
+
+@media only screen and (max-width: 500px) {
+    .img{
+        width: 200px;
+        height: 100px;
+    }
+
+    .container{
+        height: auto;
+        padding: 0px;
+    }
+  }
