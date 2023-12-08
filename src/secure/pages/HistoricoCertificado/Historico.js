@@ -18,7 +18,7 @@ const HistoricoCertificado = () => {
 
     useEffect(() => {
         AgendamentoService.getByUsuarioId(usuario?.usuarioID).then((resp) => {
-            setData(resp)
+            setData(resp.filter(a => a.situacao != "Aberto"))
         })
             .catch((err) => {
                 notification.error({

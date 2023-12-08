@@ -25,6 +25,25 @@ const Cadastro = () => {
 
     const onFinish = (values) => {
 
+        let words = values?.nome?.trim().split(" ")
+        
+        if (words.some((s, index) => {
+            if (index > 0) {
+                return s?.length < 2
+            }
+            else {
+                return s?.length < 3
+            }
+        })) {
+            message.error("Nome ou Sobrenome inválido")
+            return;
+        }
+    
+        if (words.length < 2) {
+            message.error('Digite pelo menos o Nome e Sobrenome');
+            return
+        }
+
         var values = { ...values, perfilID: 1 }
 
         values.cpf = unmaskCPF(values.cpf)

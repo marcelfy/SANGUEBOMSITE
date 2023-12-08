@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import Styles from './EditarDados.module.css'
 import Logo from '../../../public/Assets/img/logo.png'
 import { Form, Button, Select, Input, Checkbox, message } from 'antd'
-import { unmaskCPF, validaCPF, validarSenha } from '../../../utils.js';
+import { unmaskCPF, validaCPF } from '../../../utils.js';
 import MaskedInput from 'react-input-mask';
 import UsuarioService from '../../../service/UsuarioService.ts'
 import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
 
 function EditarDados() {
 
@@ -16,7 +17,11 @@ function EditarDados() {
 
     useEffect(()=>{
         setUsuarioLogado(JSON.parse(sessionStorage.getItem("usuarioLogado")))
-        form.setFieldsValue(JSON.parse(sessionStorage.getItem("usuarioLogado")))
+        let usuarioLogado = JSON.parse(sessionStorage.getItem("usuarioLogado"))
+        form.setFieldsValue(usuarioLogado)
+        form.setFieldsValue({
+            dataNascimento: moment(usuarioLogado?.dataNascimento).format("DD/MM/YYYY")
+        })
     },[])
 
 
@@ -61,17 +66,6 @@ function EditarDados() {
         { uf: 'TO', nome: 'Tocantins', id: 27 }
     ]
 
-    const validarSenhaForm = () => {
-
-        var senha = form.getFieldValue("senha")
-
-        if (validarSenha(senha) === false) {
-            message.error('A senha não atende as regras')
-            return Promise.reject()
-        }
-        return Promise.resolve()
-    }
-
     const validarCpfForm = () => {
 
         var cpf = form.getFieldValue("cpf").toString()
@@ -93,6 +87,25 @@ function EditarDados() {
     }
 
     const onFinish = (values) =>{
+        let words = values?.nome?.trim().split(" ")
+        
+        if (words.some((s, index) => {
+            if (index > 0) {
+                return s?.length < 2
+            }
+            else {
+                return s?.length < 3
+            }
+        })) {
+            message.error("Nome ou Sobrenome inválido")
+            return;
+        }
+    
+        if (words.length < 2) {
+            message.error('Digite pelo menos o Nome e Sobrenome');
+            return
+        }
+
         values.usuarioID = usuarioLogado.usuarioID
         UsuarioService.put(values).then((resp)=> {
             if(resp.success){
@@ -103,19 +116,14 @@ function EditarDados() {
         })
     }
 
-    const onFinishFailed = () => {
-
-    }
-
 
     return (
         <div className={Styles.container}>
-            <img src={Logo} className={Styles.img} />
-            <h1 style={{fontSize: '2em', fontWeight:'bold', marginBottom: '-30px'}}>Alterar Dados</h1>
+            <img src={Logo} className={Styles.img} alt='logo'/>
+            <h1 style={{fontSize: '2em', fontWeight:'bold', marginBottom: '30px'}}>Alterar Dados</h1>
             <Form
                 style={{ padding: '15px', marginBottom: '2em' }}
                 onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
                 autoComplete="off"
                 className={Styles.form}
                 form={form}
