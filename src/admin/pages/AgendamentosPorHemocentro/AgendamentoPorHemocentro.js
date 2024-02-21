@@ -8,6 +8,7 @@ import Modal from 'antd/lib/modal/Modal'
 import DoacaoService from '../../../service/DoacaoService.ts'
 import { useNavigate } from 'react-router-dom'
 import EstoqueSangueService from '../../../service/EstoqueSangueService.ts'
+import moment from 'moment'
 
 const AgendamentoPorHemocentro = () => {
 
@@ -165,6 +166,17 @@ const AgendamentoPorHemocentro = () => {
       title: 'Situação',
       dataIndex: 'situacao',
       key: ''
+    },
+    {
+      title: 'Data marcada do Atendimento',
+      dataIndex: '',
+      key: '',
+      align: 'center',
+      render: (record) => {
+        return(
+          <p style={{ marginBottom: '0' }}>{moment(record?.data).format("DD/MM/YYYY") + " - " + record?.horario}</p>
+        )
+      }
     },
     {
       title: 'Ações',
