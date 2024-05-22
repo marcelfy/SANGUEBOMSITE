@@ -4,6 +4,7 @@ import Logo from '../../Assets/img/logo.png'
 import EstoqueSangueService from '../../../service/EstoqueSangueService.ts'
 import EstoqueSangueComponent from '../../components/EstoqueSangueComponent/EstoqueSangueComponent'
 import { Button, Form, Input, message, Modal } from 'antd'
+import Graficos from '../../../secure/components/Graficos/Graficos.js'
 
 const EstoqueSangue = () => {
 
@@ -14,7 +15,7 @@ const EstoqueSangue = () => {
   const usuarioLogado = JSON.parse(sessionStorage.getItem("usuarioLogado"))
 
   const ehAdmin = usuarioLogado?.Perfil?.nome == "Admin" || false
-  
+
   const [form] = Form.useForm()
 
   useEffect(() => {
@@ -103,6 +104,12 @@ const EstoqueSangue = () => {
           return <EstoqueSangueComponent key={index} percentual={calcularPercentual(e.quantidadeMaxima, e.quantidadeTotal)} tipoSangue={e.tipoSangue} />
         })}
       </div>
+      {!ehAdmin ?
+        <div className={Styles.graficos}>
+          <h2 style={{margin:'0 auto', fontWeight:'bold'}}>Visualização de Dados Públicos</h2>
+          <Graficos ehAdmin={ehAdmin}/>
+        </div>
+      : null}
     </div>
   )
 }

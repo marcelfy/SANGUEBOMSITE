@@ -1,0 +1,16 @@
+.graficos{
+    display: flex;
+    width: 85vw;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.grafico{
+        /* min-height: 365px; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 500px;
+}

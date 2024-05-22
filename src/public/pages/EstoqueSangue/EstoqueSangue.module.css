@@ -22,10 +22,19 @@
     min-height: 100%;
     height: 100%;
     flex-direction: column;
-    height: 100vh;
     position: relative;
     width: 100%;
     background: rgba(255, 255, 255, 0.973958) 0.01%;
+}
+
+.graficos{
+    margin-top: 20px;
+    display: flex;
+    width: 85vw;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .graficoArea{

@@ -9,7 +9,6 @@
     position: relative;
     width: 100%;
     background: rgba(255, 255, 255, 0.973958) 0.01%;
-    height: 100vh;
 }
 
 .info {
@@ -25,7 +24,10 @@
     color: #555;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
 }
+
+
 
 .topico{
     display: flex;
